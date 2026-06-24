@@ -18,7 +18,7 @@ IVQ.parts.part1 = function (jsPsych) {
     .map((t) => ({ value: t, text: t }));
 
   const prof = (name, title) => ({
-    type: "rating", name, title, rateMin: 0, rateMax: 10,
+    type: "rating", name, title, rateMin: 0, rateMax: 10, displayMode: "buttons",
     minRateDescription: "No proficiency", maxRateDescription: "Native-level proficiency", isRequired: true,
   });
   const age = (name, title, extra) => Object.assign({ type: "text", name, title, inputType: "number", min: 0, max: 120, isRequired: true }, extra || {});
@@ -31,11 +31,9 @@ IVQ.parts.part1 = function (jsPsych) {
     prof("prof_speaking" + suffix, "Proficiency — Speaking"),
     prof("prof_understanding" + suffix, "Proficiency — Understanding spoken language"),
     prof("prof_reading" + suffix, "Proficiency — Reading"),
+    prof("prof_writing" + suffix, "Proficiency — Writing"),
     age("age_start" + suffix, "At what age did you start learning it? (put 0 for from birth)"),
-    age("age_fluent" + suffix, "At what age did you become fluent in it?"),
     age("age_read" + suffix, "At what age did you begin reading in it?"),
-    age("age_read_fluent" + suffix, "At what age did you become a fluent reader in it?"),
-    yesno("read_to_child" + suffix, "As a child, were you read to aloud in this language?"),
   ];
 
   const survey_json = {
@@ -129,6 +127,7 @@ IVQ.parts.part1 = function (jsPsych) {
           prof("prof_speaking_en", "Proficiency in English — Speaking"),
           prof("prof_understanding_en", "Proficiency in English — Understanding spoken language"),
           prof("prof_reading_en", "Proficiency in English — Reading"),
+          prof("prof_writing_en", "Proficiency in English — Writing"),
           age("age_start_en", "At what age did you start learning English? (put 0 for from birth)"),
           age("age_fluent_en", "At what age did you become fluent in English?"),
           age("age_read_en", "At what age did you begin reading in English?"),
@@ -144,13 +143,21 @@ IVQ.parts.part1 = function (jsPsych) {
           note("english_reading_habits_h", "In a typical week, about how many hours do you spend reading each type of material (in English)?"),
           ...[
             "Books and printed materials",
-            "Online (emails, websites, apps)",
-            "Social media (including text messages)",
+            "Emails",
+            "Documents (PDFs, Word, etc.)",
+            "Websites (News, blogs, searches, etc.)",
+            "Social media",
+            "Text messages",
             "TV or video subtitles",
-            "Environment (signs, supermarkets, billboards, etc.)",
+            //"Environment (signs, supermarkets, billboards, etc.)",
           ].map((label, i) => ({
-            type: "rating", name: "reading_habits__row" + (i + 1), title: label,
-            rateMin: 0, rateMax: 7, minRateDescription: "None", maxRateDescription: "7 hours or more", isRequired: true,
+            type: "slider", name: "reading_habits__row" + (i + 1), title: label,
+            sliderType: "single", min: 0, max: 50, step: 1, tooltipFormat: "{0} h", isRequired: true,
+            autoGenerate: false,
+            customLabels: [
+              { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" },
+              { value: 30, text: "30" }, { value: 40, text: "40" }, { value: 50, text: "50+" },
+            ],
           })),
         ],
       },
@@ -172,8 +179,12 @@ IVQ.parts.part1 = function (jsPsych) {
             templateTitle: "Language: {panel.lang_name}",
             panelCount: 1, minPanelCount: 1,
             panelAddText: "Add another language", panelRemoveText: "Remove this language",
+            // each added language must be unique (no choosing the same one twice)
+            keyName: "lang_name",
+            keyDuplicationError: "You've already added this language — please pick a different one.",
             templateElements: [
-              { type: "dropdown", name: "lang_name", title: "Which language?", choices: LANGS, isRequired: true },
+              // English is handled separately, so it's excluded from the list here
+              { type: "dropdown", name: "lang_name", title: "Which language?", choices: LANGS.filter((l) => l.value !== "English"), isRequired: true },
               ...languageQuestions(""),
             ],
           },
@@ -188,9 +199,9 @@ IVQ.parts.part1 = function (jsPsych) {
           note("language_summary_h", "Now think about <strong>all</strong> the languages you know (English and the ones you listed)."),
           { type: "ranking", name: "lang_dominance", title: "Order the languages by how DOMINANT they are for you (drag the most dominant to the top).", choices: [], isRequired: true },
           { type: "ranking", name: "lang_acquisition", title: "Order the languages by ORDER OF ACQUISITION (the language you acquired first at the top).", choices: [], isRequired: true },
-          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently exposed to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "text", inputType: "number", min: 0, max: 100, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you speak each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "text", inputType: "number", min: 0, max: 100, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to read it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "text", inputType: "number", min: 0, max: 100, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently exposed to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you speak each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to read it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
         ],
       },
 
@@ -198,9 +209,21 @@ IVQ.parts.part1 = function (jsPsych) {
       {
         name: "vision",
         elements: [
-          yesno("vision_normal", "Do you have normal or corrected-to-normal vision? (glasses or contacts are fine)"),
-          yesno("vision_problem", "Do you have any vision problems? (e.g., lazy eye, crossed vision)"),
-          { type: "comment", name: "vision_problem_describe", title: "Please describe your vision problem.", visibleIf: "{vision_problem} = 'yes'", isRequired: true },
+          {
+            type: "dropdown", name: "vision_problem",
+            title: "Do you have any of the following vision conditions?",
+            choices: [
+              "None",
+              "Myopia (Nearsightedness)",
+              "Hyperopia (Farsightedness)",
+              "Astigmatism",
+              "Amblyopia (Lazy Eye)",
+              "Dry Eyes",
+              "Cataracts",
+              "Color Blind",
+            ],
+            showOtherItem: true, otherText: "Other (please specify)", isRequired: true,
+          },
         ],
       },
 
@@ -295,8 +318,22 @@ IVQ.parts.part1 = function (jsPsych) {
       {
         name: "language_impairment",
         elements: [
-          yesno("language_impairment", "Do you have any neurological disorders, learning disorders, or reading disabilities? (e.g., dyslexia, Specific Language Impairment, epilepsy)"),
-          { type: "comment", name: "language_impairment_describe", title: "Please explain your neurological disorder, learning disorder, or reading disability.", visibleIf: "{language_impairment} = 'yes'", isRequired: true },
+          {
+            type: "dropdown", name: "language_impairment",
+            title: "Do you have any neurological disorders, learning disorders, or reading disabilities?",
+            choices: [
+              "None",
+              "Dyslexia",
+              "Dysgraphia",
+              "Dyscalculia",
+              "Specific Language Impairment (SLI)",
+              "ADHD",
+              "Autism Spectrum Disorder",
+              "Epilepsy",
+              "Aphasia",
+            ],
+            showOtherItem: true, otherText: "Other (please specify)", isRequired: true,
+          },
         ],
       },
       {
@@ -317,18 +354,33 @@ IVQ.parts.part1 = function (jsPsych) {
       }
       return out;
     }
+    const PCT = ["lang_exposure_pct", "lang_speak_pct", "lang_read_pct"];
+    function pctSum(v) {
+      let s = 0;
+      Object.keys(v || {}).forEach((k) => { const c = v[k]; if (c && c.pct !== "" && c.pct != null) s += Number(c.pct); });
+      return s;
+    }
+    function showTotal(name) {
+      const q = survey.getQuestionByName(name); if (!q) return;
+      const sum = pctSum(q.value);
+      q.description = sum === 100 ? "✓ Adds up to 100%" : "Running total: " + sum + "% — should add up to 100%";
+    }
     function populate() {
       const L = langs();
       const items = L.map((l) => ({ value: l, text: l }));
       ["lang_dominance", "lang_acquisition"].forEach((n) => {
         const q = survey.getQuestionByName(n); if (q) q.choices = items;
       });
-      ["lang_exposure_pct", "lang_speak_pct", "lang_read_pct"].forEach((n) => {
+      PCT.forEach((n) => {
         const q = survey.getQuestionByName(n); if (q) q.rows = items;
+        showTotal(n);
       });
     }
     survey.onCurrentPageChanging.add(function (s, opt) {
       if (opt.newCurrentPage && opt.newCurrentPage.name === "language_summary") populate();
+    });
+    survey.onValueChanged.add(function (s, opt) {
+      if (PCT.indexOf(opt.name) !== -1) showTotal(opt.name);
     });
     populate();
 

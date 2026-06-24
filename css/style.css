@@ -250,6 +250,18 @@ fieldset.pt-q {
 /* the HTML prompt blocks we inject keep their pt-prompt / pt-info styling */
 .sd-html .pt-prompt { margin-bottom: 0; }
 
+/* slider (reading-habit hours) → accent blue fill + thumb */
+.sd-slider__range-track { background-color: var(--accent) !important; }
+.sd-slider__thumb-dot { background-color: var(--accent) !important; border-color: var(--accent) !important; }
+
+/* selected rating button → accent blue (modern theme defaults to dark) */
+.sd-rating__item--selected,
+.sd-rating__item--selected .sd-rating__item-text {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+
 /* SurveyJS question titles (used directly in Part 1) → match pt-prompt look */
 .sd-question__title {
   font-family: var(--font) !important;
