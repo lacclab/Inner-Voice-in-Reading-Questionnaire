@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Inner Voice Questionnaire — full export</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  body { background:#fff; }
+  .exp { max-width: 820px; margin: 0 auto; padding: 40px 28px 120px; }
+  .exp h1 { font-size: 1.9rem; margin-bottom: 4px; }
+  .exp .part { margin: 34px 0 8px; padding: 8px 14px; background: var(--accent-sft); border-radius: 8px;
+               font-size: 1.25rem; font-weight: 700; color: var(--accent-dk); }
+  .exp .q { border-bottom: 1px solid #eef0f6; padding: 12px 0; }
+  .exp .qt { font-weight: 600; }
+  .exp .meta { color: var(--ink-soft); font-size: .85rem; }
+  .exp .opt { margin: 2px 0 2px 18px; color:#333; }
+  .exp .vis { color:#b06; font-size:.8rem; font-style:italic; }
+  .exp .spr { margin: 3px 0 3px 18px; font-family: ui-monospace, Menlo, monospace; font-size:.92rem; }
+  .exp .pt-info, .exp .pt-prompt { margin: 4px 0; }
+  .panel { border-left:3px solid var(--accent); padding-left:14px; margin:6px 0 6px 4px; }
+  #bar { position: fixed; top:0; left:0; right:0; background:#fff; border-bottom:1px solid var(--border);
+         padding:10px 20px; text-align:right; z-index:10; }
+  @media print { #bar { display:none; } .exp { padding-top: 0; } .part { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+</style>
+<!-- stub plugin globals so the part files load without the real jsPsych plugins -->
+<script>
+  ["jsPsychSurvey","jsPsychSelfPacedReading","jsPsychHtmlButtonResponse","jsPsychSurveyHtmlForm",
+   "jsPsychSurveyLikert","jsPsychSurveyMultiChoice","jsPsychSurveyMultiSelect","jsPsychSurveyText",
+   "jsPsychAudioButtonResponse","jsPsychPreload","jsPsychFullscreen","jsPsychInstructions",
+   "jsPsychHtmlKeyboardResponse","jsPsychPipe","jsPsychCallFunction"].forEach(function(n){ window[n] = { _stub:n }; });
+</script>
+<script src="js/config.js"></script>
+<script src="js/lists.js"></script>
+<script src="stimuli/texts.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/pt.js"></script>
+<script src="js/survey_engine.js"></script>
+<script src="js/parts/intro_outro.js"></script>
+<script src="js/parts/spr_task.js"></script>
+<script src="js/parts/part1_demographics.js"></script>
+<script src="js/parts/part2_spr.js"></script>
+<script src="js/parts/part3_iewr.js"></script>
+<script src="js/parts/part4_diverse.js"></script>
+<script src="js/parts/part5_scales.js"></script>
+</head>
+<body>
+<div id="bar"><button class="jspsych-btn" onclick="window.print()">Save as PDF / Print</button></div>
+<div class="exp" id="out"></div>
+<script>
+  const jsPsych = {
+    randomization: { shuffle: a => a.slice(), randomID: () => "x" },
+    data: { getURLVariable: () => null, addProperties() {}, get: () => ({ values: () => [], csv: () => "" }) },
+  };
+  const out = document.getElementById("out");
+  const esc = s => String(s == null ? "" : s);
+  function add(html) { out.insertAdjacentHTML("beforeend", html); }
+
+  function choicesHTML(choices, other) {
+    if (!choices) return "";
+    if (choices.length > 40) return `<div class="opt"><em>[dropdown — ${choices.length} options]</em></div>`;
+    let h = choices.map(c => `<div class="opt">○ ${esc(typeof c === "object" ? c.text : c)}</div>`).join("");
+    if (other) h += `<div class="opt">○ Other (please specify) ____</div>`;
+    return h;
+  }
+  function rowsCols(el) {
+    const cols = (el.columns || []).map(c => esc(typeof c === "object" ? (c.text || c.title || c.name) : c));
+    let rows = (el.rows || []).map(r => esc(typeof r === "object" ? r.text : r));
+    if (!rows.length) rows = ["<em>(the languages/items entered above)</em>"];
+    let h = "";
+    if (cols.length) h += `<div class="meta opt">columns: ${cols.join(" · ")}</div>`;
+    h += rows.map(r => `<div class="opt">▸ ${r}</div>`).join("");
+    return h;
+  }
+
+  function renderElement(el, inPanel) {
+    if (!el || !el.type) return;
+    if (el.type === "html") { add(`<div class="${inPanel ? "panel" : ""}">${el.html || ""}</div>`); return; }
+    const vis = el.visibleIf ? `<div class="vis">shown only if: ${esc(el.visibleIf)}</div>` : "";
+    let body = "";
+    switch (el.type) {
+      case "radiogroup": case "dropdown":
+        body = choicesHTML(el.choices, el.showOtherItem); break;
+      case "checkbox":
+        body = `<div class="meta opt">(check all that apply)</div>` + choicesHTML(el.choices, el.showOtherItem); break;
+      case "ranking":
+        body = `<div class="meta opt">(drag to order)</div>` + choicesHTML(el.choices && el.choices.length ? el.choices : ["<em>(the languages entered above)</em>"]); break;
+      case "rating":
+        body = `<div class="opt">Scale ${el.rateMin}–${el.rateMax}` +
+               (el.minRateDescription ? ` (${esc(el.minRateDescription)} → ${esc(el.maxRateDescription)})` : "") + `</div>`; break;
+      case "text":
+        body = `<div class="opt">[${el.inputType === "number" ? "number" : "text"} input${el.min != null ? `, ${el.min}–${el.max}` : ""}]</div>`; break;
+      case "comment":
+        body = `<div class="opt">[free text]</div>`; break;
+      case "matrix": case "matrixdropdown":
+        body = rowsCols(el); break;
+      case "paneldynamic":
+        add(`<div class="q"><div class="qt">${esc(el.title)}</div><div class="meta">(repeated for each entry)</div>${vis}</div>`);
+        (el.templateElements || []).forEach(te => renderElement(te, true)); return;
+      default:
+        body = `<div class="meta opt">[${el.type}]</div>`;
+    }
+    const cls = inPanel ? "q panel" : "q";
+    add(`<div class="${cls}">${el.title ? `<div class="qt">${esc(el.title)}</div>` : ""}${vis}${body}</div>`);
+  }
+
+  function renderTrial(t) {
+    if (!t) return;
+    if (t.timeline) { t.timeline.forEach(renderTrial); return; }      // conditional node
+    if (t.survey_json) { (t.survey_json.pages || []).forEach(p => (p.elements || []).forEach(e => renderElement(e, false))); return; }
+    if (t.sentence) { add(`<div class="spr">• ${esc(t.sentence)}</div>`); return; }   // self-paced reading sentence
+    if (t.stimulus) { add(`<div class="q">${typeof t.stimulus === "string" ? t.stimulus : ""}</div>`); return; }
+    if (t.message) { add(`<div class="q">${t.message}</div>`); return; }
+  }
+
+  add(`<h1>Inner Voice & Reading — full questionnaire</h1><div class="meta">Auto-generated preview of every question, all branches shown. Conditional questions are marked. (Generated for review — not the live study.)</div>`);
+  const parts = [
+    ["Introduction (consent · setup)", IVQ.parts.intro(jsPsych)],
+    ["Part 1 — Demographics & language background", IVQ.parts.part1(jsPsych)],
+    ["Part 2 — Self-paced reading (sentences read one word at a time)", IVQ.parts.part2(jsPsych)],
+    ["Part 3 — Inner speech during reading", IVQ.parts.part3(jsPsych)],
+    ["Part 4 — Diverse text types", IVQ.parts.part4(jsPsych)],
+    ["Part 5 — IRQ & VISQ-R", IVQ.parts.part5(jsPsych)],
+    ["End (completion)", IVQ.parts.outro(jsPsych)],
+  ];
+  parts.forEach(([title, trials]) => { add(`<div class="part">${title}</div>`); (trials || []).forEach(renderTrial); });
+</script>
+</body></html>

@@ -1,0 +1,3872 @@
+l: experiment_instructions
+t: info
+q: Welcome!<br>
+This experiment consists of five parts:<br>
+1. A short survey about your personal information.<br>
+2. Reading some sentences.<br>
+3. A questionnaire about your reading experience.<br>
+4. Another section of reading sentences.<br>
+5. A questionnaire about your general inner voice experience.<br>
+Please read the instructions for each part carefully.
+
+page: begin
+
+l: survey_instructions
+t: info
+q: First Part<br>
+This part is a short survey about your personal information.<br>
+Please read the questions and answer them carefully.
+
+l: age
+t: textline
+q: How old are you?
+- {min=18,max=120}
+
+l: gender
+t: radio
+q: What is your gender?
+- Female
+- Male
+- {other,size=50} Prefer to self-describe (please specify)
+
+l: home_country
+t: list
+q: What is your home country?
+- Afghanistan
+- Albania
+- Algeria
+- Andorra
+- Angola
+- Antigua and Barbuda
+- Argentina
+- Armenia
+- Australia
+- Austria
+- Azerbaijan
+- Bahamas
+- Bahrain
+- Bangladesh
+- Barbados
+- Belarus
+- Belgium
+- Belize
+- Benin
+- Bhutan
+- Bolivia
+- Bosnia and Herzegovina
+- Botswana
+- Brazil
+- Brunei
+- Bulgaria
+- Burkina Faso
+- Burundi
+- Cabo Verde
+- Cambodia
+- Cameroon
+- Canada
+- Central African Republic
+- Chad
+- Chile
+- China
+- Colombia
+- Comoros
+- Congo (Congo-Brazzaville)
+- Costa Rica
+- Côte d'Ivoire
+- Croatia
+- Cuba
+- Cyprus
+- Czechia (Czech Republic)
+- Democratic Republic of the Congo
+- Denmark
+- Djibouti
+- Dominica
+- Dominican Republic
+- Ecuador
+- Egypt
+- El Salvador
+- Equatorial Guinea
+- Eritrea
+- Estonia
+- Eswatini (formerly Swaziland)
+- Ethiopia
+- Fiji
+- Finland
+- France
+- Gabon
+- Gambia
+- Georgia
+- Germany
+- Ghana
+- Greece
+- Grenada
+- Guatemala
+- Guinea
+- Guinea-Bissau
+- Guyana
+- Haiti
+- Holy See
+- Honduras
+- Hungary
+- Iceland
+- India
+- Indonesia
+- Iran
+- Iraq
+- Ireland
+- Israel
+- Italy
+- Jamaica
+- Japan
+- Jordan
+- Kazakhstan
+- Kenya
+- Kiribati
+- Kuwait
+- Kyrgyzstan
+- Laos
+- Latvia
+- Lebanon
+- Lesotho
+- Liberia
+- Libya
+- Liechtenstein
+- Lithuania
+- Luxembourg
+- Madagascar
+- Malawi
+- Malaysia
+- Maldives
+- Mali
+- Malta
+- Marshall Islands
+- Mauritania
+- Mauritius
+- Mexico
+- Micronesia
+- Moldova
+- Monaco
+- Mongolia
+- Montenegro
+- Morocco
+- Mozambique
+- Myanmar (formerly Burma)
+- Namibia
+- Nauru
+- Nepal
+- Netherlands
+- New Zealand
+- Nicaragua
+- Niger
+- Nigeria
+- North Korea
+- North Macedonia
+- Norway
+- Oman
+- Pakistan
+- Palau
+- Palestine State
+- Panama
+- Papua New Guinea
+- Paraguay
+- Peru
+- Philippines
+- Poland
+- Portugal
+- Qatar
+- Romania
+- Russia
+- Rwanda
+- Saint Kitts and Nevis
+- Saint Lucia
+- Saint Vincent and the Grenadines
+- Samoa
+- San Marino
+- São Tomé and Principe
+- Saudi Arabia
+- Senegal
+- Serbia
+- Seychelles
+- Sierra Leone
+- Singapore
+- Slovakia
+- Slovenia
+- Solomon Islands
+- Somalia
+- South Africa
+- South Korea
+- South Sudan
+- Spain
+- Sri Lanka
+- Sudan
+- Suriname
+- Sweden
+- Switzerland
+- Syria
+- Tajikistan
+- Tanzania
+- Thailand
+- Timor-Leste
+- Togo
+- Tonga
+- Trinidad and Tobago
+- Tunisia
+- Turkey
+- Turkmenistan
+- Tuvalu
+- Uganda
+- Ukraine
+- United Arab Emirates
+- United Kingdom
+- United States of America
+- Uruguay
+- Uzbekistan
+- Vanuatu
+- Venezuela
+- Vietnam
+- Yemen
+- Zambia
+- Zimbabwe
+
+l: education
+t: radio
+q: Highest or current level of education:
+- Secondary / High school
+- College / University undergraduate
+- College / University postgraduate
+
+l: occupation
+t: textline
+q: What is your occupation?
+
+page: end
+
+l: english_native
+t: radio
+q: Do you consider yourself a native speaker of English?
+- Yes
+- No
+
+l: jump_english_native
+t: jump
+- if $english_native = 1 then goto english_age
+
+l: english_proficiency_level
+t: drop
+q: What is your proficiency level in English?
+- Beginner
+- Intermediate
+- Advanced
+- Near native
+- Native
+
+l: english_proficiency
+t: range
+q: Use the slider to indicate on a scale from 1 to 10 your level of proficiency in speaking, understanding, and reading English, where 1 indicates no proficiency, and 10 indicates native-level proficiency.
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Speaking
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Understanding spoken language
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Reading
+
+l: english_age
+t: textline
+q: At what age did you start learning English?
+- {min=0,max=100}
+
+l: english_reading_habits
+t: range
+q: Use the slider to indicate how much time (hours) in a typical week, you spend reading (in English) each type of material listed below?
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Textbooks
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Academic materials other than textbooks
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Magazines
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Newspapers
+- {min=0,max=7,start=0,left=None,right=7 hours or more} E-mail
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Fiction books
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Nonfiction/special interest books
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Internet media (all categories not included above, for example, social media, forums, and blogs)
+- {min=0,max=7,start=0,left=None,right=7 hours or more} Other categories
+
+l: other_languages
+t: radio
+q: Do you speak languages other than English?
+- Yes
+- No
+
+l: jump_other_languages
+t: jump
+- if $other_languages = 2 then goto language_impairment
+
+l: other_languages_list
+t: list
+q: Language
+- !Xóõ
+- !Xun(Ekoka)
+- 'Are'are
+- //Ani
+- / Xam
+- A - Pucikwar
+- Aari
+- Abau
+- Abaza
+- Abenaki(Western)
+- Abidji
+- Abipón
+- Abkhaz
+- Abui
+- Abun
+- Acehnese
+- Achagua
+- Achang
+- Aché
+- Achí
+- Acholi
+- Achuar
+- Achumawi
+- Acoma
+- Adamorobe Sign Language
+- Adang
+- Adioukrou
+- Adyghe(Abzakh)
+- Adyghe(Shapsugh)
+- Adyghe(Temirgoy)
+- Adynyamathanha
+- Adzera
+- Aekyom
+- Afrikaans
+- Agarabi
+- Aghem
+- Aghu
+- Aghul
+- Agta(Central)
+- Agta(Dupaningan)
+- Aguacatec
+- Aguaruna
+- Ahtna
+- Aikaná
+- Ainu
+- Aizi
+- Aja
+- Ajagbe
+- Ajië
+- Aka
+- Aka - Biada
+- Aka - Cari
+- Aka - Kede
+- Akan
+- Akawaio
+- Akha
+- Akhvakh
+- Aklanon
+- Akwa
+- Ala'ala
+- Alabama
+- Alagwa
+- Alamblak
+- Alas
+- Alawa
+- Albanian
+- Aleut
+- Aleut(Eastern)
+- Algonquin
+- Alladian
+- Allentiac
+- Alsatian
+- Alsea
+- Altai(Southern)
+- Alune
+- Alutiiq
+- Alutor
+- Alyawarra
+- Ama
+- Amahuaca
+- Amanab
+- Amara
+- Amarakaeri
+- Ambae(Lolovoli Northeast)
+- Ambai
+- Ambulas
+- Amdo
+- Amdo(Themchen)
+- Amele
+- American Sign Language
+- Amharic
+- Amis
+- Amo
+- Ampeeli
+- Amuesha
+- Amuzgo
+- Anamuxra
+- Andi
+- Andoke
+- Anejom
+- Anêm
+- Angaatiha
+- Angami
+- Angas
+- Anggor
+- Angolar
+- Anguthimri
+- Anindilyakwa
+- Anong
+- Anufo
+- Anyi
+- Anywa
+- Ao
+- Apache(Chiricahua)
+- Apache(Jicarilla)
+- Apache(Western)
+- Apalaí
+- Apatani
+- Apinayé
+- Apurinã
+- Arabana
+- Arabela
+- Arabic(Bahrain)
+- Arabic(Bani - Hassan)
+- Arabic(Beirut)
+- Arabic(Borno Nigerian)
+- Arabic(Chadian)
+- Arabic(Eastern Libyan)
+- Arabic(Egyptian)
+- Arabic(Gulf)
+- Arabic(Hijazi)
+- Arabic(Iraqi)
+- Arabic(Kormakiti)
+- Arabic(Kuwaiti)
+- Arabic(Lebanese)
+- Arabic(Modern Standard)
+- Arabic(Moroccan)
+- Arabic(Negev)
+- Arabic(North Levantine Spoken)
+- Arabic(Palestinian)
+- Arabic(San'ani)
+- Arabic(Syrian)
+- Arabic(Tunisian)
+- Arakanese(Marma)
+- Araki
+- Aralle - Tabulahan
+- Arandai
+- Araona
+- Arapaho
+- Arapesh(Abu)
+- Arapesh(Mountain)
+- Arawak
+- Arbore
+- Archi
+- Aribwatsa
+- Arikara
+- Armenian(Eastern)
+- Armenian(Iranian)
+- Armenian(Western)
+- Arop - Lokep
+- Arosi
+- Arrernte
+- Arrernte(Mparntwe)
+- Arrernte(Western)
+- ASL
+- Asmat
+- Assamese
+- Asturian
+- Asuriní
+- Atacameño
+- Atakapa
+- Atayal
+- Atchin
+- Athpare
+- Atikamekw
+- Atsugewi
+- Au
+- Aulua
+- Auslan
+- Auyana
+- Avar
+- Avatime
+- Avikam
+- Avokaya
+- Awa
+- Awa Pit
+- Awadhi
+- Awngi
+- Awtuw
+- Awyi
+- Ayiwo
+- Aymara(Central)
+- Aynu
+- Ayomán
+- Ayoreo
+- Azari(Iranian)
+- Azerbaijani
+- Baale
+- Babole
+- Babungo
+- Bachamal
+- Badaga
+- Bade
+- Badimaya
+- Bafia
+- Bafut
+- Baga Sitemu
+- Bagirmi
+- Bagiro
+- Bagri
+- Bagvalal
+- Baham
+- Bahinemo
+- Bahnar
+- Bai
+- Bajau(Sama)
+- Bajau(West Coast)
+- Baka(in Cameroon)
+- Baka(in South Sudan)
+- Bakairí
+- Bakueri
+- Bakundu
+- Balangao
+- Balanta
+- Balantak
+- Bali - Vitu
+- Balinese
+- Balti
+- Baluchi
+- Balyku
+- Bambam
+- Bambara
+- Bamun
+- Bana
+- Banawá
+- Bandi
+- Bandjalang
+- Bandjalang(Casino)
+- Bandjalang(Waalubal)
+- Bandjalang(Yugumbir)
+- Banggai
+- Banggarla
+- Banggi
+- Bangime
+- Baniwa
+- Bankon
+- Banoni
+- Bantik
+- Bao'an
+- Baragaunle
+- Barai
+- Barambu
+- Barasano
+- Bardi
+- Baré
+- Bargam
+- Bari
+- Barí
+- Bariba
+- Barupu
+- Baruya
+- Basaá
+- Basari
+- Bashkir
+- Basque
+- Basque(Basaburua and Imoz)
+- Basque(Bidasoa Valley)
+- Basque(Gernica)
+- Basque(Hondarribia)
+- Basque(Lekeitio)
+- Basque(Northern High Navarrese)
+- Basque(Oñati)
+- Basque(Roncalese)
+- Basque(Sakana)
+- Basque(Souletin)
+- Basque(Zeberio)
+- Batak
+- Batak(Karo)
+- Batak(Toba)
+- Bathari
+- Bau
+- Baule
+- Baure
+- Bauzi
+- Bawm
+- Bayso
+- Bayungu
+- Beembe
+- Begak - Ida'an
+- Beja
+- Belhare
+- Bella Coola
+- Belorussian
+- Bemba
+- Bena - Lulua
+- Benabena
+- Beng
+- Benga
+- Bengali
+- Bengali(Chittagong)
+- Beothuk
+- Berber(Ayt Seghrouchen Middle Atlas)
+- Berber(Chaouia)
+- Berber(Figuig)
+- Berber(Middle Atlas)
+- Berber(Mzab)
+- Berber(Rif)
+- Berber(Siwa)
+- Berber(Wargla)
+- Berbice Dutch Creole
+- Beria
+- Berik
+- Berta
+- Bété
+- Betoi
+- Betta Kurumba
+- Bezhta
+- Bhili
+- Bhojpuri
+- Bhumij
+- Biafada
+- Biak
+- Biatah
+- Bidiya
+- Bikol
+- Bilaan(Koronadal)
+- Bilin
+- Bilinarra
+- Biloxi
+- Bilua
+- Bima
+- Bimoba
+- Binandere
+- Binga
+- Bini
+- Bininj Gun - Wok
+- Binukid
+- Binumarien
+- Bira
+- Biri
+- Birom
+- Birri
+- Bisa
+- Bislama
+- Bisu
+- Blackfoot
+- Boazi
+- Bobangi
+- Bobo Madaré(Northern)
+- Bodo
+- Boiken
+- Bokar
+- Boko
+- Bole
+- Bolia
+- Bongo
+- Bongu
+- Bontok
+- Bora
+- Bori
+- Bororo
+- Boruca
+- Bosnian
+- Bozo(Tigemaxo)
+- Brahui
+- Brao
+- Breton
+- Bribri
+- British Sign Language
+- Broken
+- Brokskat
+- Bru(Eastern)
+- Bru(Western)
+- Bubi
+- Budu
+- Budukh
+- Buduma
+- Bugis
+- Buglere
+- Bugun
+- Buin
+- Bujeba
+- Bukusu
+- Bularnu
+- Bulgarian
+- Buli(in Ghana)
+- Buli(in Indonesia)
+- Bulu
+- Buma
+- Bunan
+- Bunu(Younuo)
+- Bunuba
+- Bura - Pabir
+- Burarra
+- Buriat
+- Burji
+- Burmese
+- Buru
+- Burum
+- Burunge
+- Burushaski
+- Busa
+- Bushoong
+- Byansi
+- Cabécar
+- Cacua
+- Caddo
+- Cahuilla
+- Cakchiquel
+- Camling
+- Campa(Axininca)
+- Campa Pajonal Asheninca
+- Camsá
+- Canamarí
+- Candoshi
+- Canela
+- Canela - Krahô
+- Cantonese
+- Capanahua
+- Carapana
+- Carib
+- Carib(De'kwana)
+- Carijona
+- Carolinian
+- Carrier
+- Cashibo
+- Cashinahua
+- Catalan
+- Catawba
+- Catio
+- Cavineña
+- Cayapa
+- Cayuga
+- Cayuvava
+- Cebuano
+- Cèmuhî
+- Chácobo
+- Chaga
+- Chaha
+- Chai
+- Chaldean(Modern)
+- Cham(Eastern)
+- Cham(Western)
+- Chamalal
+- Chambri
+- Chamorro
+- Chang
+- Chantyal
+- Chaozhou
+- Chasta Costa
+- Chatino(Nopala)
+- Chatino(Sierra Occidental)
+- Chatino(Tataltepec)
+- Chatino(Yaitepec)
+- Chaudangsi
+- Chavacano
+- Chayahuita
+- Chechen
+- Chehalis(Upper)
+- Cheke Holo
+- Chemakum
+- Chemehuevi
+- Chepang
+- Cherokee
+- Cheyenne
+- Chichewa
+- Chichimeca - Jonaz
+- Chickasaw
+- Chicomuceltec
+- Chimariko
+- Chimila
+- Chin(Mara)
+- Chin(Siyin)
+- Chin(Tiddim)
+- Chinantec(Comaltepec)
+- Chinantec(Lealao)
+- Chinantec(Palantla)
+- Chinantec(Quiotepec)
+- Chinantec(San Felipe Usila)
+- Chinantec(Sochiapan)
+- Chinantec(Tepetotutla)
+- Chinese Sign Language
+- Chinook(Lower)
+- Chinook(Upper)
+- Chipaya
+- Chipewyan
+- Chippewa(Red Lake and Pillager)
+- Chiquitano
+- Chiriguano
+- Chitimacha
+- Chocho
+- Choctaw
+- Chol
+- Cholón
+- Chontal(Highland)
+- Chontal(Huamelultec Oaxaca)
+- Chontal Maya
+- Chorote
+- Chortí
+- Chrau
+- Chru
+- Chuave
+- Chuj
+- Chukchi
+- Chulym
+- Chumash(Barbareño)
+- Chumash(Ineseño)
+- Chumburung
+- Chuukese
+- Chuvash
+- CiLuba
+- Clallam
+- Coahuilteco
+- Cocama
+- Cocopa
+- Coeur d'Alene
+- Cofán
+- Cogui
+- Colac
+- Columbia - Wenatchi
+- Comanche
+- Comecrudo
+- Comorian
+- Comox
+- Coos(Hanis)
+- Coptic
+- Cora
+- Cornish
+- Cree(Plains)
+- Cree(Swampy)
+- Creek
+- Crimean Tatar
+- Crow
+- Cua
+- Cubeo
+- Cuiba
+- Cuica
+- Cuicatec
+- Cuitlatec
+- Culina
+- Cupeño
+- Curripaco
+- Czech
+- Da'a
+- Daba
+- Dabida
+- Dadibi
+- Dadjriwalé
+- Daga
+- Dagaare
+- Dagbani
+- Dagur
+- Dahalo
+- Daju(Dar Fur)
+- Dakota
+- Damana
+- Dan
+- Dan(Blowo)
+- Dangaléat(Western)
+- Dani(Lower Grand Valley)
+- Danish
+- Darai
+- Dargwa
+- Dari
+- Darma
+- Datooga
+- Dâw
+- Day
+- Defaka
+- Degema
+- Degexit'an
+- Dení
+- Desano
+- Deti
+- Deuri
+- Deutsche Gebärdensprache
+- Dhaasanac
+- Dhalandji
+- Dharawal
+- Dhargari
+- Dharumbal
+- Dhimal
+- Dhivehi
+- Dhurga
+- Dhuwal(Dätiwuy)
+- Didinga
+- Diegueño(Mesa Grande)
+- Digaro
+- Dii
+- Dimasa
+- Dime
+- Ding
+- Dinka
+- Diola - Fogny
+- Diola - Kasa
+- Diyari
+- Dizi
+- Djabugay
+- Djambarrpuyngu
+- Djapu
+- Djaru
+- Djinang
+- Djingili
+- Dla(Menggwa)
+- Dla(Proper)
+- Dobel
+- Dogri
+- Doko
+- Dolgan
+- Domari
+- Dong(Southern)
+- Dongo
+- Donno So
+- Doutai
+- Doyayo
+- Drehu
+- Duala
+- Duka
+- Dullay(Gollango)
+- Dulong
+- Duma
+- Dumagat(Casiguran)
+- Dumaki
+- Dumi
+- Dumo
+- Duna
+- Dutch
+- Dutch(Brabantic)
+- Dutch(Limburg)
+- Dutch(Zeeuws)
+- Dyimini
+- Dyirbal
+- Dyula
+- Ebira
+- Edolo
+- Efate(South)
+- Efik
+- Ega
+- Eipo
+- Ejagham
+- Ekari
+- Ekoti
+- Elseng
+- Emai
+- Embaloh
+- Emberá(Northern)
+- Embera Chami
+- Émérillon
+- Emmi
+- Enets
+- Enga
+- Engenni
+- Enggano
+- English
+- Enya
+- Epena Pedee
+- Err: 520
+- Erromangan
+- Ese Ejja
+- Esmeraldeño
+- Esselen
+- Estonian
+- Etsako
+- Eudeve
+- Even
+- Evenki
+- Ewe
+- Ewe(Anglo)
+- Ewondo
+- Eyak
+- Faroese
+- Fasu
+- Fe'fe'
+- Fijian
+- Fijian(Wayan)
+- Finnish
+- Finnish Sign Language
+- Fiote
+- Foe
+- Folopa
+- Fongbe
+- Fordata
+- Fore
+- Fox
+- French
+- Frisian
+- Frisian(Eastern)
+- Frisian(North)
+- Frisian(Western)
+- Ful(Liptako)
+- Fula(Burkina Faso)
+- Fula(Cameroonian)
+- Fula(Guinean)
+- Fula(Mauritanian)
+- Fula(Nigerian)
+- Fula(Senegal)
+- Fulani(Gombe)
+- Fulfulde(Maasina)
+- Fulniô
+- Fur
+- Futuna(East)
+- Futuna - Aniwa
+- Fuzhou
+- Fyem
+- Gã
+- Ga'anda
+- Gaagudju
+- Gaalpu
+- Gadaba(Kondekor)
+- Gade
+- Gadsup
+- Gaelic(Scots)
+- Gagauz
+- Gahuku
+- Galela
+- Galician
+- Galo
+- Gamilaraay
+- Gamo
+- Gapapaiwa
+- Garífuna
+- Garo
+- Garrwa
+- Garus
+- Gavião
+- Gayo
+- Gbaya Kara
+- Gbeya Bossangoa
+- Gela
+- Gelao
+- Georgian
+- German
+- German(Appenzell)
+- German(Bavarian)
+- German(Berlin)
+- German(Bern)
+- German(Hannover)
+- German(Mansfeldisch)
+- German(Ostschweiz)
+- German(Ripuarian)
+- German(Thurgau)
+- German(Thuringian)
+- German(Timisoara)
+- German(Upper Austrian)
+- German(Viennese)
+- German(Westphalian)
+- German(Zurich)
+- Ghotuo
+- Ghulfan
+- Gidabal
+- Gidar
+- Gilaki
+- Gimira
+- Gitksan
+- Giziga
+- Goajiro
+- Godié
+- Godoberi
+- Goemai
+- Gogodala
+- Gojri
+- Gokana
+- Gola
+- Golin
+- Gondi
+- Gooniyandi
+- Gorontalo
+- Gorowa
+- Great Andamanese
+- Grebo
+- Greek(Cypriot)
+- Greek(Modern)
+- Greek Sign Language
+- Greenlandic(East)
+- Greenlandic(South)
+- Greenlandic(West)
+- Guadeloupe Creole
+- Guahibo
+- Guajajara
+- Guambiano
+- Guana
+- Guanano
+- Guaque
+- Guaraní
+- Guarijío
+- Guató
+- Guayabero
+- Gude
+- Guduf
+- Guere
+- Gugada
+- Gugadj
+- Guhu - Samane
+- Guianese French Creole
+- Guinea Bissau Crioulo
+- Gujarati
+- Gula(in Central African Republic)
+- Gula Iro
+- Gumatj
+- Gumawana
+- Gumbaynggir
+- Gumuz
+- Gunbalang
+- Gungbe
+- Gunin
+- Gunu
+- Gününa Küne
+- Gunya
+- Gupapuyngu
+- Gureng Gureng
+- Gurenne
+- Gurindji
+- Gurma
+- Gurma(Togo)
+- Guro
+- Gurr - goni
+- Gurung
+- Gusii
+- Gutob
+- Guugu Yimidhirr
+- Gwari
+- Gworok
+- Gyarong(Cogtse)
+- Hadza
+- Haida
+- Haida(Northern)
+- Haisla
+- Haitian Creole
+- Hakka
+- Halang
+- Halbi
+- Halia
+- Halkomelem(Island)
+- Halkomelem(Upriver)
+- Hamer
+- Hamtai
+- Hanga Hundi
+- Hani
+- Hanunóo
+- Harari
+- Harsusi
+- Haruai
+- Hatam
+- Hausa
+- Havasupai
+- Hawaiian
+- Hawaiian Creole
+- Hawrami
+- Haya
+- Hayu
+- Hdi
+- Hebrew(Modern)
+- Hehe
+- Heiltsuk
+- Hemba
+- Herero
+- Hianacoto
+- Hidatsa
+- Hiligaynon
+- Hindi
+- Hinuq
+- Hixkaryana
+- Hlai(Baoding)
+- Hmar
+- Hmong Daw
+- Hmong Njua
+- Ho
+- Hoava
+- Hokkien
+- Holoholo
+- Hong Kong Sign Language
+- Hopi
+- Hre
+- Hua
+- Hualapai
+- Huambisa
+- Huastec
+- Huave(San Mateo del Mar)
+- Huichol
+- Huitoto
+- Huitoto(Minica)
+- Huitoto(Muinane)
+- Huitoto(Murui)
+- Hunde
+- Hungarian
+- Hunzib
+- Hup
+- Hupa
+- Hyow
+- I'saka
+- Iaai
+- Iatmul
+- Iau
+- Iban
+- Ibanag
+- Ibibio
+- Icelandic
+- Icelandic Sign Language
+- Idoma
+- Idu
+- Iduna
+- Ifira - Mele
+- Ifugao(Batad)
+- Ifumu
+- Igbo
+- Igede
+- Ignaciano
+- Iha
+- Ijo(Kolokuma)
+- Ik
+- Ika
+- Ila
+- Illinois
+- Ilocano
+- Imonda
+- Inanwatan
+- Indo - Pakistani Sign Language(Indian dialects)
+- Indo - Pakistani Sign Language(Karachi dialect)
+- Indonesian
+- Indonesian(Jakarta)
+- Indonesian(Papuan)
+- Inga
+- Ingessana
+- Ingush
+- Innamincka
+- International Sign
+- Inuktitut(Quebec - Labrador)
+- Inuktitut(Rankin Inlet)
+- Inuktitut(Salluit)
+- Iñupiaq
+- Iquito
+- Iranxe
+- Iraqw
+- Irarutu
+- Irish
+- Irish(Donegal)
+- Irish(Munster)
+- Irish Sign Language
+- Isekiri
+- Ishkashmi
+- Isirawa
+- Isnag
+- Isoko
+- Israeli Sign Language
+- Italian
+- Italian(Bologna)
+- Italian(Fiorentino)
+- Italian(Genoa)
+- Italian(Napolitanian)
+- Italian(Turinese)
+- Itawis
+- Itelmen
+- Itonama
+- Itzaj
+- Ivatan
+- Ivatan(Southern)
+- Iwaidja
+- Iwam
+- Iwoyo
+- Ixcatec
+- Ixil
+- Izhor
+- Izi
+- Jabêm
+- Jabutí
+- Jad
+- Jahai
+- Jakaltek
+- Jamaican Creole
+- Jamamadi
+- Jaminjung
+- Jamsay
+- Japanese
+- Japreria
+- Jaqaru
+- Jarawa(in Andamans)
+- Jarawa(in Nigeria)
+- Jarawara
+- Javanese
+- Jebero
+- Jeh
+- Jeli
+- Jemez
+- Jiarong
+- Jibbali
+- Jingpho
+- Jino
+- Jivaro
+- Johari
+- Jomang
+- Ju | 'hoan
+- Juang
+- Juat
+- Jugli
+- Jukun
+- Júma
+- Jur Mödö
+- Jurchen
+- Juruna
+- K'ekchí
+- Kabardian
+- Kabatei
+- Kabiyé
+- Kabui
+- Kabyle
+- Kachari
+- Kadazan
+- Kadiwéu
+- Kadugli
+- Kagoma
+- Kagulu
+- Kaian
+- Kaili
+- Kaingang
+- Kairiru
+- Kaiwá
+- Kaki Ae
+- Kala Lagaw Ya
+- Kalam
+- Kalami
+- Kalanga
+- Kalapuya
+- Kalasha
+- Kalispel
+- Kalkatungu
+- Kalmyk
+- Kalmyk(Issyk - Kul)
+- Kaluli
+- Kam(Zhanglu)
+- Kamaiurá
+- Kamano - Kafe
+- Kamasau
+- Kamass
+- Kamba
+- Kambera
+- Kambot
+- Kami
+- Kamoro
+- Kamu
+- Kana
+- Kanakuru
+- Kanashi
+- Kanembu
+- Kangiryuarmiut
+- Kanjobal(Eastern)
+- Kanjobal(Western)
+- Kankanay
+- Kannada
+- Kanoê
+- Kanum(Bädi)
+- Kanum(Ngkâlmpw)
+- Kanuri
+- Kanyok
+- Kapampangan
+- Kapingamarangi
+- Kara(in Central African Republic)
+- Kara(in Papua New Guinea)
+- Karachay - Balkar
+- Karadjeri
+- Karaim
+- Karajá
+- Karakalpak
+- Karanga
+- Karankawa
+- Karao
+- Karata
+- Karelian
+- Karen(Bwe)
+- Karen(Pwo)
+- Karen(Sgaw)
+- Kariera
+- Karimojong
+- Karipuna do Guapore
+- Karitiâna
+- Karkar - Yuri
+- Karó(Arára)
+- Karok
+- Kasem
+- Kashaya
+- Kashmiri
+- Kashubian
+- Kàsim
+- Kasong
+- Kata Kolok
+- Katcha
+- Kâte
+- Kati(in Afghanistan)
+- Kati(in West Papua, Indonesia)
+- Katla
+- Kato
+- Katu
+- Kaulong
+- Kaure
+- Kaurna
+- Kawaiisu
+- Kayabí
+- Kayah Li(Eastern)
+- Kayan(Baram)
+- Kayapó
+- Kayardild
+- Kaytej
+- Kazakh
+- Kedang
+- Kefa
+- Kei
+- Kela(Apoze)
+- Kelabit
+- Kele
+- Kemant
+- Kemtuik
+- Kenga
+- Kenyah(Uma' Lung)
+- Kenyan Sign Language
+- Kenyang
+- Keo
+- Kera
+- Kerek
+- Keresan(Santa Ana)
+- Ket
+- Ketapang
+- Kete
+- Ketengban
+- Kewa
+- Khakas
+- Khalaj
+- Khaling
+- Khalkha
+- Kham
+- Kham(Dege)
+- Kham(Tibetan)(Nangchen)
+- Khanty
+- Kharia
+- Khasi
+- Khinalug
+- Khmer
+- Khmu'
+- Khoekhoe
+- Khowar
+- Khumi
+- Khün
+- Khwarshi
+- Kickapoo
+- Kikuyu
+- Kilba
+- Kilivila
+- Kiliwa
+- Kiluba
+- Kimaghama
+- Kinga
+- Kinnauri
+- Kinyarwanda
+- Kiowa
+- Kipea
+- Kire
+- Kirghiz
+- Kirghiz(Fu - Yu)
+- Kiribati
+- Kirikiri
+- Kirma
+- Kisar
+- Kisi
+- Kisi(Southern)
+- Kitja
+- Kitsai
+- Kituba
+- Kiwai(Southern)
+- Klamath
+- Klao
+- Ko(Winye)
+- Koasati
+- Kobon
+- Kodava
+- Koegu
+- Koh(Lakka)
+- Kohumono
+- Koiali(Mountain)
+- Koiari
+- Koita
+- Kokborok
+- Kokni
+- Kokota
+- Kola
+- Kolami
+- Kolana
+- Koluri
+- Kom
+- Kombai
+- Kombio
+- Komering
+- Komi - Permyak
+- Komi - Zyrian
+- Komo
+- Konda
+- Kongo
+- Konjo
+- Konkani
+- Konkomba
+- Konkow
+- Konni
+- Konua
+- Konyagi
+- Koorete
+- Korafe
+- Korana
+- Koranko
+- Korean
+- Koreguaje
+- Korku
+- Koromfe
+- Korowai
+- Koryak
+- Kosop
+- Kosraean
+- Kota
+- Kotoko
+- Kott
+- Koya
+- Koyra Chiini
+- Koyraboro Senni
+- Koyukon
+- Kpan
+- Kpelle
+- Kposo
+- Krahô
+- Krenak
+- Kresh
+- Kriol(Fitzroy Crossing)
+- Kriol(Ngukurr)
+- Krongo
+- Krymchak
+- Kryz
+- Ksingmul
+- Kualan
+- Kugu Nganhcara
+- Kui(in India)
+- Kui(in Indonesia)
+- Kuikúro
+- Kukú
+- Kuku - Yalanji
+- Kulamanen
+- Kullo
+- Kulung
+- Kuman
+- Kumauni
+- Kumyk
+- Kuna
+- Kunama
+- Kunimaipa
+- Kunjen
+- Kunming
+- Kuot
+- Kurdish(Central)
+- Kurmanji
+- Kurukh
+- Kusunda
+- Kutai
+- Kutchin
+- Kutenai
+- Kuuk Thaayorre
+- Kuuku Ya'u
+- Kuvi
+- Kwaio
+- Kwakw'ala
+- Kwamera
+- Kwami
+- Kwangali
+- Kwaza
+- Kwerba
+- Kwoma
+- Kwomtari
+- Kxoe
+- Kyaka
+- Kyirong
+- Kyuquot
+- Laal
+- Labu
+- Lacandón
+- Lachi
+- Ladakhi
+- Ladin
+- Ladino
+- Lafofa
+- Lagwan
+- Laha
+- Lahu
+- Lai
+- Lak
+- Lakhota
+- Lakkia
+- Lalo
+- Lamaholot
+- Lamang
+- Lamani
+- Lamba
+- Lamé
+- Lamen
+- Lamnso'
+- Lampung
+- Lamu - Lamu
+- Langi
+- Lango
+- Langue des Signes Française
+- Langue des Signes Québecoise
+- Lao
+- Laragia
+- Lardil
+- Larike
+- Latvian
+- Lau
+- Lauje
+- Lavukaleve
+- Laz
+- Lebeo
+- Lega
+- Leggbó
+- Leko
+- Lele
+- Lelemi
+- Lenakel
+- Lendu
+- Lengua
+- Lengua de Señas Argentina
+- Lengua de Señas Española
+- Lepcha
+- Lese
+- Lesser Antillean French Creole
+- Leti
+- Lewo
+- Lezgian
+- Lhomi
+- Lillooet
+- Limbu
+- Limilngan
+- Linda
+- Lingala
+- Língua de Sinais Brasileira
+- Língua Gestual Portuguesa
+- Lingua Italiana dei Segni
+- Linngithig
+- Lisu
+- Lithuanian
+- Liv
+- Lobi
+- Logoti
+- Loko
+- Loma
+- Londo
+- Longgu
+- Loniu
+- Lonwolwol
+- Lotha
+- Lou
+- Loven
+- Low German
+- Lozi
+- Lü
+- Lua
+- Luangiua
+- Lucazi
+- Luganda
+- Lugbara
+- Lughat al - Isharat al - Lubnaniya
+- Luiseño
+- Lule
+- Lummi
+- Lun Dayeh
+- Lunda
+- Lungchang
+- Luo
+- Luri
+- Lushootseed
+- Lusi
+- Luvale
+- Luwo
+- Luxemburgeois
+- Luyia
+- Lyele
+- Ma
+- Ma'anyan
+- Ma'di
+- Ma'ya
+- Maale
+- Maasai
+- Maba
+- Maca
+- Macaguán
+- Macedonian
+- Machiguenga
+- Macuna
+- Macushi
+- Mada(in Cameroon)
+- Mada(in Nigeria)
+- Madimadi
+- Madurese
+- Mae
+- Magahi
+- Magar
+- Magar(Syangja)
+- Magi
+- Magindanao
+- Mah Meri
+- Mahican
+- Maidu(Northeast)
+- Maipure
+- Mairasi
+- Maisin
+- Maithili
+- Majang
+- Makaa
+- Makah
+- Makasae
+- Makassar
+- Maklew
+- Makonde
+- Máku
+- Makua
+- Malacca Creole
+- Malagasy
+- Malakmalak
+- Malay
+- Malay(Kuala Lumpur)
+- Malay(Ulu Muar)
+- Malayalam
+- Maleu
+- Malgwa
+- Mali
+- Maltese
+- Malto
+- Mam
+- Mam(Southern)
+- Mamanwa
+- Mamasa
+- Mambai
+- Mambila
+- Mambwe
+- Mampruli
+- Mamvu
+- Manadonese
+- Manam
+- Manambu
+- Manange
+- Manchu
+- Mandaic(Modern)
+- Mandan
+- Mandar
+- Mandarin
+- Mandinka
+- Mandinka(Gambian)
+- Manem
+- Mangap - Mbula
+- Mangarrayi
+- Mangbetu
+- Manggarai
+- Mangghuer
+- Mango
+- Maninka
+- Maninka(Western)
+- Manjaku
+- Mankanya
+- Mankon
+- Mano
+- Manobo(Western Bukidnon)
+- Mansi
+- Mantjiltjara
+- Manx
+- Maori
+- Mapoyo
+- Mapudungun
+- Mara
+- Maranao
+- Maranungku
+- Marathi
+- Marchha
+- Margany
+- Margi
+- Mari(Hill)
+- Mari(Meadow)
+- Maricopa
+- Marind
+- Maring
+- Maringarr
+- Marquesan
+- Marrithiyel
+- Marshallese
+- Martinique Creole
+- Martu Wangka
+- Martuthunira
+- Maru
+- Masa
+- Masakin
+- Masalit
+- Massachusett
+- Matis
+- Matngele
+- Matsés
+- Mattole
+- Matukar
+- Matuumbi
+- Mauka
+- Maung
+- Mauritian Creole
+- Mawchi
+- Maxakalí
+- Mayangna
+- Maybrat
+- Mayi - Yapi
+- Mayo
+- Mayogo
+- Mazahua
+- Mazanderani
+- Mazatec(Chiquihuitlán)
+- Mazatec(Huautla)
+- Mba
+- Mbabaram
+- Mbalanhu
+- Mbara
+- Mbay
+- Mbe'
+- Mbere
+- Mbili
+- Mbodomo
+- Mbole
+- Mbosi
+- Mbugu
+- Mbum
+- Me'en
+- Mehek
+- Mehri
+- Meithei
+- Mekens
+- Mekeo
+- Melanau
+- Melayu Betawi
+- Mende
+- Menomini
+- Mentawai
+- Mentuh Tapuh
+- Menya
+- Meryam Mir
+- Meyah
+- Mian
+- Michif
+- Micmac
+- Midob
+- Mien
+- Migama
+- Miisiirii
+- Miju
+- Mikarew
+- Mikasuki
+- Mikir
+- Milang
+- Mina
+- Minangkabau
+- Minaveha
+- Mingrelian
+- Miri(Hill):
+- Miriwung
+- Mirniny
+- Mising
+- Miskito
+- Mískito Coast English Creole
+- Mituku
+- Miwok(Bodega)
+- Miwok(Central Sierra)
+- Miwok(Lake)
+- Miwok(Northern Sierra)
+- Miwok(Plains)
+- Miwok(Southern Sierra)
+- Mixe(Ayutla)
+- Mixe(Coatlán)
+- Mixe(Tlahuitoltepec)
+- Mixe(Totontepec)
+- Mixtec(Alacatlatzala)
+- Mixtec(Atatlahuca)
+- Mixtec(Ayutla)
+- Mixtec(Chalcatongo)
+- Mixtec(Chayuco)
+- Mixtec(Coatzospan)
+- Mixtec(Jamiltepec)
+- Mixtec(Jicaltepec)
+- Mixtec(Molinos)
+- Mixtec(Ocotepec)
+- Mixtec(Peñoles)
+- Mixtec(San Juan Colorado)
+- Mixtec(San Miguel el Grande)
+- Mixtec(Silacayoapan)
+- Mixtec(Yosondúa)
+- Miya
+- Mizo
+- Mlabri(Minor)
+- Mnong(Eastern)
+- Moca
+- Mochica
+- Mocoví
+- Mofu - Gudur
+- Moghol
+- Mohawk
+- Mojave
+- Mokilese
+- Mokilko
+- Molala
+- Moldavian
+- Mombum
+- Momu
+- Momuna
+- Mon
+- Mondunga
+- Mongo
+- Mongol(Khamnigan)
+- Mongondow
+- Moni
+- Mono(in United States)
+- Mono - Alu
+- Montagnais
+- Monumbo
+- Mooré
+- Mopan
+- Mor
+- Moraori
+- Mordvin(Erzya)
+- Mordvin(Moksha)
+- Moro
+- Moru
+- Mosetén
+- Motu
+- Motuna
+- Movima
+- Mpongwe
+- Mpur
+- Mudburra
+- Mufian
+- Muher
+- Muinane
+- Muisca
+- Mulao
+- Mumuye
+- Mun
+- Muna
+- Mundang
+- Mundani
+- Mundari
+- Mündü
+- Mundurukú
+- Mungaka
+- Munsee
+- Munzombo
+- Muong
+- Mupun
+- Murik
+- Murle
+- Murrinh - Patha
+- Mursi
+- Muruwari
+- Musgu
+- Musom
+- Musqueam
+- Mussau
+- Mutsun
+- Muyuw
+- Mwera
+- Mwotlap
+- Nabak
+- Nadëb
+- Nadroga
+- Nafaanra
+- Naga(Mao)
+- Naga(Tangkhul)
+- Naga(Zeme)
+- Naga Pidgin
+- Nagatman
+- Nahali
+- Nahuatl(Central)
+- Nahuatl(Huasteca)
+- Nahuatl(Huauchinango)
+- Nahuatl(Mecayapan Isthmus)
+- Nahuatl(Michoacán)
+- Nahuatl(Milpa Alta)
+- Nahuatl(North Puebla)
+- Nahuatl(Pajapan)
+- Nahuatl(Pochutla)
+- Nahuatl(Sierra de Zacapoaxtla)
+- Nahuatl(Tetelcingo)
+- Nahuatl(Xalitla)
+- Nai
+- Nakanai
+- Nakkara
+- Nalik
+- Nambas(Big)
+- Nambikuára(Southern)
+- Namia
+- Nanai
+- Nancowry
+- Nande
+- Nandi
+- Nanerge
+- Nankina
+- Nanticoke
+- Nanumea
+- Napu
+- Nar - Phu
+- Nara(in Ethiopia)
+- Narom
+- Nasioi
+- Naskapi
+- Natchez
+- Nateni
+- Natügu
+- Nauruan
+- Navajo
+- Naxi
+- Ncàm
+- Ndebele(in South Africa)
+- Ndjébbana
+- Ndogo
+- Ndonga
+- Ndumu
+- Ndut
+- Ndyuka
+- Nederlandse Gebarentaal
+- Negidal
+- Nehan
+- Nelemwa
+- Nend
+- Nenets
+- Nenets(Tundra)
+- Nengone
+- Neo - Aramaic(Amadiya)
+- Neo - Aramaic(Arbel Jewish)
+- Neo - Aramaic(Assyrian)
+- Neo - Aramaic(Persian Azerbaijan)
+- Nepali
+- Nevome
+- New Zealand Sign Language
+- Newar(Dolakha)
+- Newari(Kathmandu)
+- Neyo
+- Nez Perce
+- Ngaanyatjarra
+- Ngäbere
+- Ngad'a
+- Ngadjumaja
+- Ngalakan
+- Ngalkbun
+- Ngambay
+- Ngan'gityemerri
+- Nganasan
+- Ngandi
+- Ngankikurungkurr
+- Ngarinyeri
+- Ngarinyman
+- Ngarla
+- Ngarluma
+- Ngawun
+- Ngbaka(Ma'bo)
+- Ngbaka(Minagende)
+- Ngbandi
+- Ngemba
+- Ngiti
+- Ngiyambaa
+- Ngizim
+- Ngombe
+- Ngoni
+- Nguna
+- Nhanda
+- Nharo
+- Nias
+- Nicobarese
+- Nicobarese(Car)
+- Nigerian Pidgin
+- Nihon Shuwa(Japanese Sign Language)
+- Nimboran
+- Ningil
+- Nisenan
+- Nisgha
+- Nitinaht
+- Niuafo'ou
+- Niuean
+- Nivacle
+- Nivkh
+- Nivkh(South Sakhalin)
+- Nkem
+- Nkonya
+- Nkore - Kiga
+- Nobiin
+- Nocte
+- Noghay
+- Noghay(Karagash)
+- Nomad
+- Nomatsiguenga
+- Noni
+- Noon
+- Norsk Tegnspråk
+- Norwegian
+- Nsenga
+- Ntomba
+- Nuaulu
+- Nubi
+- Nubian(Dongolese)
+- Nubian(Kunuz)
+- Nuer
+- Nukak
+- Nukuoro
+- Nung(in Vietnam)
+- Nunggubuyu
+- Nuni(Northern)
+- Nupe
+- Nusu
+- Nuuchahnulth
+- Nyah Kur(Tha Pong)
+- Nyamal
+- Nyambo
+- Nyamkad
+- Nyamwezi
+- Nyanga
+- Nyangi
+- Nyangumarda
+- Nyawaygi
+- Nyelâyu
+- Nyigina
+- Nyiha
+- Nyimang
+- Nyishi
+- Nyulnyul
+- Nyungar
+- Nzakara
+- O'odham
+- Obokuitai
+- Obolo
+- Ocaina
+- Occitan
+- Ocuilteco
+- Ogbia
+- Ogbronuagum
+- Oi
+- Oirat
+- Ojibwa(Eastern)
+- Ojibwa(Severn)
+- Ojibwe(Minnesota)
+- Okanagan
+- Oksapmin
+- Oku
+- Olo
+- Oloh Mangtangai
+- Olutec
+- Omagua
+- Omaha
+- Ömie
+- One
+- Oneida
+- Onge
+- Ono
+- Onondaga
+- Ordos
+- Orejón
+- Orig
+- Oriya
+- Oriya(Kotia)
+- Ormuri
+- Oroch
+- Orok
+- Orokaiva
+- Orokolo
+- Oromo(Boraana)
+- Oromo(Harar)
+- Oromo(Waata)
+- Oromo(West - Central)
+- Orya
+- Osage
+- Ossetic
+- Oto
+- Otomí(Ixtenco)
+- Otomí(Mezquital)
+- Otomí(Santiago Mexquititlan)
+- Otomí(Sierra)
+- Otoro
+- Owininga
+- Pa'a
+- Paakantyi
+- Paamese
+- Pacoh
+- Padoe
+- Páez
+- Pagu
+- Paita
+- Paite
+- Paiute(Northern)
+- Paiute(Southern)
+- Paiwan
+- Pakanha
+- Palauan
+- Palaung
+- Palikur
+- Palor
+- Pame
+- Pamona
+- Panará
+- Panare
+- Pangasinan
+- Pangwa
+- Panjabi
+- Panyjima
+- Papiamentu
+- Parauk
+- Pare
+- Paresi
+- Päri
+- Parji(Dravidian)
+- Pashto
+- Passamaquoddy - Maliseet
+- Patep
+- Patpatar
+- Pattani
+- Patwin
+- Paulohi
+- Paumarí
+- Pawaian
+- Pawnee
+- Pech
+- Pemon
+- Pengo
+- Pero
+- Persian
+- Phlong
+- Piapoco
+- Piaroa
+- Pilagá
+- Pileni
+- Pima Bajo
+- Pingilapese
+- Pintupi
+- Pipil
+- Pirahã
+- Piratapuyo
+- Piro
+- Pisa
+- Pitjantjatjara
+- Pitta Pitta
+- Plains - Indians Sign Language
+- Playero
+- Po - Ai
+- Pocomam Oriental
+- Podoko
+- Pogoro
+- Pohnpeian
+- Poko - Rawo
+- Pokomchí
+- Pokot
+- Polabian
+- Polish
+- Pomo(Central)
+- Pomo(Eastern)
+- Pomo(Northern)
+- Pomo(Southeastern)
+- Popoloca(Metzontla)
+- Popoloca(San Juan Atzingo)
+- Popoloca(San Vicente Coyotepec)
+- Popoluca(Sierra)
+- Poqomam
+- Port Sandwich
+- Portuguese(Brazil)
+- Portuguese(Portugal)
+- Potawatomi
+- Powhatan
+- Prasuni
+- Príncipense
+- Provençal
+- Puinave
+- Pulopetak
+- Puluwat
+- Pumi
+- Pungupungu
+- Puquina
+- Purépecha
+- Purki
+- Qafar
+- Qaget
+- Qawasqar
+- Qiang
+- Quechan
+- Quechua(Ancash)
+- Quechua(Ayacucho)
+- Quechua(Bolivian)
+- Quechua(Cajamarca)
+- Quechua(Cochabamba)
+- Quechua(Cuzco)
+- Quechua(Ecuadorean)
+- Quechua(Huallaga)
+- Quechua(Imbabura)
+- Quechua(Tarma)
+- Quiché
+- Quileute
+- Rade
+- Raga
+- Raji
+- Ralte
+- Rama
+- Rang Pas
+- Rao
+- Rapanui
+- Rashad
+- Rawa
+- Rawang
+- Rejang
+- Rembarnga
+- Remo
+- Rendille
+- Rengao
+- Rennellese
+- Resígaro
+- Retuarã
+- rGyalrong(Caodeng)
+- Riantana
+- Rikbaktsa
+- Rimi
+- Ritharngu
+- Roglai(Northern)
+- Romani(Ajia Varvara)
+- Romani(Bugurdzi)
+- Romani(Burgenland)
+- Romani(Kalderash)
+- Romani(Lovari)
+- Romani(North Russian)
+- Romani(Sepecides)
+- Romani(Welsh)
+- Romanian
+- Romansch
+- Romansch(Scharans)
+- Romansch(Surmeiran)
+- Romansch(Sursilvan)
+- Ron
+- Ronga
+- Roro
+- Roti
+- Rotokas
+- Rotuman
+- Roviana
+- Rukai(Tanan)
+- Rumsien
+- Rumu
+- Rundi
+- Runga
+- Runyankore
+- Runyoro - Rutooro
+- Russian
+- Russian Sign Language
+- Russian - Chinese Pidgin(Birobidjan)
+- Rutul
+- Sa'a
+- Sa'ban
+- Saami(Central - South)
+- Saami(Kildin)
+- Saami(Northern)
+- Saanich
+- Saek
+- Sahaptin(Northern)
+- Sahaptin(Umatilla)
+- Saho
+- Sahu
+- Sakao
+- Salar
+- Sáliba(in Colombia)
+- Saliba(in Papua New Guinea)
+- Salinan
+- Salish(Samish Straits)
+- Salish(Southern Puget Sound)
+- Salish(Straits)
+- Salt - Yui
+- Sama(Balangingi)
+- Sama(Southern)
+- Samba Leko
+- Samoan
+- Sandawe
+- Sangir
+- Sango
+- Sangu
+- Santa
+- Santali
+- Sanuma
+- Sapuan
+- Saramaccan
+- Sarcee
+- Sardinian
+- Sare
+- Saryg Yughur
+- Savi
+- Savosavo
+- Sawai
+- Sawu
+- Sayula Popoluca
+- Sebei
+- Secoya
+- Sedang
+- Seediq
+- Selaru
+- Selayar
+- Selepet
+- Selknam
+- Selkup
+- Sema
+- Semai
+- Semandang
+- Seme
+- Semelai
+- Seminole
+- Sena
+- Senadi
+- Seneca
+- Sengele
+- Sentani
+- Serbian - Croatian
+- Seri
+- Serrano
+- Sesotho
+- Seychelles Creole
+- Shabo
+- Shambala
+- Shan
+- Sharanahua
+- Shasta
+- Shatt
+- Shawnee
+- Shekhawati
+- Sherdukpen
+- Sherpa
+- Shigatse
+- Shilluk
+- Shina
+- Shinassha
+- Shipibo - Konibo
+- Shira Yughur
+- Shiriana
+- Shompen
+- Shona
+- Shor
+- Shoshone
+- Shoshone(Wind River)
+- Shughni
+- Shuri
+- Shuswap
+- Siane
+- Siar
+- Sidaama
+- Sika
+- Sikaritai
+- Sikkimese
+- Sikuani
+- Sikule
+- Sila
+- Simeulue
+- Sinaugoro
+- Sindhi
+- Sinhala
+- Sio
+- Siona
+- Sipakapense
+- Siraya
+- Siriano
+- Sirionó
+- Siroi
+- Sisaala
+- Sisiqa
+- Siuslaw
+- Skou
+- Slave
+- Slavey
+- Slovak
+- Slovene
+- Slovincian
+- So
+- Sobei
+- Soddo
+- Solon
+- Somali
+- Songe
+- Songish
+- Soninke
+- Sonsorol - Tobi
+- Sooke
+- Soqotri
+- Sora
+- Sorbian
+- Sorbian(Lower)
+- Sorbian(Upper)
+- Sotho(Northern)
+- Sougb
+- South Korean Sign Language
+- Southeast Ambrym
+- Spanish
+- Spanish(Canary Islands)
+- Spitian
+- Spokane
+- Squamish
+- Sranan
+- Sre
+- Stieng
+- Stoney
+- Subiya
+- Sudest
+- Suena
+- Sui
+- Suki
+- Suku
+- Sukuma
+- Sulka
+- Sulung
+- Sundanese
+- Sungor
+- Supyire
+- Sursurunga
+- Susu
+- Svan
+- Svenska Teckenspråket
+- Swahili
+- Swati
+- Swedish
+- Swedish(Västerbotten)
+- Taba
+- Tabare
+- Tabaru
+- Tabassaran
+- Tabla
+- Tabwa
+- Tacana
+- Tagalog
+- Tagbanwa(Aborlan)
+- Tahitian
+- Taiap
+- Taiof
+- Tairora
+- Taiwanese
+- Taiwanese Sign Language(Ziran Shouyu)
+- Tajik
+- Takelma
+- Takia
+- Talaud
+- Talinga
+- Talysh(Azerbaijan)
+- Talysh(Southern)
+- Tama
+- Tamabo
+- Tamagario
+- Tamang(Eastern)
+- Tamashek
+- Tamil
+- Tamil(Spoken)
+- Tampulma
+- Tanacross
+- Tanaina
+- Tanana(Lower)
+- Tangale
+- Tangbe
+- Tangga
+- Tanglapui
+- Tanna(Southwest)
+- Tanzania Sign Language
+- Tapieté
+- Tarahumara(Central)
+- Tarahumara(Western)
+- Tarangan(West)
+- Tarao
+- Tariana
+- Tarok
+- Tashlhiyt
+- Tasmanian
+- Tasmanian(Oyster Bay to Pitwater)
+- Tat(Muslim)
+- Tatana'
+- Tatar
+- Tatar(Baraba)
+- Tatar(Mishar)
+- Tatar - Noghay(Alabugat)
+- Tati(Southern)
+- Tatuyo
+- Taulil
+- Taushiro
+- Tausug
+- Tauya
+- Tawala
+- Tayo
+- Tboli
+- Tectiteco
+- Tehit
+- Tehuelche
+- Teke(Southern)
+- Telefol
+- Telugu
+- Tem
+- Temein
+- Temiar
+- Temne
+- Tennet
+- Tenyer
+- Teop
+- Tepecano
+- Tepehua(Huehuetla)
+- Tepehua(Tlachichilco)
+- Tepehuan(Northern)
+- Tepehuan(Southeastern)
+- Tera
+- Terêna
+- Teribe
+- Ternate
+- Teso
+- Tetela
+- Tetun
+- Tetun Dili
+- Tewa(Arizona)
+- Tewa(Rio Grande)
+- Tewa(San Juan Pueblo)
+- Thadou
+- Thai
+- Thai Sign Language
+- Thakali
+- Thangmi
+- Thao
+- Thaypan
+- Thompson
+- Thulung
+- Tibetan(Dingri)
+- Tibetan(Drokpa)
+- Tibetan(Modern Literary)
+- Tibetan(Shigatse)
+- Tibetan(Standard Spoken)
+- Ticuna
+- Tidore
+- Tifal
+- Tigak
+- Tigré
+- Tigré(Beni Amer)
+- Tigrinya
+- Tiipay(Jamul)
+- Tikar
+- Tillamook
+- Tima
+- Timorese
+- Timucua
+- Timugon
+- Tinani
+- Tindi
+- Tinrin
+- Tiriyo
+- Tirmaga
+- Tiruray
+- Tiv
+- Tiwa(Northern)
+- Tiwa(Southern)
+- Tiwi
+- Tlapanec
+- Tlingit
+- Toaripi
+- Toba
+- Tobati
+- Tobelo
+- Tod
+- Toda
+- Tofa
+- Tojolabal
+- Tok Pisin
+- Tokelauan
+- Tol
+- Tolai
+- Tommo So
+- Tondano
+- Tonga(in Zambia)
+- Tongan
+- Tonkawa
+- Tontemboan
+- Toqabaqita
+- Toraja
+- Toratán
+- Toro So
+- Torwali
+- Totonac(Misantla)
+- Totonac(Papantla)
+- Totonac(Sierra)
+- Totonac(Xicotepec de Juárez)
+- Toussian
+- Toussian(Win)
+- Trique(Chicahuaxtla)
+- Trique(Copala)
+- Trumai
+- Tsafiki
+- Tsakhur
+- Tsat
+- Tsez
+- Tshangla
+- Tsimshian(Coast)
+- Tsogo
+- Tsonga
+- Tsou
+- Tsova - Tush
+- Tswana
+- Tuamotuan
+- Tuareg(Ahaggar)
+- Tuareg(Air)
+- Tuareg(Ghat)
+- Tubar
+- Tübatulabal
+- Tubu
+- Tucano
+- Tugun
+- Tukang Besi
+- Tuki
+- Tulu
+- Tumak
+- Tumleo
+- Tümpisa Shoshone
+- Tunebo
+- Tunen
+- Tungak
+- Tunica
+- Tupi
+- Tupuri
+- Türk Isaret Dili
+- Turkana
+- Turkic(East - Central Xorasan)
+- Turkic(West Xorasan)
+- Turkish
+- Turkmen
+- Tuscarora
+- Tutchone(Northern)
+- Tutelo
+- Tutsa
+- Tuvaluan
+- Tuvan
+- Tuyuca
+- Twana
+- Tyeraity
+- Tzeltal
+- Tzeltal(Aguacatenango)
+- Tzeltal(Bachajón)
+- Tzeltal(Tenejapa)
+- Tzotzil
+- Tzotzil(San Andrés)
+- Tzotzil(Zinacantán)
+- Tzutujil
+- Ubykh
+- Udi
+- Udihe
+- Udmurt
+- Ugandan Sign Language
+- Ukrainian
+- Ulcha
+- Uldeme
+- Ulithian
+- Uma
+- Umaua
+- Umbu Ungu
+- UMbundu
+- Umpila
+- Una
+- Unami
+- Ungarinjin
+- Upper Kuskokwim
+- Ura
+- Uradhi
+- Urak Lawoi'
+- Urarina
+- Urat
+- Urdu
+- Urhobo
+- Urim
+- Uru
+- Urubú Sign Language
+- Urubú - Kaapor
+- Urum
+- Usan
+- Usarufa
+- Ute
+- Uyghur
+- Uzbek
+- Uzbek(Northern)
+- Vafsi
+- Vagla
+- Vai
+- Vasavi
+- Vata
+- Vedda
+- Venda
+- Veps
+- Vietnamese
+- Vili
+- Vinmavis
+- Vlaamse Gebarentaal
+- Votic
+- Waama
+- Wagawaga
+- Wagiman
+- Wahgi
+- Wai Wai
+- Waigali
+- Waimaha
+- Wakhi
+- Wallisian
+- Walman
+- Walmatjari
+- Wambaya
+- Wambon
+- Wambule
+- Wan
+- Wangkangurru
+- Wangkumara
+- Wanman
+- Wantoat
+- Waorani
+- Wapishana
+- Wappo
+- Warao
+- Waray(in Australia)
+- Waray - Waray
+- Wardaman
+- Warekena
+- Warembori
+- Wari'
+- Waris
+- Warlpiri
+- Warluwara
+- Warndarang
+- Waropen
+- Warrgamay
+- Warrnambool
+- Warrongo
+- Warrwa
+- Warumungu
+- Washo
+- Waskia
+- Watam
+- Wathawurrung
+- Watjarri
+- Waunana
+- Waurá
+- Wayampi
+- Wayana
+- Wedau
+- Welsh
+- Welsh(Colloquial)
+- Wembawemba
+- Wéménugbé
+- Weri
+- West Makian
+- Western Desert(Ooldea)
+- Wetan
+- Wichí
+- Wichita
+- Wik Munkan
+- Wik Ngathana
+- Wikchamni
+- Winnebago
+- Wintu
+- Wirangu
+- Wiyot
+- Wobe
+- Wogamusin
+- Woisika
+- Woiwurrung
+- Wolaytta
+- Woleaian
+- Wolio
+- Wolof
+- Womo
+- Worora
+- Wu
+- Wyandot
+- Xârâcùù
+- Xasonga
+- Xavánte
+- Xerénte
+- Xhosa
+- Xiamen
+- Xiriana
+- Xokleng
+- Yagaria
+- Yaghnobi
+- Yagua
+- Yahgan
+- Yaka
+- Yakan
+- Yakoma
+- Yakut
+- Yalarnnga
+- Yale(Kosarek)
+- Yali
+- Yamba
+- Yamdena
+- Yami
+- Yaminahua
+- Yamphu
+- Yana
+- Yankuntjatjara
+- Yanomámi
+- Yansi
+- Yanyuwa
+- Yao(in Malawi)
+- Yapese
+- Yaqay
+- Yaqui
+- Yareba
+- Yaruro
+- Yavapai
+- Yawa
+- Yawelmani
+- Yawuru
+- Yay
+- Yaygir
+- Yazgulyam
+- Yazva
+- Yei
+- Yelî Dnye
+- Yelmek
+- Yemba
+- Yemsa
+- Yessan - Mayo
+- Yeyi
+- Yi
+- Yiddish
+- Yiddish(Bessarabian)
+- Yiddish(Lithuanian)
+- Yiddish(Lodz)
+- Yidiny
+- Yil
+- Yimas
+- Yindjibarndi
+- Yingkarta
+- Yir Yiront
+- Yokuts(Yaudanchi)
+- Yorta Yorta
+- Yoruba
+- Yucatec
+- Yuchi
+- Yucuna
+- Yugh
+- Yukaghir(Kolyma)
+- Yukaghir(Tundra)
+- Yuki
+- Yukpa
+- Yukulta
+- Yulparija
+- Yulu
+- Yup'ik (Central)
+- Yup'ik (Chevak)
+- Yup'ik (Norton Sound)
+- Yupik(Naukan)
+- Yupik(Siberian)
+- Yupik(Sirenik)
+- Yupik(St.Lawrence Island)
+- Yuracare
+- Yurimangí
+- Yurok
+- Yurt Tatar
+- Yuruti
+- Yuwaalaraay
+- Zande
+- Zaparo
+- Zapotec(Isthmus)
+- Zapotec(Ixtlan)
+- Zapotec(Juárez)
+- Zapotec(Mitla)
+- Zapotec(Mixtepec)
+- Zapotec(Quiegolani)
+- Zapotec(San Lucas Quiaviní)
+- Zapotec(Texmelucan)
+- Zapotec(Yatzachi)
+- Zapotec(Zoogocho)
+- Zarma
+- Zayse
+- Zazaki
+- Zenaga
+- Zhang - Zhung
+- Zhuang(Northern)
+- Zimakani
+- Zoque(Chimalapa)
+- Zoque(Copainalá)
+- Zoque(Francisco León)
+- Zoque(Ostuacan)
+- Zoque(Rayon)
+- Zulu
+- Zulu(Northern)
+- Zulu(Southern)
+- Zuni
+
+l: other_language_proficiency_level
+t: drop
+q: What is your proficiency level in the language?
+- Beginner
+- Intermediate
+- Advanced
+- Near native
+- Native
+
+l: jump_other_language_native
+t: jump
+- if $english_native != 5 then goto other_language_proficiency
+
+l: other_language_reading_habits
+t: range
+q: Use the slider to indicate how much time (hours) in a typical week, you spend reading (in the language) each type of material listed below?
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Textbooks
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Academic materials other than textbooks
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Magazines
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Newspapers
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} E-mail
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Fiction books
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Nonfiction/special interest books
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Internet media (all categories not included above, for example, social media, forums, and blogs)
+- {min=0,max=7+,start=0,left=None,right=7 hours or more} Other categories
+
+l: other_language_proficiency
+t: range
+q: Use the slider to indicate on a scale from 1 to 10 your level of proficiency in speaking, understanding, and reading the language, where 1 indicates no proficiency, and 10 indicates native-level proficiency.
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Speaking
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Understanding spoken language
+- {min=0,max=10,start=0,left=No proficiency,right=Native-level proficiency} Reading
+
+l: other_language_age
+t: textline
+q: At what age did you start learning the language?
+- {min=0,max=100}
+
+l: language_impairment
+t: radio
+q: Do you have dyslexia or a language impairment?
+- No
+- Dyslexia
+- {other,size=50} Language impairment (please specify)
+
+l: dominant_hand
+t: radio
+q: Which hand is your dominant hand?
+- Right
+- Left
+- Both
+
+l: spr_instructions
+t: info
+q: Second part<br>
+In this part you will read some sentences in a self-paced reading task.<br>
+
+l: spr
+t: experiment
+- {fullscreen} SPR_one_word
+
+l: iewr_instructions
+t: info
+q: Third Part<br>
+This part is a short survey about your inner experiences while reading.<br>
+Please read the questions and answer them carefully.
+
+page: begin
+
+l: spr_inner_voice
+t: radio
+q: As you read the sentences in the previous section, did you HEAR an inner voice or did you just understand the words without actually hearing an inner voice? 
+- I understood the words written without hearing an inner voice 
+- I heard an inner voice reading the words while reading the sentences
+- I heard an inner voice reading the words only for some of the sentences (please specify)
+- I heard an inner voice while reading the sentences, but it was not reading the words (please specify)
+- other experience of inner voice (please specify)
+- I do not remember my inner experience while reading
+
+l: explain_spr_inner_voice
+t: textbox
+q: Please explain your choice
+- Please specify
+ 
+page: end
+
+l: survey_inner_voice
+t: radio
+q: As you read these survey questions (without moving your lips), do you HEAR an inner voice or do you just understand the words without actually hearing an inner voice? 
+- I understand the words written here without hearing an inner voice 
+- I hear an inner voice reading the words of this survey
+- {other,size=50} other experience of inner voice (please specify)
+
+l: jump_reading_experience
+t: jump
+- if $hearing_inner_voice != 1 then goto hearing_inner_voice_reading
+
+l: reading_experience
+t: radio
+q: If you do not hear an inner voice while you read, how would you describe your reading experience? 
+- I have nothing on my mind; I simply understand the words I am reading
+- I "see" the text in my mind
+- I imagine the scenario or situation described in the text
+- {other,size=50} other experience (please specify)
+
+l: hearing_inner_voice_reading
+t: radio
+q: When you read (without moving your lips), do you EVER HEAR an inner voice or do you just understand the words you are reading without actually hearing an inner voice? 
+- I always understand the words I am reading without hearing an inner voice 
+- I sometimes hear an inner voice while reading
+- I always hear an inner voice while reading
+
+l: jump_reading_experience
+t: jump
+- if $hearing_inner_voice_reading == 1 then goto harder_inner_voice_reading
+
+l: frequency_inner_voice_reading
+t: radio
+q: How often do you hear an inner voice when you read? 
+- Every time I read anything 
+- Often 
+- Sometimes 
+- I’ve only heard an inner reading voice a few times
+- Never
+
+l: hearing_inner_voice
+t: radio
+q: When you hear this inner voice, does it feel more like listening or like speaking? 
+- More like listening
+- More like speaking 
+- Both like listening and speaking
+- Neither like listening nor like speaking
+- Unsure
+- {other,size=50} other (please specify) 
+
+l: material_inner_voice_reading 
+t: check
+q: On which occasions do you usually hear such an inner voice? Please check all that apply. 
+- When I read print books 
+- When I read print magazines, journals or newspapers 
+- When I read internet content such as blogs 
+- When I read social network posts 
+- When I read emails or text messages 
+- When I read printed or handwritten letters or notes 
+- When I read signs on walls or shop windows 
+- When I read labels on food containers, medicine bottles or other commercial products 
+
+l: whose_voice_reading 
+t: check
+q: Whose voice do you hear as you read? Please check all that apply.
+- My own voice 
+- The voice of a story character 
+- The voice of a celebrity or famous person (e.g. an actor) 
+- The voice of a family member (including relatives by marriage) 
+- The voice of a friend 
+- The voice of whoever sends me a text message, email or note 
+- The voice of a teacher or acquaintance A voice I recognize, but which I can’t identify 
+- A voice I don’t recognize as being anyone in particular 
+
+l: different_inner_voice_reading
+t: radio
+q: How many different inner voices have you heard over the course of your reading life? 
+- Only one 
+- Two 
+- More than two 
+- Unsure 
+ 
+l: gender_inner_voice_reading
+t: radio
+q: How would you characterize the gender of your inner reading voice(s)? 
+- Always the same gender as mine 
+- Always a different gender than mine 
+- The gender varies (e.g. depending on the voice or depending on what I am reading) 
+- I am not able to tell what the gender is 
+ 
+l: accent_inner_voice_reading
+t: radio
+q: How would you characterize the accent of your inner reading voice(s)? 
+- Always the same accent as my own speaking voice 
+- Always an accent different from my own speaking voice  
+- The accent varies (e.g. depending on the voice or depending on what I am reading) 
+- I am not able to tell what the accent is like 
+ 
+l: pitch_inner_voice_reading
+t: radio
+q: How would you characterize the pitch of your inner reading voice(s)?  
+- Always the same pitch as my own speaking voice 
+- Always a pitch different from my own speaking voice (e.g. higher or lower-pitched)  
+- The pitch varies (e.g. depending on the voice or depending on what I am reading) 
+- I am not able to tell what the pitch is like 
+ 
+l: loudness_inner_voice_reading
+t: radio
+q: How would you characterize the loudness of your inner reading voice(s)? 
+- Always the same loudness as my own normal speaking voice 
+- Always a different loudness than my own normal speaking voice (e.g. softer or louder)  
+- The loudness varies (e.g. depending on the voice or depending on what I am reading) 
+- I am not able to tell what the loudness is like 
+ 
+l: emotional_inner_voice_reading
+t: radio
+q: How would you characterize the emotional tone of your inner reading voice(s)?  
+- The same emotional tone is always present no matter what I am reading (e.g. neutral, happy, excited, sad, angry or something else) 
+- The emotional tone varies (e.g. depending on the voice or depending on what I am reading) 
+- I am not able to tell what the emotional tone is like 
+
+l: change_inner_voice_reading
+t: radio
+q: Can you change one or more qualities of your inner reading voice(s) when you want to?
+- Yes 
+- No 
+
+l: jump_quality_change_inner_voice_reading
+t: jump
+- if $hearing_inner_voice = 2 then goto having_inner_voice_reading
+ 
+l: quality_change_inner_voice_reading 
+t: check
+q: If yes, which quality can you change at will? Check all that apply. 
+- I can choose to hear it or not hear it 
+- I can change whose voice I hear 
+- I can change the pitch of the voice 
+- I can change the accent of the voice 
+- I can change the loudness of the voice 
+- I can change the emotional tone of the voice 
+- I can change how fast the voice reads
+- {other,size=50} other (please specify)
+
+page: begin
+
+l: having_inner_voice_reading
+t: radio
+q: Do you think that having an inner reading voice adds to your reading experience (e.g makes it more vivid, engaging, interesting, fun, etc.)?
+- Yes
+- No
+- I am not sure how to answer this question
+
+l: explain_having_inner_voice_reading
+t: textbox
+q: Please explain your choice
+- Please specify
+ 
+page: end
+
+page: begin
+
+l: harder_inner_voice_reading
+t: radio
+q: Do you think that having an inner reading voice makes reading harder (e.g. makes it slower, distracts you, etc.)? 
+- Yes
+- No
+- The opposite, it makes reading easier
+- I am not sure how to answer this question
+
+l: explain_harder_inner_voice_reading
+t: textbox
+q: Please explain your choice
+- Please specify
+
+page: end
+ 
+l: most_people_inner_voice_reading
+t: radio
+q: In your personal opinion, do most people have an inner reading voice? 
+- Yes
+- No
+- Unsure 
+
+l: alphabet
+t: radio
+q: Please read the following: A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z.<br> While reading this, did you 
+- Hear\say the letters' names in your head
+- Hear the letters' sounds (as phonemes) in your head 
+- Hear\sing the alphabet (A, B, C) song
+- Not hear an inner voice, understood the text without hearing anything in your head
+- {other,size=50} other (please specify)
+
+l: happy_birthday
+t: radio
+q: Please read the following:<br>
+Happy birthday to you<br> Happy birthday to you<br> Happy birthday, dear Emily<br> Happy birthday to you<br> 
+While reading this, did you
+- Hear\Sing the Happy Birthday song in your head
+- Hear\say the words in your head 
+- Not hear an inner voice, understood the words without hearing anything in your head
+- {other,size=50} other (please specify)
+
+l: twinkle_twinkle
+t: radio
+q: Please read the following:<br>
+Twinkle, twinkle little star.<br> How I wonder what you are.<br> Up above the world so high.<br> Like a diamond in the sky.<br> Twinkle, twinkle little star.<br> How I wonder what you are.<br>
+While reading this, did you
+- Hear\Sing the Twinkle, Twinkle Little Star song in your head
+- Hear\say the words in your head 
+- Not hear an inner voice, understood the words without hearing anything in your head
+- {other,size=50} other (please specify)
+
+page: begin
+
+l: harry_potter_book
+t: radio
+q: Have you read the Harry Potter novels?
+- Yes 
+- No 
+
+l: harry_potter_audio_book
+t: radio
+q: Have you listened to the Harry Potter audio books?
+- Yes 
+- No 
+
+l: harry_potter_movie
+t: radio
+q: Have you watched the Harry Potter movies?
+- Yes 
+- No 
+
+l: harry_potter
+t: check
+q: Please read the following:<br>
+“Wingardium Leviosa!” he shouted, waving his long arms like a windmill.<br>
+“You’re saying it wrong,” Harry heard Hermione snap. “It’s Wing-gar-dium Levi-o-sa, make the ‘gar’ nice and long.”<br>
+“You do it, then, if you’re so clever,” Ron snarled.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the characters' sayings in my head and understood the narration without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general narrator voice
+- I heard the characters' sayings in the characters' voices (different voice for each character)
+- I heard only the narration parts in a general narrator voice
+- I heard only the narration parts in my own voice 
+- The characters' voices that I hear in my head resemble the actors' voices that portray them in the movie
+- The characters' accents are similar to my own accent
+- The characters' accents are different from my own accent
+- The characters sound British in my head
+- The gender of the voice(s) I hear in my head is similar to my own gender
+- The gender of the voice(s) I hear in my head changes according to the characters' gender
+- The gender of the narrator's voice I hear in my head is similar to my own gender
+- I heard “Wingardium Leviosa!” at a different volume level in my head
+- I heard “Wingardium Leviosa!” as a shout in my head
+- I heard “Wingardium Leviosa!” at a normal speaking level volume in my head
+- {other,size=120} I heard in my head "Wing-gar-dium Levi-o-sa" in a different way than the other words in the text (please specify in what way)
+- I see the scenario in my head in pictures
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+page: end
+
+page: begin
+
+l: harry_potter_youtube
+t: youtube
+q: Please watch the following video
+- Qgr4dcsY-60
+
+l: harry_potter_scene
+t: check
+q: Check all that apply.
+- The voices of the actors in the video were the same as the voices I heard in my head while reading
+- The voices of the actors in the video were different from the voices I heard in my head while reading 
+- {other,size=50} other (please specify)
+
+page: end
+
+page: begin
+
+l: harry_potter_2
+t: check
+q: Please read again the following:<br>
+“Wingardium Leviosa!” he shouted, waving his long arms like a windmill.<br>
+“You’re saying it wrong,” Harry heard Hermione snap. “It’s Wing-gar-dium Levi-o-sa, make the ‘gar’ nice and long.”<br>
+“You do it, then, if you’re so clever,” Ron snarled.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the characters' sayings in my head and understood the narration without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general narrator voice
+- I heard the characters' sayings in the characters' voices (different voice for each character)
+- I heard only the narration parts in a general narrator voice
+- I heard only the narration parts in my own voice 
+- The characters' voices that I hear in my head resemble the actors' voices that portray them in the movie
+- The characters' accents are similar to my own accent
+- The characters' accents are different from my own accent
+- The characters sound British in my head
+- The gender of the voice(s) I hear in my head is similar to my own gender
+- The gender of the voice(s) I hear in my head changes according to the characters' gender
+- The gender of the narrator's voice I hear in my head is similar to my own gender
+- I heard “Wingardium Leviosa!” at a different volume level in my head
+- I heard “Wingardium Leviosa!” as a shout in my head
+- I heard “Wingardium Leviosa!” at a normal speaking level volume in my head
+- {other,size=120} I heard in my head "Wing-gar-dium Levi-o-sa" in a different way than the other words in the text (please specify in what way)
+- I see the scenario in my head in pictures
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+l: harry_potter_2_diff
+t: textbox
+q: Did you notice any differences between your first and second readings of the text? If so, what were they?
+- Please specify
+
+page: end
+
+l: sherlock_holmes
+t: check
+q: Please read the following:<br>
+"We came here on business," said Stamford, sitting down on a high three-legged stool, and pushing another one in my direction with his foot. "My friend here, Dr. Watson, wants to take diggings; and as you were complaining that you could get no one to go halves with you, I thought that I had better bring you together."<br>
+Sherlock Holmes seemed delighted at the idea of sharing his rooms with me. "I have my eye on a suite in Baker Street," he said, "which would suit us down to the ground. You don't mind the smell of strong tobacco, I hope?"<br>
+"I always smoke 'ship's' myself," I answered.<br>
+"That's good enough. I generally have chemicals about, and occasionally do experiments. Would that annoy you?"<br>
+"By no means."<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the characters' sayings in my head and understood the narration without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general narrator voice
+- I heard the characters' sayings in the characters' voices (different voice for each character)
+- I heard only the narration parts in a general narrator voice
+- I heard only the narration parts in my own voice 
+- The characters' voices that I hear in my head resemble the actors' voices that portray them in the movie\ TV series 
+- The characters' accents are similar to my own accent
+- The characters' accents are different from my own accent
+- The characters sound British in my head
+- The gender of the voice(s) I hear in my head is similar to my own gender
+- The gender of the voice(s) I hear in my head are all male
+- The gender of the characters' voices is male and the gender of the narrator's voice is similar to my own gender
+- I see the scenario in my head in pictures
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+l: winnie_the_pooh
+t: check
+q: Please read the following:<br>
+So Winnie-the-Pooh went round to his friend Christopher Robin, who lived behind a green door in another part of the forest.<br>
+"Good morning, Christopher Robin," he said.<br>
+"Good morning, Winnie-the-Pooh," said you.<br>
+"I wonder if you've got such a thing as a balloon about you?"<br>
+"A balloon?"<br>
+"Yes, I just said to myself coming along: 'I wonder if Christopher Robin has such a thing as a balloon about him?' I just said it to myself, thinking of balloons, and wondering."<br>
+"What do you want a balloon for?" you said.<br>
+Winnie-the-Pooh looked round to see that nobody was listening, put his paw to his mouth, and said in a deep whisper: "Honey!"<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the characters' sayings in my head and understood the narration without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general narrator voice
+- I heard the characters' sayings in the characters' voices (different voice for each character)
+- I heard only the narration parts in a general narrator voice
+- I heard only the narration parts in my own voice 
+- The characters' accents are similar to my own accent
+- The characters' accents are different from my own accent
+- The gender of the voice(s) I hear in my head is similar to my own gender
+- The gender of the voice(s) I hear in my head are all male
+- The gender of the characters' voices is male and the gender of the narrator's voice is similar to my own gender
+- Winnie-the-Pooh voice in my head sounds the same as a human voice
+- {other,size=100} Winnie-the-Pooh voice in my head sounds different from a human voice (please specify how).
+- I heard "Honey!" at a different volume level in my head
+- I heard "Honey!" as a whisper in my head
+- I heard "Honey!" at a normal speaking level volume in my head
+- {other,size=120} I heard in my head 'I wonder if Christopher Robin has such a thing as a balloon about him?' in a different way than the other words in the text (please specify in what way)
+- I see the scenario in my head in pictures
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+l: genesis
+t: check
+q: Please read the following:<br>
+[1:1] In the beginning when God created the heavens and the earth,<br>
+[1:2] the earth was a formless void and darkness covered the face of the deep, while a wind from God swept over the face of the waters.<br>
+[1:3] Then God said, "Let there be light"; and there was light.<br>
+[1:4] And God saw that the light was good; and God separated the light from the darkness.<br>
+[1:5] God called the light Day, and the darkness he called Night. And there was evening and there was morning, the first day.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard God's voice in "Let there be light" in my head and understood the narration without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general narrator voice
+- I heard only the narration parts in a general narrator voice
+- I heard only the narration parts in my own voice 
+- The accent of the voice(s) I hear in my head is similar to my own accent
+- The accent of the voice(s) I hear in my head is different from my own accent
+- The gender of the voice(s) I hear in my head is similar to my own gender
+- The gender of the voice(s) I hear in my head is different than my own gender
+- God's voice in my head sounds the same as a human voice
+- {other,size=100} Gods' voice in my head sounds different from a human voice (please specify how).
+- I see the scenario in my head in pictures
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+l: non_words
+t: check
+q: Please read the following:<br>
+THI SPLANKLERS RURNED EM APRILORICALLY ELFBY ERTFING FOT REMORTLY SOTHCLING MUP BROLEN<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I heard all the words in my own voice
+- I heard all the words in a general voice
+- I did not hear any voice in my head
+- {other,size=50} other (please specify)
+
+l: trump_tweet
+i: {center} trump_tweet.png
+t: check
+q: Please read the text above.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the tweets' content in my head and understood the text above (user handle) and below it (date) without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in a general, non-specific voice
+- I heard all the words in my own voice
+- I heard the tweets' content in trumps' voice 
+- I heard the text above (user handle) and below it (date) in my own voice 
+- I heard the tweets' content in my own voice 
+- The accent of the voice I hear in my head is similar to my own accent
+- The gender of the voice I hear in my head is similar to my own gender
+- {other,size=120} The loudness and\or intonation of the word "NOT" is different than the other words in the tweet that I heard in my head (please specify in what way)
+- {other,size=120} The loudness and\or intonation of the word "NAMED" is different than the other words in the tweet that I heard in my head (please specify in what way)
+- {other,size=120} The loudness and\or intonation of the word "Sad!" is different than the other words in the tweet that I heard in my head (please specify in what way)
+- I heard "@nytimes" as "at New York Times" in my head
+- I understood "@nytimes" without hearing it in my head
+- I heard "@nytimes" as it is written in my head
+- I heard "@realDonaldTrump" as "at real Donald Trump" in my head
+- I understood "@realDonaldTrump" without hearing it in my head
+- I heard "@realDonaldTrump" as it is written in my head
+- I heard "7:34 PM Apr 11, 2020" as "seven thirty-four p.m., April eleventh, twenty twenty (or two thousand twenty)" in my head
+- I understood "7:34 PM Apr 11, 2020" without hearing it in my head
+- I heard "7:34 PM Apr 11, 2020" as it is written in my head
+- {other,size=50} other (please specify)
+
+l: mom_text_1
+i: {center} mom_text_1.jpeg
+t: check
+q: Please read the text above.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard one side of the correspondence content in my head and understood the other side without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in the same general, non-specific voice
+- I heard all the words in my own voice
+- I heard each side of the correspondence in a different voice
+- I heard one side of the correspondence in my mom's voice and the other side in my own voice
+- I heard one side of the correspondence in a general, non-specific female voice and the other side in a general, non-specific male\female voice
+- The accent of the voice(s) I hear in my head is similar to my own accent
+- I heard each side of the correspondence in a different accent
+- Only one side of the correspondence has a similar accent to my own in my head
+- I heard each side of the correspondence in a different accent
+- I heard both sides of the correspondence in the same accent
+- I heard each side of the correspondence in a different emotional tone
+- I heard both sides of the correspondence in the same emotional tone
+- I heard each side of the correspondence in a different volume level
+- I heard both sides of the correspondence at the same volume level
+- I understood "WTF" without hearing it in my head
+- I heard "WTF" as the names of the letters ("W", "T", "F") in my head
+- I heard "WTF" as "What the F" in my head
+- I heard "WTF" as "What the Fuck" in my head
+- I heard "WTF" as "Well That's Fantastic" in my head
+- {other,size=50} other (please specify)
+
+l: mom_text_2
+i: {center} mom_text_2.jpg
+t: check
+q: Please read the text above.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard one side of the correspondence content in my head and understood the other side without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in the same general, non-specific voice
+- I heard all the words in my own voice
+- I heard each side of the correspondence in a different voice
+- I heard one side of the correspondence in my mom's voice and the other side in my own voice
+- I heard one side of the correspondence in a general, non-specific female voice and the other side in a general, non-specific male voice
+- The accent of the voice(s) I hear in my head is similar to my own accent
+- I heard each side of the correspondence in a different accent
+- Only one side of the correspondence has a similar accent to my own in my head
+- I heard each side of the correspondence in a different accent
+- I heard both sides of the correspondence in the same accent
+- I heard each side of the correspondence in a different emotional tone
+- I heard both sides of the correspondence in the same emotional tone
+- I heard each side of the correspondence in a different volume level
+- I heard both sides of the correspondence at the same volume level
+- I understood "LOL" without hearing it in my head
+- I heard "LOL" as the names of the letters ("L", "O", "L") in my head
+- I heard "LOL" as it is written "lol" in my head
+- I heard "LOL" as "laughing out loud" in my head
+- I heard "LOL" as "lots of love" in my head
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading
+t: check
+q: Please read the following paragraph silently:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.<br>
+Check all that apply. While reading
+- I heard all the words in my head
+- I only heard the quote in my head and understood the rest without hearing it in my head
+- {other,size=100} I only heard some of the words in my head (please specify which words)
+- I heard all the words in my own voice
+- I heard all the words in a general, non-specific voice
+- I heard the quote in a different voice than the rest of the text 
+- The voice accent that I heard in my head is similar to my own accent
+- The voice accent that I heard in my head is different from my own accent
+- The voice gender that I heard in my head is similar to my own gender
+- The voice gender that I heard in my head is different from my own gender
+- I see the scenario in my head like a movie
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_q
+t: radio
+q: According to Malik Falkenmark’s report, what will happen if the world adopts the current diet trends of western nations? 
+- There will not be sufficient water to grow enough food for everyone
+- By 2050, nine billion people will not have enough drinking water
+- By 2050, animal-based protein consumption will reduce from 20% to 5%
+- Obesity rates around the world will rise
+
+
+l: one_stop_qa_silent_reading_gender
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head with a different gender than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it had a different gender than the first time I read the paragraph. Only the voice's gender was different.
+- While reading, I heard a voice in my head saying the words and it had a different gender than the first time I read the paragraph. Other features of the voice, like accent, pitch, loudness, speed and emotional tone, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_accent
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head with a different accent than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it had a different accent than the first time I read the paragraph. Only the voice's accent was different.
+- While reading, I heard a voice in my head saying the words and it had a different accent than the first time I read the paragraph. Other features of the voice, like gender, pitch, loudness, speed and emotional tone, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_pitch
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head with a lower or higher pitch than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it had a different pitch than the first time I read the paragraph. Only the voice's pitch was different.
+- While reading, I heard a voice in my head saying the words and it had a different pitch than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, speed and emotional tone, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_speed
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head faster or slower than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it had a different pace of reading than the first time I read the paragraph. Only the voice's speed was different.
+- While reading, I heard a voice in my head saying the words and it had a different pace of reading than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, pitch and emotional tone, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_loudness
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head louder (like a shout) or quieter (like a whisper) than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it was louder or quieter than the first time I read the paragraph. Only the voice's loudness was different.
+- While reading, I heard a voice in my head saying the words and it was louder or quieter than the first time I read the paragraph. Other features of the voice, like gender, accent, pitch, speed and emotional tone, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_emotional_tone
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head with a different intonation than the first time:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words and it had a different emotional tone than the first time I read the paragraph. Only the voice's intonation was different.
+- While reading, I heard a voice in my head saying the words and it had a different emotional tone than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, speed and pitch, were different as well.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_silent_reading_friend
+t: radio
+q: Please read the following paragraph silently again, but this time try to hear a voice saying the words in your head similar to a specific close friend or family member of yours:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.
+- While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- While reading, I heard a voice in my head saying the words as if a specific close friend or family member were reading this paragraph to me.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_lips_moving
+t: check
+q: Please read the following paragraph again, but this time move your lips as if to say the words aloud, but do not make any sound:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.<br>
+Check all that apply. While reading
+- I heard the same voice in my head saying the words as the first time I read the paragraph.
+- I heard my own voice saying the words in my head.
+- It felt the same way as reading the paragraph silently.
+- {other,size=100} It felt different from reading the paragraph silently (please specify in what way)
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_aloud
+t: check
+q: Please read the following paragraph again, but this time read it aloud:<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.<br>
+Check all that apply. While reading
+- I did not hear a voice in my head.
+- I heard the same voice in my head saying the words as the first time I read the paragraph.
+- I heard my own voice saying the words in my head.
+- It felt the same way as reading the paragraph silently.
+- It felt the same way as reading the paragraph silently while moving my lips.
+- {other,size=100} It felt different from reading the paragraph silently (please specify in what way)
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_listening
+a: Food-Shortages-Could-Force-World-into-Vegetarianism_p1.wav
+t: check
+q: Please play the sound of Amy reading the paragraph aloud and follow the text while you listen (read silently with her).<br>
+Leading water scientists have issued one of the sternest warnings yet about global food supplies, saying that the world’s population may have to switch almost completely to a vegetarian diet by 2050 to avoid catastrophic shortages. Humans derive about 20% of their protein from animal-based products now, but this may need to drop to just 5% to feed the extra two billion people expected to be alive by 2050, according to research by some of the world’s leading water scientists. “There will not be enough water available on current croplands to produce food for the expected nine-billion population in 2050 if we follow current trends and changes towards diets common in western nations,” the report by Malik Falkenmark and colleagues at the Stockholm International Water Institute (SIWI) said.<br> 
+Check all that apply.
+- I did not hear a voice in my head while listening.
+- {other,size=100} I heard a voice in my head while listening (please specify)
+- Amy's voice is similar to the voice I heard in my head when I read the paragraph silently.
+- Amy's voice is different from the voice I heard in my head when I read the paragraph silently.
+- The voice I heard in my head while reading the paragraph silently has the same gender as Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has a different gender than Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has the same accent as Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has a different accent than Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has the same reading speed as Amy's.
+- The voice I heard in my head while reading the paragraph silently has a different reading speed from Amy's.
+- The voice's pitch I heard in my head while reading the paragraph silently is similar to Amy's pitch.
+- The voice's pitch I heard in my head while reading the paragraph silently is different from Amy's pitch.
+- The voice's emotional tone I heard in my head while reading the paragraph silently is similar to Amy's emotional tone.
+- The voice's emotional tone I heard in my head while reading the paragraph silently is different from Amy's emotional tone.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_2
+t: check
+q: Please read the following paragraph silently. Try to hear as if Amy is reading the words to you.<br>
+“There will be just enough water if the proportion of animal-based foods is limited to 5% of total calories and considerable regional water deficits can be met by a reliable system of food trade.” Dire warnings of water scarcity limiting food production come as Oxfam and the UN prepare for a possible second global food crisis in five years. Prices for staples such as corn and wheat have risen nearly 50% on international markets since June, triggered by severe droughts in the US and Russia, and weak monsoon rains in Asia. More than 18 million people are already facing serious food shortages across the Sahel. Oxfam has forecast that the price spike will have a devastating impact in developing countries that rely heavily on food imports, including parts of Latin America, North Africa and the Middle East. Food shortages in 2008 led to civil unrest in 28 countries.<br>
+Check all that apply. While reading
+- I heard a voice in my head saying the words the same way as the first time I read the paragraph.
+- I heard all the words in my own voice.
+- I heard a voice in my head saying the words as if a Amy was reading this paragraph to me.
+- The voice's accent I heard in my head is similar to my own accent.
+- The voice's accent I heard in my head is similar to Amy's accent.
+- The voice's accent I heard in my head has neither my accent nor Amy's.
+- The voice's gender I heard in my head is similar to my own gender.
+- The voice's gender I heard in my head is similar to Amy's gender.
+- The voice's gender I heard in my head has a different gender than Amy's and mine.
+- The voice I heard in my head has the same loudness as Amy's voice.
+- The voice I heard in my head has a different loudness than Amy's voice.
+- The voice I heard in my head has the same reading speed as Amy's.
+- The voice's pitch I heard in my head is similar to Amy's pitch.
+- The voice's pitch I heard in my head is similar to my own pitch.
+- The voice's pitch I heard in my head has a different pitch than Amy's and mine.
+- The voice I heard in my head has the same emotional tone as Amy's voice.
+- The voice I heard in my head has a different emotional tone than Amy's voice.
+- {other,size=50} other (please specify)
+
+l: one_stop_qa_2_listening
+a: Food-Shortages-Could-Force-World-into-Vegetarianism_p2.wav
+t: check
+q: Please play the sound of Amy reading the paragraph aloud and follow the text while you listen (read silently with her).<br>
+“There will be just enough water if the proportion of animal-based foods is limited to 5% of total calories and considerable regional water deficits can be met by a reliable system of food trade.” Dire warnings of water scarcity limiting food production come as Oxfam and the UN prepare for a possible second global food crisis in five years. Prices for staples such as corn and wheat have risen nearly 50% on international markets since June, triggered by severe droughts in the US and Russia, and weak monsoon rains in Asia. More than 18 million people are already facing serious food shortages across the Sahel. Oxfam has forecast that the price spike will have a devastating impact in developing countries that rely heavily on food imports, including parts of Latin America, North Africa and the Middle East. Food shortages in 2008 led to civil unrest in 28 countries.<br> Check all that apply.
+- I did not hear a voice in my head while listening.
+- {other,size=100} I heard a voice in my head while listening (please specify)
+- Amy's voice is similar to the voice I heard in my head when I read the paragraph silently.
+- Amy's voice is different from the voice I heard in my head when I read the paragraph silently.
+- The voice I heard in my head while reading the paragraph silently has the same gender as Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has a different gender than Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has the same accent as Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has a different accent than Amy's voice.
+- The voice I heard in my head while reading the paragraph silently has the same reading speed as Amy's.
+- The voice I heard in my head while reading the paragraph silently has a different reading speed from Amy's.
+- The voice's pitch I heard in my head while reading the paragraph silently is similar to Amy's pitch.
+- The voice's pitch I heard in my head while reading the paragraph silently is different from Amy's pitch.
+- The voice's emotional tone I heard in my head while reading the paragraph silently is similar to Amy's emotional tone.
+- The voice's emotional tone I heard in my head while reading the paragraph silently is different from Amy's emotional tone.
+
+l: one_stop_qa_2_q
+t: radio
+q: Which factor led to the increase in the price of corn and wheat? 
+- Unfavorable weather conditions in different locations around the globe
+- Instability of the international financial markets
+- Warnings of water scarcity by Oxfam and the UN
+- Global warming
+
+l: irq_visqr_instructions
+t: info
+q: Fifth Part<br>
+This part includes two short surveys about your reading experience and your general inner voice experience.<br>
+Please read the questions and answer them carefully.
+
+page: begin
+
+scale: agreement
+- Strongly Disagree
+- Disagree
+- Neither agree nor disagree
+- Agree
+- Strongly Agree
+
+l: irq
+q: How often do the following experiences occur to you?
+t: scale agreement
+o: random
+o: table
+- I often enjoy the use of mental pictures to reminisce
+- I can close my eyes and easily picture a scene that I have experienced
+- My mental images are very vivid and photographic
+- The old saying “A picture is worth a thousand words” is certainly true for me
+- When I think about someone I know well, I instantly see their face in my mind
+- I often use mental images or pictures to help me remember things
+- My memories are mainly visual in nature
+- When traveling to get to somewhere I tend to think more visually than verbally
+- If I talk to myself in my head it is usually accompanied by visual imagery
+- If I imagine my memories visually they are more often static than moving
+- I think about problems in my mind in the form of a conversation with myself
+- If I am walking somewhere by myself, I often have a silent conversation with myself
+- If I am walking somewhere by myself, I frequently think of conversations that I’ve recently had
+- My inner speech helps my imagination
+- I tend to think things through verbally when I am relaxing
+- When thinking about a social problem, I often talk it through in my head
+- I like to give myself some down time to talk through thoughts in my mind
+- I hear words in my "mind’s ear" when I think
+- I rarely vocalize thoughts in my mind
+- I often talk to myself internally while watching TV
+- My memories often involve conversations I’ve had
+- When I read, I tend to hear a voice in my "mind’s ear"
+- When I hear someone talking, I see words written down in my mind
+- I see words in my "mind’s eye" when I think
+- When I am introduced to someone for the first time, I imagine what their name would look like when written down
+- A strategy I use to help me remember written material is imagining what the writing looks like
+- I hear a running summary of everything I am doing in my head
+- I rehearse in my mind how someone might respond to a text message before I send it
+- I can easily imagine and mentally rotate three-dimensional geometric figures
+- I can easily choose to imagine this sentence in my mind pronounced unnaturally slowly
+- In school, I had no problems with geometry
+- It is easy for me to imagine the sensation of licking a brick
+- I find it difficult to imagine how a three-dimensional geometric figure would exactly look like when rotated
+- I can easily imagine someone clearly talking, and then imagine the same voice with a heavy cold
+- I think I have a large vocabulary in my native language compared to others
+- I can easily imagine the sound of a trumpet getting louder
+
+page: end
+
+page: begin
+
+scale: frequency
+- Never
+- Very rarely
+- Rarely
+- Sometimes
+- Often
+- Very often
+- All the time
+
+l: visqr
+q: How often do the following experiences occur to you?
+t: scale frequency
+o: random
+o: table
+- I think to myself in words using brief phrases and single words rather than full sentences
+- When I am talking to myself about things in my mind, it is like I am going back and forward asking myself questions and then answering them
+- I hear the voice of another person in my head. For example, when I act in a certain way I hear my mother’s voice in my mind
+- I experience the voices of other people asking me questions in my head
+- I hear other people’s voices nagging me in my head
+- My thinking in words is more like a dialogue with myself, rather than my own thoughts in a monologue
+- I think to myself in words using full sentences
+- My thinking to myself in words is like shorthand notes, rather than full, proper, grammatical English
+- I think in inner speech about what I have done, and whether it was right or not
+- When I am talking to myself about things in my mind, it is like I am having a conversation with myself
+- I talk silently in my head telling myself to do things
+- I hear other people’s actual voices in my head, saying things that they have never said to me before
+- I talk back and forward to myself in my mind about things
+- My thinking in words is shortened compared to my normal out-loud speech. For example, rather than saying to myself things like ‘I need to go to the shops’, I will just say ‘shops’ to myself in my head
+- If I were to write down my thoughts on paper, they would read like a normal grammatical sentence
+- I hear other people’s actual voices in my head, saying things that they actually once said to me
+- I talk silently in my inner speech telling myself not to do things
+- I evaluate my behaviour using my inner speech. For example, I say to myself, ‘that was good’ or ‘that was stupid’
+- I talk to myself silently in an encouraging way
+- In my head I talk to myself a critical way
+- Certain words or sentences repeat in my head
+- I think to myself in the second person, saying things like “You can do this” or “You forgot to do that”
+- When I think in words, it feels like I am speaking and listening
+- When I think in words, it is like listening to a recording of my voice
+- My thinking in words is like a speech or a monologue, rather than a conversation
+- I am in control of my inner speech
+- I calm myself down by talking silently to myself
+- What I say in my inner speech makes me feel anxious
+- I use metaphors and expressions in my inner speech, such as “This is such a nightmare”
+- My train of inner verbal thought can lead to me feeling very excited
+- My inner speech contributes to me feeling down and depressed
+- When angry, my inner speech can help calm me down
+- I am surprised by the content of my inner speech
+- There are certain words or phrases that I can’t get out of my head
+- When I think to myself in words about upsetting things, I can easily change topics in my mind and talk to myself about other things
+
+page: end
+

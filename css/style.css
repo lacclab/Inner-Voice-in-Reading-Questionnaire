@@ -1,0 +1,318 @@
+/* ============================================================================
+   Inner Voice Questionnaire — visual theme
+   A calm, professional, readable look layered on top of the default jsPsych CSS.
+   ========================================================================== */
+
+:root {
+  --ink:        #1f2530;
+  --ink-soft:   #51596b;
+  --bg:         #f4f6fb;
+  --card:       #ffffff;
+  --accent:     #4f6df5;
+  --accent-dk:  #3c55cc;
+  --accent-sft: #eaeefe;
+  --border:     #dfe3ec;
+  --radius:     14px;
+  --maxw:       760px;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* jsPsych mounts everything inside this element */
+.jspsych-display-element {
+  display: block;          /* let content flow from the top and scroll normally */
+  min-height: 100vh;
+  padding: 40px 20px 64px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Override jsPsych's default vertical-centering, which clips tall pages at the
+   top so you can't scroll up to them. */
+.jspsych-content-wrapper {
+  display: block !important;
+  height: auto !important;
+  width: 100%;
+}
+
+.jspsych-content {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(31, 37, 48, 0.06);
+  padding: 44px 48px;
+  text-align: left;
+}
+
+/* Typography ---------------------------------------------------------------- */
+.jspsych-content h1 { font-size: 1.7rem; font-weight: 700; margin: 0 0 .4em; letter-spacing: -.01em; }
+.jspsych-content h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 .5em; }
+.jspsych-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--ink-soft); }
+.jspsych-content p  { margin: 0 0 1em; color: var(--ink); }
+.jspsych-content a  { color: var(--accent); }
+.muted  { color: var(--ink-soft); font-size: .95rem; }
+.kbd {
+  display: inline-block; padding: 2px 9px; border-radius: 6px;
+  background: #eef0f6; border: 1px solid var(--border);
+  font-family: ui-monospace, Menlo, monospace; font-size: .9em;
+}
+
+/* A reusable "reading card" for presenting stimulus passages */
+.stim-passage {
+  background: #fbfbfd;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin: 18px 0 26px;
+  font-size: 1.12rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+.eyebrow {
+  text-transform: uppercase; letter-spacing: .08em; font-size: .72rem;
+  font-weight: 700; color: var(--accent); margin-bottom: 6px;
+}
+
+/* Buttons ------------------------------------------------------------------- */
+.jspsych-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 26px;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease;
+  margin: 6px;
+}
+.jspsych-btn:hover { background: var(--accent-dk); }
+.jspsych-btn:active { transform: translateY(1px); }
+.jspsych-btn:focus-visible { outline: 3px solid var(--accent-sft); outline-offset: 2px; }
+
+/* Secondary / "decline" style for opt-out buttons */
+.btn-secondary .jspsych-btn,
+.jspsych-btn.secondary {
+  background: #fff; color: var(--ink-soft); border: 1px solid var(--border);
+}
+
+/* Form controls (survey-html-form, survey-likert, etc.) --------------------- */
+.jspsych-survey-html-form label,
+.jspsych-survey-multi-choice-text,
+.jspsych-survey-multi-select-text { font-size: 1rem; }
+
+input[type="text"], input[type="number"], select, textarea {
+  font-family: var(--font); font-size: 1rem; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 9px;
+  padding: 10px 12px; background: #fff; width: 100%; box-sizing: border-box;
+}
+textarea { min-height: 90px; resize: vertical; }
+select { width: auto; min-width: 220px; }
+input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-sft);
+}
+
+/* Range sliders (reading-habits inventory) */
+.slider-row { display: grid; grid-template-columns: 1fr 220px 64px; gap: 14px; align-items: center; margin: 10px 0; }
+.slider-row label { font-weight: 500; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.slider-val { font-weight: 600; color: var(--accent-dk); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Likert tables */
+.jspsych-survey-likert-opts { font-size: .95rem; }
+table.jspsych-survey-likert-statement,
+.jspsych-survey-likert-statement { line-height: 1.4; }
+/* Colour the scale radio buttons (instead of default grey) and enlarge them */
+.jspsych-survey-likert-opts input[type="radio"] {
+  accent-color: var(--accent);
+  width: 20px; height: 20px; cursor: pointer;
+}
+.jspsych-survey-likert-opts label { color: var(--ink); }
+/* Tint the whole option column on hover for clearer targeting */
+.jspsych-survey-likert-opts label:hover { color: var(--accent-dk); }
+
+/* Progress bar -------------------------------------------------------------- */
+#jspsych-progressbar-container {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 12px 0; color: var(--ink-soft); font-size: .85rem;
+}
+#jspsych-progressbar-inner { background: var(--accent); }
+
+/* Self-paced reading canvas centring */
+.jspsych-content canvas { max-width: 100%; }
+
+/* PsyToolkit-style questions (pt.js) --------------------------------------- */
+fieldset.pt-q {
+  border: none; margin: 0 0 28px; padding: 0;
+}
+.pt-prompt { font-weight: 500; margin-bottom: 12px; line-height: 1.5; }
+.pt-options { display: grid; gap: 9px; }
+.pt-opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px;
+  cursor: pointer; transition: border-color .12s ease, background .12s ease;
+  font-weight: 400;
+}
+.pt-opt:hover { border-color: var(--accent); background: var(--accent-sft); }
+.pt-opt input[type="radio"], .pt-opt input[type="checkbox"] {
+  margin-top: 3px; accent-color: var(--accent); flex: 0 0 auto;
+}
+.pt-opt span { flex: 1; }
+
+/* "Other (please specify)" — text field drops below the option label */
+.pt-opt-other { flex-direction: column; align-items: stretch; }
+.pt-opt-head { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+.pt-opt-head span { flex: 1; }
+.pt-other-text { margin: 10px 0 0 28px; width: calc(100% - 28px); box-sizing: border-box; }
+.pt-other-text:disabled { background: #f3f4f8; color: #aab; }
+
+.pt-slider { margin: 16px 0; }
+.pt-slider-label { font-weight: 500; margin-bottom: 4px; }
+.slider-row { grid-template-columns: minmax(0,1fr) 2.6fr minmax(0,1fr) 56px; }
+.pt-anchor { font-size: .8rem; color: var(--ink-soft); }
+
+.pt-video { display: flex; justify-content: center; margin: 18px 0; }
+.pt-video iframe, .pt-video video { max-width: 100%; width: 640px; border-radius: 10px; background: #000; }
+
+.pt-media { display: flex; justify-content: center; margin: 16px 0 20px; }
+.pt-media img {
+  max-width: 100%; max-height: 460px; border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.pt-media audio { width: 100%; max-width: 460px; }
+
+.pt-info { font-size: 1.05rem; line-height: 1.6; }
+.pt-info:first-line { font-weight: 600; }
+
+/* Validation message ("please answer") */
+.pt-error {
+  color: #c0392b; font-size: .9rem; font-weight: 600; margin-top: 8px;
+}
+
+/* SurveyJS (jsPsych survey plugin) — match the project theme ---------------- */
+.sd-root-modern {
+  --sjs-primary-backcolor: var(--accent);
+  --sjs-primary-backcolor-dark: var(--accent-dk);
+  --sjs-primary-backcolor-light: var(--accent-sft);
+  --sjs-primary-forecolor: #ffffff;
+  --sjs-general-backcolor: #ffffff;
+  --sjs-general-backcolor-dim: #ffffff;
+  --sjs-general-backcolor-dim-light: #ffffff;
+  --sjs-corner-radius: 10px;
+  --sjs-font-family: var(--font);
+  background: transparent !important;
+}
+.sd-container-modern { background: transparent; }
+.sd-body { padding: 0 !important; }
+.sd-body.sd-body--responsive,
+.sd-body.sd-body--static { max-width: none; }
+.sd-page { padding: 0 !important; }
+.sd-title.sd-container-modern__title { box-shadow: none; background: transparent; padding: 0; }
+.sd-question__title { font-family: var(--font); font-size: 1.05rem; color: var(--ink); }
+.sd-element__title { font-weight: 600; }
+/* navigation buttons (Previous / Next / Continue) */
+.sd-navigation__prev-btn,
+.sd-navigation__next-btn,
+.sd-navigation__complete-btn {
+  font-family: var(--font); font-weight: 600; border-radius: 10px;
+  padding: 12px 26px; cursor: pointer;
+}
+/* Next / Continue = primary blue so navigation is obvious */
+.sd-navigation__next-btn,
+.sd-navigation__complete-btn {
+  background: var(--accent) !important; color: #fff !important;
+  border: none !important; box-shadow: none !important;
+}
+.sd-navigation__next-btn:hover,
+.sd-navigation__complete-btn:hover { background: var(--accent-dk) !important; }
+/* Previous = secondary outline */
+.sd-navigation__prev-btn {
+  background: #fff !important; color: var(--ink-soft) !important;
+  border: 1px solid var(--border) !important; box-shadow: none !important;
+}
+/* keep the navigation bar visible with a little breathing room */
+.sd-action-bar.sd-footer { padding-top: 8px; justify-content: flex-start; gap: 10px; }
+/* the HTML prompt blocks we inject keep their pt-prompt / pt-info styling */
+.sd-html .pt-prompt { margin-bottom: 0; }
+
+/* SurveyJS question titles (used directly in Part 1) → match pt-prompt look */
+.sd-question__title {
+  font-family: var(--font) !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  color: var(--ink) !important;
+  line-height: 1.5;
+}
+.sd-paneldynamic__panel-wrapper {
+  border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 4px; margin-bottom: 16px;
+}
+/* wide matrix tables scroll instead of clipping the last column */
+.sd-question__content { overflow-x: auto; }
+
+/* Flatten SurveyJS's per-question cards so they blend into our page card
+   (otherwise each question shows a nested bordered box that looks "cut off"). */
+.sd-element--with-frame {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+.sd-question__content { padding: 0 !important; }
+.sd-question__header { padding: 0 !important; }
+.sd-html { padding: 0 !important; }
+/* spacing between stacked questions on a multi-question page */
+.sd-row { margin-top: 4px !important; }
+.sd-page__row + .sd-page__row { margin-top: 18px !important; }
+/* keep text inputs / dropdowns looking like the rest of the form */
+.sd-input {
+  border: 1px solid var(--border) !important;
+  box-shadow: none !important;
+  border-radius: 9px !important;
+}
+.sd-input:focus { border-color: var(--accent) !important; box-shadow: 0 0 0 3px var(--accent-sft) !important; }
+
+/* Don't clip the focus/selection ring on radio & checkbox options */
+.sd-question, .sd-question__content, .sd-selectbase, .sd-selectbase__item,
+.sd-item, .sd-row, .sd-page, .sd-page__row, .sd-body, .sd-container-modern {
+  overflow: visible !important;
+}
+/* give options a touch of left room so the ring is never flush to an edge */
+.sd-selectbase__item { padding-left: 3px; }
+
+/* Selected radio / checkbox in the accent colour (modern theme defaults to dark) */
+.sd-radio--checked .sd-radio__decorator {
+  background: #fff !important;
+  border: 2px solid var(--accent) !important;
+  box-shadow: none !important;
+}
+.sd-radio--checked .sd-radio__decorator::after { background-color: var(--accent) !important; }
+.sd-checkbox--checked .sd-checkbox__decorator {
+  background-color: var(--accent) !important; border-color: var(--accent) !important;
+  box-shadow: none !important;
+}
+.sd-checkbox--checked .sd-checkbox__svg { fill: #fff !important; }
+/* focus ring (kept soft and un-clipped) */
+.sd-item__control:focus + .sd-item__decorator {
+  box-shadow: 0 0 0 3px var(--accent-sft) !important;
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .jspsych-content { padding: 28px 20px; }
+  .slider-row { grid-template-columns: 1fr; }
+}

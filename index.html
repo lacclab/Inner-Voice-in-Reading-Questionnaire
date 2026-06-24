@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inner Voice & Reading — Research Study</title>
+
+  <!-- ── jsPsych core (pinned) ─────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/jspsych@8.2.3/dist/index.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jspsych@8.2.3/css/jspsych.css" />
+
+  <!-- ── jsPsych core plugins (8.x line) ──────────────────────────────────
+       NOTE: the explicit /dist/index.browser.min.js path is REQUIRED — the
+       bare package URL serves the CommonJS build, which does not run in a
+       browser or define the jsPsych* globals. -->
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-preload@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-fullscreen@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-instructions@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-button-response@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-keyboard-response@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey-html-form@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey-likert@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey-multi-choice@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey-multi-select@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey-text@2/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-audio-button-response@2/dist/index.browser.min.js"></script>
+
+  <!-- ── Community plugins (pinned) ───────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych-contrib/plugin-self-paced-reading@2.0.0/dist/index.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych-contrib/plugin-pipe@0.6.0/dist/index.browser.min.js"></script>
+
+  <!-- ── Survey plugin (SurveyJS-based; bundles survey-core) ──────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey@4.0.0/dist/index.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@jspsych/plugin-survey@4.0.0/css/survey.css" />
+
+  <!-- ── Study code ───────────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/config.js"></script>
+  <script src="stimuli/texts.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/pt.js"></script>
+  <script src="js/lists.js"></script>
+  <script src="js/survey_engine.js"></script>
+  <script src="js/parts/intro_outro.js"></script>
+  <script src="js/parts/spr_task.js"></script>
+  <script src="js/parts/part1_demographics.js"></script>
+  <script src="js/parts/part2_spr.js"></script>
+  <script src="js/parts/part3_iewr.js"></script>
+  <script src="js/parts/part4_diverse.js"></script>
+  <script src="js/parts/part5_scales.js"></script>
+</head>
+<body></body>
+<script src="js/main.js"></script>
+</html>
