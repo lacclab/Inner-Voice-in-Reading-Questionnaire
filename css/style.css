@@ -259,10 +259,14 @@ fieldset.pt-q {
   line-height: 1.5;
 }
 .sd-paneldynamic__panel-wrapper {
-  border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 4px; margin-bottom: 16px;
+  border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px; margin-bottom: 16px;
 }
-/* wide matrix tables scroll instead of clipping the last column */
-.sd-question__content { overflow-x: auto; }
+/* give the dynamic-panel add/remove controls room (don't clip them) */
+.sd-paneldynamic__add-btn, .sd-paneldynamic__remove-btn { margin-top: 8px; }
+/* wide matrix tables scroll instead of clipping the last column —
+   scoped to questions that actually contain a table, so it never clips
+   paneldynamic buttons or other content vertically */
+.sd-question__content:has(table) { overflow-x: auto; }
 
 /* Flatten SurveyJS's per-question cards so they blend into our page card
    (otherwise each question shows a nested bordered box that looks "cut off"). */
