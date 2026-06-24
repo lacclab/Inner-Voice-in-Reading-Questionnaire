@@ -268,6 +268,17 @@ fieldset.pt-q {
    paneldynamic buttons or other content vertically */
 .sd-question__content:has(table) { overflow-x: auto; }
 
+/* required-field error messages: SurveyJS gives them a negative margin to span
+   full width, which clipped on the left once we removed the question padding.
+   Reset to normal padded boxes. */
+.sd-question__erbox, .sd-error, .sd-question__erbox--outside-question {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 8px 14px !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 /* Flatten SurveyJS's per-question cards so they blend into our page card
    (otherwise each question shows a nested bordered box that looks "cut off"). */
 .sd-element--with-frame {
