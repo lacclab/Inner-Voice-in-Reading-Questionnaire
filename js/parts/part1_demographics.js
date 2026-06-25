@@ -32,11 +32,10 @@ IVQ.parts.part1 = function (jsPsych) {
   });
   // hours-per-week slider (used by the reading/listening/speaking/writing habit grids)
   const HOUR_LABELS = [
-    { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" },
-    { value: 30, text: "30" }, { value: 40, text: "40" }, { value: 50, text: "50+" },
+    { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" }, { value: 30, text: "30+" },
   ];
   const hours = (name, label) => ({
-    type: "slider", name, title: label, sliderType: "single", min: 0, max: 50, step: 1,
+    type: "slider", name, title: label, sliderType: "single", min: 0, max: 30, step: 1,
     tooltipFormat: "{0} h", isRequired: true, autoGenerate: false, customLabels: HOUR_LABELS,
   });
   // a full hours-per-week page for one modality
