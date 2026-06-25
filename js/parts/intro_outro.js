@@ -75,6 +75,20 @@ IVQ.parts.intro = function (jsPsych) {
   return IVQ.h.tagPart(timeline, "intro");
 };
 
+/* Between-parts break screen (after Parts 1–4); advance on the space bar. */
+IVQ.parts.breakScreen = function (jsPsych, partNum) {
+  return {
+    type: jsPsychHtmlKeyboardResponse,
+    choices: [" "],
+    stimulus: `<div class="pt-info">
+        <h2>You've finished Part ${partNum} of 5.</h2>
+        <p>Feel free to take a short break.</p>
+        <p>When you're ready, press the <span class="kbd">space bar</span> to continue to the next part.</p>
+      </div>`,
+    data: { screen: "break_after_part" + partNum, part: "break" },
+  };
+};
+
 IVQ.parts.outro = function (jsPsych) {
   const timeline = [];
 

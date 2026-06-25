@@ -81,10 +81,10 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "irq_07",
               "text": "My memories are mainly visual in nature"
             },
-            {
+            /* {
               "value": "irq_08",
               "text": "When traveling to get to somewhere I tend to think more visually than verbally"
-            },
+            }, */
             {
               "value": "irq_09",
               "text": "If I talk to myself in my head it is usually accompanied by visual imagery"
@@ -117,10 +117,10 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "irq_16",
               "text": "When thinking about a social problem, I often talk it through in my head"
             },
-            {
+            /* {
               "value": "irq_17",
               "text": "I like to give myself some down time to talk through thoughts in my mind"
-            },
+            }, */
             {
               "value": "irq_18",
               "text": "I hear words in my \"mind’s ear\" when I think"
@@ -149,10 +149,10 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "irq_24",
               "text": "I see words in my \"mind’s eye\" when I think"
             },
-            {
+            /* {
               "value": "irq_25",
               "text": "When I am introduced to someone for the first time, I imagine what their name would look like when written down"
-            },
+            }, */
             {
               "value": "irq_26",
               "text": "A strategy I use to help me remember written material is imagining what the writing looks like"
@@ -173,26 +173,26 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "irq_30",
               "text": "I can easily choose to imagine this sentence in my mind pronounced unnaturally slowly"
             },
-            {
+            /* {
               "value": "irq_31",
               "text": "In school, I had no problems with geometry"
-            },
-            {
+            }, */
+            /*{
               "value": "irq_32",
               "text": "It is easy for me to imagine the sensation of licking a brick"
-            },
-            {
+            }, */
+            /* {
               "value": "irq_33",
               "text": "I find it difficult to imagine how a three-dimensional geometric figure would exactly look like when rotated"
-            },
+            }, */
             {
               "value": "irq_34",
               "text": "I can easily imagine someone clearly talking, and then imagine the same voice with a heavy cold"
             },
-            {
+            /* {
               "value": "irq_35",
               "text": "I think I have a large vocabulary in my native language compared to others"
-            },
+            }, */
             {
               "value": "irq_36",
               "text": "I can easily imagine the sound of a trumpet getting louder"
@@ -305,22 +305,22 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "visqr_16",
               "text": "I hear other people’s actual voices in my head, saying things that they actually once said to me"
             },
-            {
+            /* {
               "value": "visqr_17",
               "text": "I talk silently in my inner speech telling myself not to do things"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_18",
               "text": "I evaluate my behaviour using my inner speech. For example, I say to myself, ‘that was good’ or ‘that was stupid’"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_19",
               "text": "I talk to myself silently in an encouraging way"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_20",
               "text": "In my head I talk to myself a critical way"
-            },
+            }, */
             {
               "value": "visqr_21",
               "text": "Certain words or sentences repeat in my head"
@@ -345,42 +345,42 @@ IVQ.parts.part5 = function (jsPsych) {
               "value": "visqr_26",
               "text": "I am in control of my inner speech"
             },
-            {
+            /* {
               "value": "visqr_27",
               "text": "I calm myself down by talking silently to myself"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_28",
               "text": "What I say in my inner speech makes me feel anxious"
-            },
+            }, */
             {
               "value": "visqr_29",
               "text": "I use metaphors and expressions in my inner speech, such as “This is such a nightmare”"
             },
-            {
+            /* {
               "value": "visqr_30",
               "text": "My train of inner verbal thought can lead to me feeling very excited"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_31",
               "text": "My inner speech contributes to me feeling down and depressed"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_32",
               "text": "When angry, my inner speech can help calm me down"
-            },
+            }, */
             {
               "value": "visqr_33",
               "text": "I am surprised by the content of my inner speech"
             },
-            {
+            /* {
               "value": "visqr_34",
               "text": "There are certain words or phrases that I can’t get out of my head"
-            },
-            {
+            }, */
+            /* {
               "value": "visqr_35",
               "text": "When I think to myself in words about upsetting things, I can easily change topics in my mind and talk to myself about other things"
-            }
+            } */
           ]
         }
       ]

@@ -37,9 +37,13 @@
   timeline = timeline
     .concat(IVQ.parts.intro(jsPsych))
     .concat(IVQ.parts.part1(jsPsych))
+    .concat([IVQ.parts.breakScreen(jsPsych, 1)])
     .concat(IVQ.parts.part2(jsPsych))
+    .concat([IVQ.parts.breakScreen(jsPsych, 2)])
     .concat(IVQ.parts.part3(jsPsych))
+    .concat([IVQ.parts.breakScreen(jsPsych, 3)])
     .concat(IVQ.parts.part4(jsPsych))
+    .concat([IVQ.parts.breakScreen(jsPsych, 4)])
     .concat(IVQ.parts.part5(jsPsych));
 
   /* ── Save data to DataPipe → OSF (skipped in dev mode) ──────────────────── */
