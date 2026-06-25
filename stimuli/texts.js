@@ -14,13 +14,30 @@
 window.IVQ = window.IVQ || {};
 IVQ.stim = {
   spr_practice: [
-    "This is a practice sentence to get used to the task.",
-    "Press the space bar to reveal each word in turn.",
+    "This is a practice sentence to get used to the task",
+    "The horse raced past the barn fell",
+    "This is another practice sentence",
+    "The quick brown fox jumps over the lazy dog",
   ],
   spr_items: [
-    // === PLACEHOLDER experimental sentences — replace with your stimuli ===
-    "The old lighthouse keeper watched the storm roll in from the sea.",
-    "She whispered the secret so quietly that no one else could hear it.",
-    "The committee agreed that the proposal needed substantial revision.",
+    "The little girl wore a flour in her hair to the party",
+    "After the storm the knight was cold and completely still",
+    "The sailor tied the not before the ship left the harbor",
+    "The blurven mimped quietly across the tazzled florning",
+    "She had two many boxes to carry up the stairs",
+    "They decided to brake the rules just this once",
+    "He wanted to write the wrongs of his past mistakes",
+    "She had twopled the grentish mabbins before the wuffle began",
+    "When the baby cried the mother rushed into the room immediately",
+    "While the man hunted the deer ran into the forest and disappeared",
+    "The chicken is ready to eat",
+    "When the droven splicked the narvish gleeped into the mottled surn",
+    "The content of her lecture was surprisingly engaging",
+    "She seemed perfectly content sitting alone by the window",
+    "There was a serious conflict between the two neighboring countries",
+    "The new evidence began to conflict with the original findings",
+    "The band gave an impressive protest outside the government building",
+    "The workers decided to protest the unfair changes to their contract",
+    "The strimming was contently frobished by the wazzled bleen",
   ],
 };
