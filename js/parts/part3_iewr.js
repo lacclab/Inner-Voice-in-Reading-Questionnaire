@@ -26,6 +26,49 @@ IVQ.parts.part3 = function (jsPsych) {
       "elements": [
         {
           "type": "html",
+          "name": "natural_reading_q",
+          "html": "<div class=\"pt-prompt\">As you read the sentences in the previous section, did it feel like your natural, everyday reading?</div>"
+        },
+        {
+          "name": "natural_reading",
+          "titleLocation": "hidden",
+          "type": "radiogroup",
+          "choices": [
+            {
+              "value": "same",
+              "text": "It felt exactly like my natural, everyday reading"
+            },
+            {
+              "value": "mostly",
+              "text": "Mostly like my natural reading, with small differences"
+            },
+            {
+              "value": "somewhat",
+              "text": "Somewhat different from my natural reading"
+            },
+            {
+              "value": "very",
+              "text": "Very different from my natural reading"
+            },
+            {
+              "value": "totally",
+              "text": "Totally different from my natural reading"
+            }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "name": "natural_reading_explain_q",
+          "html": "<div class=\"pt-prompt\">In what way was it similar, and in what way was it different?</div>"
+        },
+        {
+          "name": "natural_reading_explain",
+          "titleLocation": "hidden",
+          "type": "comment"
+        },
+        {
+          "type": "html",
           "name": "spr_inner_voice_q",
           "html": "<div class=\"pt-prompt\">As you read the sentences in the previous section, did you HEAR an inner voice or did you just understand the words without actually hearing an inner voice?</div>"
         },
@@ -70,6 +113,35 @@ IVQ.parts.part3 = function (jsPsych) {
           "name": "explain_spr_inner_voice",
           "titleLocation": "hidden",
           "type": "comment",
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "name": "writing_inner_voice_q",
+          "html": "<div class=\"pt-prompt\">While writing your answers, did you hear an inner voice saying the words you were writing?</div>"
+        },
+        {
+          "name": "writing_inner_voice",
+          "titleLocation": "hidden",
+          "type": "radiogroup",
+          "choices": [
+            {
+              "value": "during",
+              "text": "Yes — while I was writing"
+            },
+            {
+              "value": "before",
+              "text": "Yes — before writing, when I thought about and planned my answer"
+            },
+            {
+              "value": "both",
+              "text": "Yes — both before and while writing"
+            },
+            {
+              "value": "no",
+              "text": "No, I did not hear an inner voice while writing"
+            }
+          ],
           "isRequired": true
         }
       ]
@@ -347,7 +419,7 @@ IVQ.parts.part3 = function (jsPsych) {
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     },
-    {
+    /* {
       "name": "different_inner_voice_reading",
       "elements": [
         {
@@ -381,7 +453,7 @@ IVQ.parts.part3 = function (jsPsych) {
         }
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
+    }, */
     {
       "name": "gender_inner_voice_reading",
       "elements": [
@@ -586,7 +658,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "quality_change_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">If yes, which quality can you change at will? Check all that apply.</div>"
+          "html": "<div class=\"pt-prompt\">Which quality can you change at will? Check all that apply.</div>"
         },
         {
           "name": "quality_change_inner_voice_reading",
@@ -650,10 +722,10 @@ IVQ.parts.part3 = function (jsPsych) {
               "value": "2",
               "text": "No"
             },
-            {
+            /*{
               "value": "3",
               "text": "I am not sure how to answer this question"
-            }
+            } */
           ],
           "isRequired": true
         },
@@ -696,10 +768,10 @@ IVQ.parts.part3 = function (jsPsych) {
               "value": "3",
               "text": "The opposite, it makes reading easier"
             },
-            {
+            /*{
               "value": "4",
               "text": "I am not sure how to answer this question"
-            }
+            } */
           ],
           "isRequired": true
         },
@@ -714,7 +786,8 @@ IVQ.parts.part3 = function (jsPsych) {
           "type": "comment",
           "isRequired": true
         }
-      ]
+      ],
+      "visibleIf": "not ({spr_inner_voice} = '1' and {survey_inner_voice} = '1' and {hearing_inner_voice_reading} = '1')"
     },
     {
       "name": "most_people_inner_voice_reading",
@@ -744,7 +817,8 @@ IVQ.parts.part3 = function (jsPsych) {
           ],
           "isRequired": true
         }
-      ]
+      ],
+      "visibleIf": "not ({spr_inner_voice} = '1' and {survey_inner_voice} = '1' and {hearing_inner_voice_reading} = '1')"
     }
   ]
 };

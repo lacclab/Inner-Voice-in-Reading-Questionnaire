@@ -30,6 +30,21 @@
   // One CSV per participant on OSF.
   const filename = subject_id + "_" + Date.now() + ".csv";
 
+  /* Participants who consistently report NO inner reading voice (Part 3:
+     spr_inner_voice=1, survey_inner_voice=1, hearing_inner_voice_reading=1)
+     skip the rest of Part 3 (handled by visibleIf) and ALL of Part 4 — there's
+     no inner reading voice to characterise — and go straight to Part 5. */
+  function hasNoInnerReadingVoice() {
+    const vals = jsPsych.data.get().values();
+    for (let i = 0; i < vals.length; i++) {
+      const r = vals[i] && vals[i].response;
+      if (r && r.hearing_inner_voice_reading !== undefined) {
+        return r.spr_inner_voice === "1" && r.survey_inner_voice === "1" && r.hearing_inner_voice_reading === "1";
+      }
+    }
+    return false;
+  }
+
   /* ── Build the timeline ─────────────────────────────────────────────────── */
   // intro = consent + media preload + fullscreen; each part file supplies its
   // own instructions/welcome (authored in js/parts/*.js).
@@ -42,8 +57,11 @@
     .concat([IVQ.parts.breakScreen(jsPsych, 2)])
     .concat(IVQ.parts.part3(jsPsych))
     .concat([IVQ.parts.breakScreen(jsPsych, 3)])
-    .concat(IVQ.parts.part4(jsPsych))
-    .concat([IVQ.parts.breakScreen(jsPsych, 4)])
+    // Part 4 (+ its break) is skipped entirely for no-inner-voice participants
+    .concat([{
+      timeline: [].concat(IVQ.parts.part4(jsPsych)).concat([IVQ.parts.breakScreen(jsPsych, 4)]),
+      conditional_function: function () { return !hasNoInnerReadingVoice(); },
+    }])
     .concat(IVQ.parts.part5(jsPsych));
 
   /* ── Save data to DataPipe → OSF (skipped in dev mode) ──────────────────── */
