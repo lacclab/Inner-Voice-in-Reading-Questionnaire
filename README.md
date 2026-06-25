@@ -74,7 +74,7 @@ open `export.html`.)
 - `spr_inner_voice` page — **natural_reading** (felt like natural reading? + how similar/different), then did-you-hear-a-voice (+ explain), then **writing_inner_voice** (did you hear a voice while writing your answers?)
 - `survey_inner_voice` → `reading_experience` _(if survey_inner_voice = "understand without a voice")_
 - `hearing_inner_voice_reading` — do you ever hear an inner voice when reading?
-- _Phenomenology block, shown **only if** hearing_inner_voice_reading ≠ "always without a voice":_ frequency, listen-vs-speak, materials, whose voice, gender/accent/pitch/loudness/emotional tone, can-you-change (→ which qualities _if Yes_), adds-to-experience (+ explain)
+- _Phenomenology block, shown **only if** hearing_inner_voice_reading ≠ "always without a voice":_ frequency, **situations** (when you're more likely to hear it — difficulty, non-native language, attention, etc.), listen-vs-speak, materials, whose voice, **voice qualities matrix** (gender/accent/pitch/loudness × same/different/varies/can't-tell), emotional tone, can-you-change (→ which qualities _if Yes_), adds-to-experience (+ explain)
 - `harder_inner_voice_reading` (+ explain), `most_people_inner_voice_reading`
 - **Skip:** if a participant reports **no inner reading voice** (spr_inner_voice = survey_inner_voice = hearing_inner_voice_reading = "no/never"), the last two Part-3 questions **and all of Part 4** are skipped → straight to Part 5.
 
@@ -103,7 +103,8 @@ Open the relevant `js/parts/partN_*.js` and edit the SurveyJS `survey_json`
 types: `radiogroup`, `checkbox`, `dropdown` (with `showOtherItem`/`otherText`
 for "other"), `text` (`inputType:"number"` + `min`/`max` for numeric), `comment`
 (free text), `rating` (the 0–N scales — SurveyJS has no drag-slider), `matrix`
-(the IRQ/VISQ-R tables), and `html` (instructions / passages / images / video).
+(Likert grids — the IRQ/VISQ-R tables and the Part 3 voice-qualities grid), and
+`html` (instructions / passages / images / video).
 Branching uses `visibleIf` on a page, e.g. `"{english_native} <> '1'"`.
 Required validation is `isRequired` / `isAllRowRequired`. The big country/
 language lists are injected from `js/lists.js`.
