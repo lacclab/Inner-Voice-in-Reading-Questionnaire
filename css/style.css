@@ -281,6 +281,22 @@ fieldset.pt-q {
   color: #fff !important;
 }
 
+/* Matrix (Likert grid) — grey header, gridlines, compact rows (Part 3 & 5) */
+.sd-matrix__table { border-collapse: collapse !important; width: 100%; }
+.sd-matrix__table .sd-table__cell {
+  border: 1px solid var(--border) !important;
+  padding: 7px 6px !important;
+  text-align: center; vertical-align: middle; overflow-wrap: break-word;
+}
+.sd-matrix__table .sd-table__cell--header {
+  background: var(--accent-sft); font-weight: 600; font-size: .8rem; line-height: 1.25;
+}
+.sd-matrix__table .sd-table__cell--header,
+.sd-matrix__table .sd-table__cell--header .sv-string-viewer { color: var(--ink) !important; }
+/* first column = item text: left-aligned, wider so it wraps less */
+.sd-matrix__table .sd-table__row > .sd-table__cell:first-child { text-align: left; font-weight: 500; width: 36%; font-size: .92rem; }
+.sd-matrix__table .sd-table__cell--header:first-child { text-align: left; width: 36%; }
+
 /* SurveyJS question titles (used directly in Part 1) → match pt-prompt look */
 .sd-question__title {
   font-family: var(--font) !important;

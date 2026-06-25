@@ -277,6 +277,53 @@ IVQ.parts.part3 = function (jsPsych) {
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     },
     {
+      "name": "situations_inner_voice_reading",
+      "elements": [
+        {
+          "type": "html",
+          "name": "situations_inner_voice_reading_q",
+          "html": "<div class=\"pt-prompt\">In which situations are you more likely to hear an inner voice while reading? (Select all that apply.)</div>"
+        },
+        {
+          "name": "situations_inner_voice_reading",
+          "titleLocation": "hidden",
+          "type": "checkbox",
+          "choices": [
+            {
+              "value": "difficult",
+              "text": "When the text is difficult or complex"
+            },
+            {
+              "value": "nonnative",
+              "text": "When I read in a language that isn’t my native language"
+            },
+            {
+              "value": "concentrate",
+              "text": "When I concentrate or give the text my full attention"
+            },
+            {
+              "value": "slow",
+              "text": "When I read slowly or carefully"
+            },
+            {
+              "value": "emotional",
+              "text": "When the content is emotional or engaging"
+            },
+            {
+              "value": "remember",
+              "text": "When I want to understand or remember something important"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "Other (please specify)",
+          "showNoneItem": true,
+          "noneText": "No particular situation",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
+    },
+    {
       "name": "hearing_inner_voice",
       "elements": [
         {
@@ -323,7 +370,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "material_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">On which occasions do you usually hear such an inner voice? Please check all that apply.</div>"
+          "html": "<div class=\"pt-prompt\">On which occasions do you usually hear an inner voice while reading? (Select all that apply — “When I read…”)</div>"
         },
         {
           "name": "material_inner_voice_reading",
@@ -332,35 +379,35 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "When I read print books"
+              "text": "Print books"
             },
             {
               "value": "2",
-              "text": "When I read print magazines, journals or newspapers"
+              "text": "Print magazines, journals or newspapers"
             },
             {
               "value": "3",
-              "text": "When I read internet content such as blogs"
+              "text": "Internet content such as blogs"
             },
             {
               "value": "4",
-              "text": "When I read social network posts"
+              "text": "Social network posts"
             },
             {
               "value": "5",
-              "text": "When I read emails or text messages"
+              "text": "Emails or text messages"
             },
             {
               "value": "6",
-              "text": "When I read printed or handwritten letters or notes"
+              "text": "Printed or handwritten letters or notes"
             },
             {
               "value": "7",
-              "text": "When I read signs on walls or shop windows"
+              "text": "Signs on walls or shop windows"
             },
             {
               "value": "8",
-              "text": "When I read labels on food containers, medicine bottles or other commercial products"
+              "text": "Labels on food containers, medicine bottles or other products"
             }
           ],
           "isRequired": true
@@ -374,7 +421,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "whose_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">Whose voice do you hear as you read? Please check all that apply.</div>"
+          "html": "<div class=\"pt-prompt\">Whose voice do you hear as you read? (Select all that apply.)</div>"
         },
         {
           "name": "whose_voice_reading",
@@ -387,31 +434,35 @@ IVQ.parts.part3 = function (jsPsych) {
             },
             {
               "value": "2",
-              "text": "The voice of a story character"
+              "text": "A story character"
             },
             {
               "value": "3",
-              "text": "The voice of a celebrity or famous person (e.g. an actor)"
+              "text": "A celebrity or famous person (e.g. an actor)"
             },
             {
               "value": "4",
-              "text": "The voice of a family member (including relatives by marriage)"
+              "text": "A family member (including by marriage)"
             },
             {
               "value": "5",
-              "text": "The voice of a friend"
+              "text": "A friend"
             },
             {
               "value": "6",
-              "text": "The voice of whoever sends me a text message, email or note"
+              "text": "Whoever sent the text, email or note"
             },
             {
               "value": "7",
-              "text": "The voice of a teacher or acquaintance A voice I recognize, but which I can’t identify"
+              "text": "A teacher or acquaintance"
+            },
+            {
+              "value": "9",
+              "text": "A familiar voice I can’t identify"
             },
             {
               "value": "8",
-              "text": "A voice I don’t recognize as being anyone in particular"
+              "text": "An unfamiliar voice (no one in particular)"
             }
           ],
           "isRequired": true
@@ -455,141 +506,54 @@ IVQ.parts.part3 = function (jsPsych) {
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     }, */
     {
-      "name": "gender_inner_voice_reading",
+      "name": "voice_qualities",
       "elements": [
         {
           "type": "html",
-          "name": "gender_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">How would you characterize the gender of your inner reading voice(s)?</div>"
+          "name": "voice_qualities_q",
+          "html": "<div class=\"pt-prompt\">How would you characterize each of these qualities of your inner reading voice?</div>"
         },
         {
-          "name": "gender_inner_voice_reading",
+          "name": "voice_qualities",
           "titleLocation": "hidden",
-          "type": "radiogroup",
-          "choices": [
+          "type": "matrix",
+          "isAllRowRequired": true,
+          "columns": [
             {
-              "value": "1",
-              "text": "Always the same gender as mine"
+              "value": "same",
+              "text": "Same as my own voice"
             },
             {
-              "value": "2",
-              "text": "Always a different gender than mine"
+              "value": "different",
+              "text": "Different from my own voice"
             },
             {
-              "value": "3",
-              "text": "The gender varies (e.g. depending on the voice or depending on what I am reading)"
+              "value": "varies",
+              "text": "It varies"
             },
             {
-              "value": "4",
-              "text": "I am not able to tell what the gender is"
+              "value": "cant",
+              "text": "I can't tell"
             }
           ],
-          "isRequired": true
-        }
-      ],
-      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
-    {
-      "name": "accent_inner_voice_reading",
-      "elements": [
-        {
-          "type": "html",
-          "name": "accent_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">How would you characterize the accent of your inner reading voice(s)?</div>"
-        },
-        {
-          "name": "accent_inner_voice_reading",
-          "titleLocation": "hidden",
-          "type": "radiogroup",
-          "choices": [
+          "rows": [
             {
-              "value": "1",
-              "text": "Always the same accent as my own speaking voice"
+              "value": "gender",
+              "text": "Gender"
             },
             {
-              "value": "2",
-              "text": "Always an accent different from my own speaking voice"
+              "value": "accent",
+              "text": "Accent"
             },
             {
-              "value": "3",
-              "text": "The accent varies (e.g. depending on the voice or depending on what I am reading)"
+              "value": "pitch",
+              "text": "Pitch"
             },
             {
-              "value": "4",
-              "text": "I am not able to tell what the accent is like"
+              "value": "loudness",
+              "text": "Loudness"
             }
-          ],
-          "isRequired": true
-        }
-      ],
-      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
-    {
-      "name": "pitch_inner_voice_reading",
-      "elements": [
-        {
-          "type": "html",
-          "name": "pitch_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">How would you characterize the pitch of your inner reading voice(s)?</div>"
-        },
-        {
-          "name": "pitch_inner_voice_reading",
-          "titleLocation": "hidden",
-          "type": "radiogroup",
-          "choices": [
-            {
-              "value": "1",
-              "text": "Always the same pitch as my own speaking voice"
-            },
-            {
-              "value": "2",
-              "text": "Always a pitch different from my own speaking voice (e.g. higher or lower-pitched)"
-            },
-            {
-              "value": "3",
-              "text": "The pitch varies (e.g. depending on the voice or depending on what I am reading)"
-            },
-            {
-              "value": "4",
-              "text": "I am not able to tell what the pitch is like"
-            }
-          ],
-          "isRequired": true
-        }
-      ],
-      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
-    {
-      "name": "loudness_inner_voice_reading",
-      "elements": [
-        {
-          "type": "html",
-          "name": "loudness_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">How would you characterize the loudness of your inner reading voice(s)?</div>"
-        },
-        {
-          "name": "loudness_inner_voice_reading",
-          "titleLocation": "hidden",
-          "type": "radiogroup",
-          "choices": [
-            {
-              "value": "1",
-              "text": "Always the same loudness as my own normal speaking voice"
-            },
-            {
-              "value": "2",
-              "text": "Always a different loudness than my own normal speaking voice (e.g. softer or louder)"
-            },
-            {
-              "value": "3",
-              "text": "The loudness varies (e.g. depending on the voice or depending on what I am reading)"
-            },
-            {
-              "value": "4",
-              "text": "I am not able to tell what the loudness is like"
-            }
-          ],
-          "isRequired": true
+          ]
         }
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
@@ -609,15 +573,15 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "The same emotional tone is always present no matter what I am reading (e.g. neutral, happy, excited, sad, angry or something else)"
+              "text": "The same tone is always present, whatever I read"
             },
             {
               "value": "2",
-              "text": "The emotional tone varies (e.g. depending on the voice or depending on what I am reading)"
+              "text": "It varies (by voice or by what I read)"
             },
             {
               "value": "3",
-              "text": "I am not able to tell what the emotional tone is like"
+              "text": "I can’t tell"
             }
           ],
           "isRequired": true
@@ -658,7 +622,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "quality_change_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">Which quality can you change at will? Check all that apply.</div>"
+          "html": "<div class=\"pt-prompt\">Which of these can you change at will? (Select all that apply.)</div>"
         },
         {
           "name": "quality_change_inner_voice_reading",
@@ -667,31 +631,31 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "I can choose to hear it or not hear it"
+              "text": "Whether I hear it at all"
             },
             {
               "value": "2",
-              "text": "I can change whose voice I hear"
+              "text": "Whose voice I hear"
             },
             {
               "value": "3",
-              "text": "I can change the pitch of the voice"
+              "text": "The pitch"
             },
             {
               "value": "4",
-              "text": "I can change the accent of the voice"
+              "text": "The accent"
             },
             {
               "value": "5",
-              "text": "I can change the loudness of the voice"
+              "text": "The loudness"
             },
             {
               "value": "6",
-              "text": "I can change the emotional tone of the voice"
+              "text": "The emotional tone"
             },
             {
               "value": "7",
-              "text": "I can change how fast the voice reads"
+              "text": "The reading speed"
             }
           ],
           "showOtherItem": true,

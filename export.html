@@ -9,6 +9,7 @@
   .exp .part { margin: 34px 0 8px; padding: 8px 14px; background: var(--accent-sft); border-radius: 8px;
                font-size: 1.25rem; font-weight: 700; color: var(--accent-dk); }
   .exp .q { border-bottom: 1px solid #eef0f6; padding: 12px 0; }
+  .exp .page-sep { border-top: 4px solid var(--accent); margin: 26px 0 10px; opacity: .55; }
   .exp .qt { font-weight: 600; }
   .exp .meta { color: var(--ink-soft); font-size: .85rem; }
   .exp .opt { margin: 2px 0 2px 18px; color:#333; }
@@ -104,7 +105,13 @@
   function renderTrial(t) {
     if (!t) return;
     if (t.timeline) { t.timeline.forEach(renderTrial); return; }      // conditional node
-    if (t.survey_json) { (t.survey_json.pages || []).forEach(p => (p.elements || []).forEach(e => renderElement(e, false))); return; }
+    if (t.survey_json) {
+      (t.survey_json.pages || []).forEach((p, i) => {
+        if (i > 0) add('<div class="page-sep"></div>');   // bold divider between screens
+        (p.elements || []).forEach(e => renderElement(e, false));
+      });
+      return;
+    }
     if (t.sentence) { add(`<div class="spr">• ${esc(t.sentence)}</div>`); return; }   // self-paced reading sentence
     if (t.stimulus) { add(`<div class="q">${typeof t.stimulus === "string" ? t.stimulus : ""}</div>`); return; }
     if (t.message) { add(`<div class="q">${t.message}</div>`); return; }
