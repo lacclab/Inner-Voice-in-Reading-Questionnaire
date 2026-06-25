@@ -25,6 +25,28 @@ IVQ.parts.part1 = function (jsPsych) {
   const yesno = (name, title, extra) => Object.assign({ type: "radiogroup", name, title, choices: YN, isRequired: true }, extra || {});
   const info = (name, html) => ({ type: "html", name, html: `<div class="pt-info">${html}</div>` });
   const note = (name, html) => ({ type: "html", name, html: `<div class="pt-prompt">${html}</div>` });
+  // "select all that apply" usage-context checkbox (shown under a proficiency item)
+  const ctx = (name, title, choices) => ({
+    type: "checkbox", name, title, choices,
+    showOtherItem: true, otherText: "Other (please specify)",
+  });
+  // hours-per-week slider (used by the reading/listening/speaking/writing habit grids)
+  const HOUR_LABELS = [
+    { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" },
+    { value: 30, text: "30" }, { value: 40, text: "40" }, { value: 50, text: "50+" },
+  ];
+  const hours = (name, label) => ({
+    type: "slider", name, title: label, sliderType: "single", min: 0, max: 50, step: 1,
+    tooltipFormat: "{0} h", isRequired: true, autoGenerate: false, customLabels: HOUR_LABELS,
+  });
+  // a full hours-per-week page for one modality
+  const habitsPage = (modality, verb, items) => ({
+    name: "english_" + modality + "_habits",
+    elements: [
+      note("english_" + modality + "_habits_h", "In a typical week, about how many hours do you spend " + verb + "?"),
+      ...items.map((label, i) => hours(modality + "_habits__row" + (i + 1), label)),
+    ],
+  });
 
   // per-language template (used for English block and each panel language)
   const languageQuestions = (suffix) => [
@@ -124,10 +146,44 @@ IVQ.parts.part1 = function (jsPsych) {
         name: "english_profile",
         elements: [
           note("english_profile_h", "Please tell us about your English."),
+
           prof("prof_speaking_en", "Proficiency in English — Speaking"),
+          ctx("speaking_contexts_en", "I can speak English… (select all that apply)", [
+            "To communicate while traveling abroad",
+            "With friends and family",
+            "To ask a question in class",
+            "To give a lecture or presentation to an audience",
+            "In a job interview or at work",
+            "In everyday casual conversation",
+          ]),
+
           prof("prof_understanding_en", "Proficiency in English — Understanding spoken language"),
+          ctx("understanding_contexts_en", "I can understand spoken English… (select all that apply)", [
+            "In everyday conversations",
+            "When watching films/TV without subtitles",
+            "When following a lecture or presentation",
+            "When the speaker talks fast or has a strong accent",
+            "When listening to the news, radio, or podcasts",
+          ]),
+
           prof("prof_reading_en", "Proficiency in English — Reading"),
+          ctx("reading_contexts_en", "I can read English… (select all that apply)", [
+            "Everyday texts (signs, menus, messages)",
+            "News articles and magazines",
+            "Novels and other fiction",
+            "Academic or technical texts",
+            "Official documents or contracts",
+          ]),
+
           prof("prof_writing_en", "Proficiency in English — Writing"),
+          ctx("writing_contexts_en", "I can write English… (select all that apply)", [
+            "Everyday messages (texts, emails to friends)",
+            "Formal emails or letters",
+            "Essays or reports",
+            "Academic or professional documents",
+            "Filling out forms",
+          ]),
+
           age("age_start_en", "At what age did you start learning English? (put 0 for from birth)"),
           age("age_fluent_en", "At what age did you become fluent in English?"),
           age("age_read_en", "At what age did you begin reading in English?"),
@@ -136,31 +192,47 @@ IVQ.parts.part1 = function (jsPsych) {
         ],
       },
 
-      /* ---- reading habits (new 5 categories) ----------------------------- */
-      {
-        name: "english_reading_habits",
-        elements: [
-          note("english_reading_habits_h", "In a typical week, about how many hours do you spend reading each type of material (in English)?"),
-          ...[
-            "Books and printed materials",
-            "Emails",
-            "Documents (PDFs, Word, etc.)",
-            "Websites (News, blogs, searches, etc.)",
-            "Social media",
-            "Text messages",
-            "TV or video subtitles",
-            //"Environment (signs, supermarkets, billboards, etc.)",
-          ].map((label, i) => ({
-            type: "slider", name: "reading_habits__row" + (i + 1), title: label,
-            sliderType: "single", min: 0, max: 50, step: 1, tooltipFormat: "{0} h", isRequired: true,
-            autoGenerate: false,
-            customLabels: [
-              { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" },
-              { value: 30, text: "30" }, { value: 40, text: "40" }, { value: 50, text: "50+" },
-            ],
-          })),
-        ],
-      },
+      /* ---- weekly habits: reading / listening / speaking / writing ------- */
+      habitsPage("reading", "reading each type of material in English", [
+        "Books and printed materials",
+        "Emails",
+        "Documents (PDFs, Word, etc.)",
+        "Websites (News, blogs, searches, etc.)",
+        "Social media",
+        "Text messages",
+        "TV or video subtitles",
+        "Other",
+      ]),
+      habitsPage("listening", "listening to English in each context", [
+        "Conversations in person",
+        "Phone or video calls",
+        "TV, films, or videos",
+        "Music with English lyrics",
+        "Podcasts or radio",
+        "Lectures or lessons",
+        "Audiobooks",
+        "Everyday interactions (shops, services)",
+        "Other",
+      ]),
+      habitsPage("speaking", "speaking English in each context", [
+        "Conversations with friends and family",
+        "At work or school",
+        "Phone or video calls",
+        "Presentations or lectures",
+        "Everyday interactions (shops, services)",
+        "Other",
+      ]),
+      habitsPage("writing", "writing in English in each context", [
+        "Text messages or chat",
+        "Emails",
+        "Social media posts or comments",
+        "Documents, essays, or reports",
+        "Notes for yourself",
+        "Forms",
+        "Creative writing (stories, poems, etc.)",
+        "Journaling or diary entries",
+        "Other",
+      ]),
 
       /* ---- other languages ----------------------------------------------- */
       {
@@ -210,10 +282,9 @@ IVQ.parts.part1 = function (jsPsych) {
         name: "vision",
         elements: [
           {
-            type: "dropdown", name: "vision_problem",
-            title: "Do you have any of the following vision conditions?",
+            type: "tagbox", name: "vision_problem",
+            title: "Do you have any of the following vision conditions? (select all that apply)",
             choices: [
-              "None",
               "Myopia (Nearsightedness)",
               "Hyperopia (Farsightedness)",
               "Astigmatism",
@@ -222,6 +293,7 @@ IVQ.parts.part1 = function (jsPsych) {
               "Cataracts",
               "Color Blind",
             ],
+            showNoneItem: true, noneText: "None",
             showOtherItem: true, otherText: "Other (please specify)", isRequired: true,
           },
         ],
@@ -319,20 +391,31 @@ IVQ.parts.part1 = function (jsPsych) {
         name: "language_impairment",
         elements: [
           {
-            type: "dropdown", name: "language_impairment",
-            title: "Do you have any neurological disorders, learning disorders, or reading disabilities?",
+            type: "tagbox", name: "language_impairment",
+            title: "Do you have any neurological disorders, learning disorders, or reading disabilities? (select all that apply)",
             choices: [
-              "None",
               "Dyslexia",
               "Dysgraphia",
               "Dyscalculia",
               "Specific Language Impairment (SLI)",
+              "Stuttering",
               "ADHD",
               "Autism Spectrum Disorder",
               "Epilepsy",
               "Aphasia",
             ],
+            showNoneItem: true, noneText: "None of the above",
             showOtherItem: true, otherText: "Other (please specify)", isRequired: true,
+          },
+          // follow-ups, shown only when a disorder (not "None") is selected
+          age("impairment_age", "At what age were you (first) diagnosed?", {
+            visibleIf: "{language_impairment} notempty and {language_impairment} notcontains 'none'",
+          }),
+          {
+            type: "comment", name: "impairment_specify",
+            title: "Please tell us a bit more about your disorder(s).",
+            visibleIf: "{language_impairment} notempty and {language_impairment} notcontains 'none'",
+            isRequired: true,
           },
         ],
       },

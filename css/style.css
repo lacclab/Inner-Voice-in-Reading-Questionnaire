@@ -250,6 +250,11 @@ fieldset.pt-q {
 /* the HTML prompt blocks we inject keep their pt-prompt / pt-info styling */
 .sd-html .pt-prompt { margin-bottom: 0; }
 
+/* multi-select (tagbox) chips → accent blue */
+.sv-tagbox__item { background-color: var(--accent) !important; }
+.sv-tagbox__item-text { color: #fff !important; }
+.sd-tagbox-item_clean-button-svg { fill: #fff !important; }
+
 /* slider (reading-habit hours) → accent blue fill + thumb */
 .sd-slider__range-track { background-color: var(--accent) !important; }
 .sd-slider__thumb-dot { background-color: var(--accent) !important; border-color: var(--accent) !important; }
