@@ -34,9 +34,11 @@ IVQ.parts.part1 = function (jsPsych) {
   const HOUR_LABELS = [
     { value: 0, text: "0" }, { value: 10, text: "10" }, { value: 20, text: "20" }, { value: 30, text: "30+" },
   ];
+  const PCT_LABELS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((v) => ({ value: v, text: String(v) }));
   const hours = (name, label) => ({
     type: "slider", name, title: label, sliderType: "single", min: 0, max: 30, step: 1,
-    tooltipFormat: "{0} h", isRequired: true, autoGenerate: false, customLabels: HOUR_LABELS,
+    tooltipFormat: "{0} h", autoGenerate: false, customLabels: HOUR_LABELS,
+    defaultValue: 0, // starts at 0 so "0 hours" is a valid answer (no forced interaction)
   });
   // a full hours-per-week page for one modality
   const habitsPage = (modality, verb, items) => ({
@@ -54,7 +56,10 @@ IVQ.parts.part1 = function (jsPsych) {
     prof("prof_reading" + suffix, "Proficiency — Reading"),
     prof("prof_writing" + suffix, "Proficiency — Writing"),
     age("age_start" + suffix, "At what age did you start learning it? (put 0 for from birth)"),
-    age("age_read" + suffix, "At what age did you begin reading in it?"),
+    age("age_read" + suffix, "At what age did you begin reading in it?", {
+      validators: [{ type: "expression", expression: "{panel.age_start} empty or {panel.age_read} >= {panel.age_start}",
+        text: "You can't begin reading before you started learning the language." }],
+    }),
   ];
 
   const survey_json = {
@@ -80,7 +85,7 @@ IVQ.parts.part1 = function (jsPsych) {
             choices: [{ value: "1", text: "Female" }, { value: "2", text: "Male" }],
             showOtherItem: true, otherText: "Prefer to self-describe (please specify)", isRequired: true,
           },
-          { type: "dropdown", name: "home_country", title: "What is your home country?", choices: COUNTRIES, isRequired: true },
+          { type: "dropdown", name: "home_country", title: "What is your home country?", choices: COUNTRIES, searchMode: "startsWith", isRequired: true },
         ],
       },
 
@@ -92,7 +97,7 @@ IVQ.parts.part1 = function (jsPsych) {
             type: "paneldynamic", name: "countries_lived",
             title: "Besides your home country, have you lived in any other countries for more than 3 months? If so, add each one below (you can leave this empty if not).",
             templateElements: [
-              { type: "dropdown", name: "country", title: "Country", choices: COUNTRIES, isRequired: true },
+              { type: "dropdown", name: "country", title: "Country", choices: COUNTRIES, searchMode: "startsWith", isRequired: true },
               { type: "text", name: "duration_months", title: "Approximately how many months did you live there?", inputType: "number", min: 0, max: 1200, isRequired: true },
             ],
             panelCount: 0, panelAddText: "Add a country", panelRemoveText: "Remove",
@@ -184,9 +189,18 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           age("age_start_en", "At what age did you start learning English? (put 0 for from birth)"),
-          age("age_fluent_en", "At what age did you become fluent in English?"),
-          age("age_read_en", "At what age did you begin reading in English?"),
-          age("age_read_fluent_en", "At what age did you become a fluent reader in English?"),
+          age("age_fluent_en", "At what age did you become fluent in English?", {
+            validators: [{ type: "expression", expression: "{age_start_en} empty or {age_fluent_en} >= {age_start_en}",
+              text: "You can't become fluent before you started learning English." }],
+          }),
+          age("age_read_en", "At what age did you begin reading in English?", {
+            validators: [{ type: "expression", expression: "{age_start_en} empty or {age_read_en} >= {age_start_en}",
+              text: "You can't begin reading before you started learning English." }],
+          }),
+          age("age_read_fluent_en", "At what age did you become a fluent reader in English?", {
+            validators: [{ type: "expression", expression: "{age_read_en} empty or {age_read_fluent_en} >= {age_read_en}",
+              text: "You can't become a fluent reader before you began reading English." }],
+          }),
           yesno("read_to_child_en", "As a child, were you read to aloud in English?"),
         ],
       },
@@ -255,7 +269,7 @@ IVQ.parts.part1 = function (jsPsych) {
             keyDuplicationError: "You've already added this language — please pick a different one.",
             templateElements: [
               // English is handled separately, so it's excluded from the list here
-              { type: "dropdown", name: "lang_name", title: "Which language?", choices: LANGS.filter((l) => l.value !== "English"), isRequired: true },
+              { type: "dropdown", name: "lang_name", title: "Which language?", choices: LANGS.filter((l) => l.value !== "English"), searchMode: "startsWith", isRequired: true },
               ...languageQuestions(""),
             ],
           },
@@ -270,9 +284,9 @@ IVQ.parts.part1 = function (jsPsych) {
           note("language_summary_h", "Now think about <strong>all</strong> the languages you know (English and the ones you listed)."),
           { type: "ranking", name: "lang_dominance", title: "Order the languages by how DOMINANT they are for you (drag the most dominant to the top).", choices: [], isRequired: true },
           { type: "ranking", name: "lang_acquisition", title: "Order the languages by ORDER OF ACQUISITION (the language you acquired first at the top).", choices: [], isRequired: true },
-          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently exposed to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you speak each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to read it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "slider", min: 0, max: 100, step: 1, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently exposed to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you speak each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to read it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
         ],
       },
 

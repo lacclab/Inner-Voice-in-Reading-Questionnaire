@@ -17,6 +17,26 @@ IVQ.buildSPR = function (jsPsych) {
     canvas_size: [1000, 300],
   };
 
+  // Word-wrap a sentence into ≤ maxChars-wide lines. The plugin draws each
+  // array element on its own line, so this prevents long sentences being cut off.
+  const MAX_CHARS = 52;
+  function wrap(sentence) {
+    if (sentence.length <= MAX_CHARS) return sentence; // single line → plain string
+    const words = sentence.split(" ");
+    const lines = [];
+    let cur = "";
+    words.forEach((w) => {
+      if ((cur + " " + w).trim().length > MAX_CHARS) {
+        if (cur) lines.push(cur.trim());
+        cur = w;
+      } else {
+        cur = (cur + " " + w).trim();
+      }
+    });
+    if (cur) lines.push(cur.trim());
+    return lines; // array of lines → multi-line display
+  }
+
   timeline.push(IVQ.pt.info({
     name: "spr_howto",
     html: `<div class="pt-info">You'll read sentences <strong>one word at a time</strong>.
@@ -27,8 +47,8 @@ IVQ.buildSPR = function (jsPsych) {
 
   (IVQ.stim.spr_practice || []).forEach((s, i) => {
     timeline.push(Object.assign({}, base, {
-      sentence: s,
-      data: { screen: "spr_practice", item_id: "practice_" + (i + 1), is_practice: true },
+      sentence: wrap(s),
+      data: { screen: "spr_practice", item_id: "practice_" + (i + 1), is_practice: true, sentence_text: s },
     }));
   });
 
@@ -43,8 +63,8 @@ IVQ.buildSPR = function (jsPsych) {
   const order = jsPsych.randomization.shuffle((IVQ.stim.spr_items || []).map((s, i) => ({ s, i })));
   order.forEach(({ s, i }) => {
     timeline.push(Object.assign({}, base, {
-      sentence: s,
-      data: { screen: "spr_item", item_id: "item_" + (i + 1), is_practice: false },
+      sentence: wrap(s),
+      data: { screen: "spr_item", item_id: "item_" + (i + 1), is_practice: false, sentence_text: s },
     }));
   });
 

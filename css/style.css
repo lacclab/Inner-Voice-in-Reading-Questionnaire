@@ -258,6 +258,20 @@ fieldset.pt-q {
 /* slider (reading-habit hours) → accent blue fill + thumb */
 .sd-slider__range-track { background-color: var(--accent) !important; }
 .sd-slider__thumb-dot { background-color: var(--accent) !important; border-color: var(--accent) !important; }
+/* keep room so the end labels (e.g. "30+", "100") aren't clipped at the edges */
+.sd-slider-container { padding: 0 22px; box-sizing: border-box; }
+.sd-slider__label-text { white-space: nowrap; overflow: visible; }
+.sd-slider-labels-container { overflow: visible; }
+
+/* keep the 0–10 proficiency scale on one line: min label · buttons · max label */
+.sd-rating { display: flex !important; flex-wrap: nowrap !important; align-items: center !important; gap: 4px; }
+.sd-rating__min-text, .sd-rating__max-text {
+  position: static !important; white-space: nowrap; flex: 0 0 auto; margin: 0 8px !important;
+  font-size: .8rem; color: var(--ink-soft);
+}
+.sd-rating__item, .sd-rating__item--fixed-size {
+  flex: 0 0 auto; min-width: 34px !important; width: 34px !important; height: 34px !important;
+}
 
 /* selected rating button → accent blue (modern theme defaults to dark) */
 .sd-rating__item--selected,
@@ -280,6 +294,10 @@ fieldset.pt-q {
 }
 /* give the dynamic-panel add/remove controls room (don't clip them) */
 .sd-paneldynamic__add-btn, .sd-paneldynamic__remove-btn { margin-top: 8px; }
+/* the panel footer ("Remove …") has a negative right margin for full-bleed,
+   which overshoots once we flatten the panel padding — keep it inside */
+.sd-paneldynamic__panel-footer { margin-right: 0 !important; }
+.sd-paneldynamic__add-btn { margin-left: 0 !important; }
 /* wide matrix tables scroll instead of clipping the last column —
    scoped to questions that actually contain a table, so it never clips
    paneldynamic buttons or other content vertically */
