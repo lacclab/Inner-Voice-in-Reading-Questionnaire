@@ -42,63 +42,56 @@ survey_source/survey.txt         reference only (original PsyToolkit source)
 
 ## Questionnaire map
 
-Order of screens with the question name(s) on each, and what is skipped/shown by
-prior answers. Every screen is one page (Previous/Next within a part; no going
-back across parts). _Italic_ notes are the branching conditions.
+Order of screens with the question(s) on each, and what is shown/skipped by prior
+answers. Within a part, SurveyJS gives Previous/Next; there's a **break screen
+after Parts 1–4** ("you've finished Part N… press space to continue"). _Italic_
+notes are the branching conditions. (For the full, always-current question list,
+open `export.html`.)
 
 **Intro**
-- `consent` — agree / decline (decline ends the study)
-- `fullscreen_enter` — setup instructions + enter full screen
+- `consent` (agree / decline → ends study) → media preload → `fullscreen_enter`
 
 **Part 1 — Demographics & language background**
-- `demographics` — age, gender, home_country
-- `countries_lived` — countries lived >3 months (repeatable: country, duration_months) — optional
-- `education` — education, years_education, occupation
-- `english_native` — english_native (Yes/No)
-- `english_profile` — English proficiency (speaking/understanding/reading) + 4 acquisition ages + read_to_child (asked of everyone)
-- `english_reading_habits` — 5 categories (books/printed, online, social media, TV/subtitles, environment)
-- `other_languages` — do you know other languages? (Yes/No)
-- `other_languages_panel` — _only if other_languages = Yes_ — per language (repeatable): name, proficiency ×3, 4 ages, read_to_child
-- `language_summary` — _only if other_languages = Yes_ — rank by dominance, rank by acquisition, % exposure, % speak, % read (rows = English + the languages entered; each % set must total 100)
-- `vision` — vision_normal, vision_problem (+ describe _if vision_problem = Yes_)
-- `hearing_status` — hearing_status (Hearing / Deaf-HoH), native_sign (is a sign language native?)
-- **Deaf/ASL battery** — _only if hearing_status = Deaf/HoH OR native_sign = Yes_:
-  - `deaf_1` know_asl, age_became_deaf, db_level, deafness_classification
-  - `deaf_2_aids` used_hearing_aids → (_if used_) hearing_aid_usage matrix, start/stop age
-  - `deaf_3_ci` cochlear_implant → (_if yes_) ci_age, ci_usage matrix, device_function, device_describe
-  - `deaf_4_asl` asl_exposure_early, age_exposed_asl, primary/secondary parent deaf, learned_asl_from
-  - `deaf_5_home` home_language_primary, home_language_other, deaf_siblings → (_if yes_) sibling_knows_asl, older/younger deaf siblings
-  - `deaf_6_edu` education_modality matrix, years studied/used English & ASL
-  - `deaf_7_aslprof` asl_proficiency matrix, language_history_note
-- `language_impairment` — disorder? (+ describe _if Yes_)
+- `demographics` — age, gender, home country (searchable dropdown)
+- `countries_lived` — countries lived >3 months (add-as-many; optional)
+- `education` (expanded list + "Other"), years of education, occupation (dropdown + "Other")
+- `english_native` (Yes/No)
+- `english_profile` — for each of speaking / understanding / reading / writing: a 0–10 proficiency scale **and** a "select all that apply" usage-context checkbox; then 4 acquisition ages (start / fluent / begin-reading / fluent-reading, with order validators) + "read to as a child?"
+- **Weekly-hours sliders (0–30, "30+")** — `english_reading_habits`, `english_listening_habits`, `english_speaking_habits`, `english_writing_habits` (one page each; default 0)
+- `other_languages` (Yes/No)
+- `other_languages_panel` — _if Yes_ — add each language (no duplicates, English excluded): name, proficiency ×4, ages, read-to-as-child
+- `language_summary` — _if Yes_ — rank by dominance, rank by acquisition, and % exposure / speak / read (sliders per language, each set must total 100)
+- `vision` — vision conditions (multi-select + None/Other)
+- `hearing_status` (Hearing / Deaf-HoH) + native_sign (sign language native?)
+- **Deaf/ASL battery** (`deaf_1`…`deaf_7_aslprof`) — _only if Deaf/HoH OR native sign language_ — ASL knowledge, age deaf, dB, classification, hearing-aid use (+ usage grid), cochlear implant (+ usage grid), ASL exposure, parents/siblings, home language, education-modality grid, years studied/used, ASL proficiency
+- `language_impairment` — disorders (multi-select + None/Other) → _if any_: age of diagnosis + specify
 - `dominant_hand`
 
 **Part 2 — Self-paced reading**
-- instructions → 2 practice sentences → experimental sentences (random order). Sentences live in `stimuli/texts.js` (currently placeholders).
+- Instructions → practice sentences → experimental sentences (random order), word-by-word on spacebar; long sentences wrap to multiple lines. Sentences in `stimuli/texts.js`.
 
 **Part 3 — Inner speech during reading**
-- `spr_inner_voice` (+ explain) — voice while reading the Part 2 sentences
-- `survey_inner_voice` — voice while reading the survey itself
-- `reading_experience` — _only if survey_inner_voice = "understand without a voice"_
+- `spr_inner_voice` page — **natural_reading** (felt like natural reading? + how similar/different), then did-you-hear-a-voice (+ explain), then **writing_inner_voice** (did you hear a voice while writing your answers?)
+- `survey_inner_voice` → `reading_experience` _(if survey_inner_voice = "understand without a voice")_
 - `hearing_inner_voice_reading` — do you ever hear an inner voice when reading?
-- _The next block shows **only if** hearing_inner_voice_reading ≠ "always without a voice":_
-  `frequency_inner_voice_reading`, `hearing_inner_voice` (listen vs speak), `material_inner_voice_reading`, `whose_voice_reading`, `different_inner_voice_reading`, `gender_/accent_/pitch_/loudness_/emotional_inner_voice_reading`, `change_inner_voice_reading`, `quality_change_inner_voice_reading` (_also requires change = Yes_), `having_inner_voice_reading` (+ explain)
-- `harder_inner_voice_reading` (+ explain) — always shown
-- `most_people_inner_voice_reading` — always shown
+- _Phenomenology block, shown **only if** hearing_inner_voice_reading ≠ "always without a voice":_ frequency, listen-vs-speak, materials, whose voice, gender/accent/pitch/loudness/emotional tone, can-you-change (→ which qualities _if Yes_), adds-to-experience (+ explain)
+- `harder_inner_voice_reading` (+ explain), `most_people_inner_voice_reading`
+- **Skip:** if a participant reports **no inner reading voice** (spr_inner_voice = survey_inner_voice = hearing_inner_voice_reading = "no/never"), the last two Part-3 questions **and all of Part 4** are skipped → straight to Part 5.
 
-**Part 4 — Diverse text types** (all shown, in order)
+**Part 4 — Diverse text types** (in order; each big checklist is now split into themed sub-questions)
 - `alphabet`, `happy_birthday`, `twinkle_twinkle`
-- Harry Potter: `harry_potter_book/audio_book/movie` + `harry_potter` reading → `harry_potter_youtube` (local video) + `harry_potter_scene` → `harry_potter_2` (re-read) + diff
-- `sherlock_holmes`, `winnie_the_pooh`, `genesis`, `non_words`
-- `trump_tweet` (image), `mom_text_1` (image), `mom_text_2` (image)
-- Water passage: `one_stop_qa_silent_reading` + comprehension `one_stop_qa_q`
+- Harry Potter: read-novels/audio/movies → reading passage with `hp_hear / hp_voice / hp_accent / hp_gender / hp_spell / hp_visual` → `harry_potter_youtube` (uploaded clip) + `harry_potter_scene` → re-read `hp2_*` + differences
+- `sherlock_holmes` (`sh_*`), `winnie_the_pooh` (`wp_*` incl. human-vs-non-human + "Honey!"), `genesis` (`gn_*` incl. human-vs-non-human), `non_words`
+- `trump_tweet` (image) — `tr_hear/voice/accent` + how you read @nytimes / @realDonaldTrump / the date
+- `mom_text_1`, `mom_text_2` (images) — `m_hear/voice/accent/tone/volume` + how you read WTF / LOL
+- Water passage: `one_stop_qa_silent_reading` (`os_*`) + comprehension `one_stop_qa_q`
 - Manipulations (re-read changing one property): `one_stop_qa_silent_reading_gender / _accent / _pitch / _speed / _loudness / _emotional_tone / _friend`
-- Modalities: `one_stop_qa_lips_moving`, `one_stop_qa_aloud`, `one_stop_qa_listening` (audio)
-- `one_stop_qa_2` (read as Amy) + `one_stop_qa_2_listening` (audio) + comprehension `one_stop_qa_2_q`
+- Modalities: `one_stop_qa_lips_moving`, `one_stop_qa_aloud`, `one_stop_qa_listening` (audio, `l1_*` vs Amy)
+- `one_stop_qa_2` (read as Amy, `o2_*`) + `one_stop_qa_2_listening` (audio, `l2_*`) + comprehension `one_stop_qa_2_q`
 
-**Part 5 — Validated scales**
-- `irq` — IRQ, 36 items, 5-point matrix (random order)
-- `visqr` — VISQ-R, 35 items, 7-point matrix (random order)
+**Part 5 — Validated scales** (item order randomised)
+- `irq` — IRQ, 5-point matrix (full set in file; some items commented out)
+- `visqr` — VISQ-R, 7-point matrix (full set in file; some items commented out)
 
 **End**
 - `completion` — thank-you + (live mode) Prolific redirect
@@ -117,18 +110,14 @@ language lists are injected from `js/lists.js`.
 
 ## What you still need to provide
 
-Search the code/source for `PLACEHOLDER`:
+Already in: Part 2 SPR sentences (`stimuli/texts.js`), the tweet/text images and
+the Harry Potter video (`stimuli/media/`). Still to do:
 
-- **Part 2 SPR sentences** — `stimuli/texts.js`. The PsyToolkit source references
-  an SPR experiment (`SPR_one_word`) whose sentence list isn't in `survey.txt`;
-  add the real practice + experimental sentences.
-- **Media files** in `stimuli/media/`: the tweet/text images and Harry Potter
-  video are already present. Still needed — the two Amy recordings:
-  `Food-Shortages-Could-Force-World-into-Vegetarianism_p1.wav`,
-  `Food-Shortages-Could-Force-World-into-Vegetarianism_p2.wav`.
-- **Consent text** — `js/parts/intro_outro.js`.
-- Before launch: **DataPipe experiment ID** + **Prolific completion code** in
-  `js/config.js`.
+- **Amy audio** — two recordings in `stimuli/media/`, referenced by the listening
+  pages: `Food-Shortages-Could-Force-World-into-Vegetarianism_p1.wav` and `…_p2.wav`.
+- **Consent text** — replace the placeholder in `js/parts/intro_outro.js`.
+- **Before launch:** set `devMode: false` and add the **DataPipe experiment ID**
+  + **Prolific completion code** in `js/config.js`.
 
 ## Jump-logic corrections (baked into the `visibleIf` conditions)
 
