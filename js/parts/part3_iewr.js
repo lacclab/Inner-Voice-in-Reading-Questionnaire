@@ -213,7 +213,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "hearing_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">When you read (without moving your lips), do you EVER HEAR an inner voice or do you just understand the words you are reading without actually hearing an inner voice?</div>"
+          "html": "<div class=\"pt-prompt\">When you read (without moving your lips), do you EVER HEAR an inner voice saying the words you are reading or do you just understand the words you are reading without actually hearing an inner voice?</div>"
         },
         {
           "name": "hearing_inner_voice_reading",
@@ -231,8 +231,19 @@ IVQ.parts.part3 = function (jsPsych) {
             {
               "value": "3",
               "text": "I always hear an inner voice while reading"
+            },
+            {
+              "value": "4",
+              "text": "I hear an inner voice while reading, but it is not reading the words (please specify)"
             }
           ],
+          "isRequired": true
+        },
+        {
+          "name": "hearing_inner_voice_reading_specify",
+          "title": "Please describe what your inner voice does, if it is not reading the words.",
+          "type": "comment",
+          "visibleIf": "{hearing_inner_voice_reading} = '4'",
           "isRequired": true
         }
       ]
@@ -271,57 +282,6 @@ IVQ.parts.part3 = function (jsPsych) {
               "text": "Never"
             }
           ],
-          "isRequired": true
-        }
-      ],
-      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
-    {
-      "name": "situations_inner_voice_reading",
-      "elements": [
-        {
-          "type": "html",
-          "name": "situations_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">In which situations are you more likely to hear an inner voice while reading? (Select all that apply.)</div>"
-        },
-        {
-          "name": "situations_inner_voice_reading",
-          "titleLocation": "hidden",
-          "type": "checkbox",
-          "choices": [
-            {
-              "value": "difficult",
-              "text": "When the text is difficult or complex"
-            },
-            {
-              "value": "nonnative",
-              "text": "When I read in a language that isn’t my native language"
-            },
-            {
-              "value": "concentrate",
-              "text": "When I concentrate or give the text my full attention"
-            },
-            {
-              "value": "slow",
-              "text": "When I read slowly or carefully"
-            },
-            {
-              "value": "emotional",
-              "text": "When the content is emotional or engaging"
-            },
-            {
-              "value": "remember",
-              "text": "When I want to understand or remember something important"
-            },
-            {
-              "value": "proofreading",
-              "text": "When I proofread or check what I (or someone else) wrote"
-            }
-          ],
-          "showOtherItem": true,
-          "otherText": "Other (please specify)",
-          "showNoneItem": true,
-          "noneText": "No particular situation",
           "isRequired": true
         }
       ],
@@ -417,6 +377,57 @@ IVQ.parts.part3 = function (jsPsych) {
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     }, */
+    {
+      "name": "situations_inner_voice_reading",
+      "elements": [
+        {
+          "type": "html",
+          "name": "situations_inner_voice_reading_q",
+          "html": "<div class=\"pt-prompt\">In which situations are you more likely to hear an inner voice while reading? (Select all that apply.)</div>"
+        },
+        {
+          "name": "situations_inner_voice_reading",
+          "titleLocation": "hidden",
+          "type": "checkbox",
+          "choices": [
+            {
+              "value": "difficult",
+              "text": "When the text is difficult or complex"
+            },
+            {
+              "value": "nonnative",
+              "text": "When I read in a language that isn’t my native language"
+            },
+            {
+              "value": "concentrate",
+              "text": "When I concentrate or give the text my full attention"
+            },
+            {
+              "value": "slow",
+              "text": "When I read slowly or carefully"
+            },
+            {
+              "value": "emotional",
+              "text": "When the content is emotional or engaging"
+            },
+            {
+              "value": "remember",
+              "text": "When I want to understand or remember something important"
+            },
+            {
+              "value": "proofreading",
+              "text": "When I proofread or check what I (or someone else) wrote"
+            }
+          ],
+          "showOtherItem": true,
+          "otherText": "Other (please specify)",
+          "showNoneItem": true,
+          "noneText": "No particular situation",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{hearing_inner_voice_reading} <> '1'"
+    },
     {
       "name": "whose_voice_reading",
       "elements": [

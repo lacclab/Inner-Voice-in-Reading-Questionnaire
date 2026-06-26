@@ -25,10 +25,19 @@ IVQ.parts.part1 = function (jsPsych) {
   const yesno = (name, title, extra) => Object.assign({ type: "radiogroup", name, title, choices: YN, isRequired: true }, extra || {});
   const info = (name, html) => ({ type: "html", name, html: `<div class="pt-info">${html}</div>` });
   const note = (name, html) => ({ type: "html", name, html: `<div class="pt-prompt">${html}</div>` });
-  // "select all that apply" usage-context checkbox (shown under a proficiency item)
-  const ctx = (name, title, choices) => ({
-    type: "checkbox", name, title, choices,
-    showOtherItem: true, otherText: "Other (please specify)",
+  // 1–5 ease-of-use scale, rated for each usage context (shown under a proficiency item)
+  const EASE_COLS = [
+    { value: "1", text: "1 – very difficult for me" },
+    { value: "2", text: "2" },
+    { value: "3", text: "3" },
+    { value: "4", text: "4" },
+    { value: "5", text: "5 – very easily" },
+  ];
+  const ctx = (name, title, items) => ({
+    type: "matrix", name, title,
+    columns: EASE_COLS,
+    rows: items.map((t, i) => ({ value: String(i + 1), text: t })),
+    isAllRowRequired: true,
   });
   // hours-per-week slider (used by the reading/listening/speaking/writing habit grids)
   const HOUR_LABELS = [
@@ -152,7 +161,7 @@ IVQ.parts.part1 = function (jsPsych) {
           note("english_profile_h", "Please tell us about your English."),
 
           prof("prof_speaking_en", "Proficiency in English — Speaking"),
-          ctx("speaking_contexts_en", "I can speak English… (select all that apply)", [
+          ctx("speaking_contexts_en", "How easily can you speak English in each of these situations?", [
             "To communicate while traveling abroad",
             "With friends and family",
             "To ask a question in class",
@@ -162,7 +171,7 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           prof("prof_understanding_en", "Proficiency in English — Understanding spoken language"),
-          ctx("understanding_contexts_en", "I can understand spoken English… (select all that apply)", [
+          ctx("understanding_contexts_en", "How easily can you understand spoken English in each of these situations?", [
             "In everyday conversations",
             "When watching films/TV without subtitles",
             "When following a lecture or presentation",
@@ -171,17 +180,17 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           prof("prof_reading_en", "Proficiency in English — Reading"),
-          ctx("reading_contexts_en", "I can read English… (select all that apply)", [
-            "Everyday texts (signs, menus, messages)",
-            "News articles and magazines",
+          ctx("reading_contexts_en", "How easily can you read each of these types of English text?", [
+            "Everyday texts (signs, menus, messages, social media posts)",
+            "News articles and websites",
             "Novels and other fiction",
             "Academic or technical texts",
             "Official documents or contracts",
           ]),
 
           prof("prof_writing_en", "Proficiency in English — Writing"),
-          ctx("writing_contexts_en", "I can write English… (select all that apply)", [
-            "Everyday messages (texts, emails to friends)",
+          ctx("writing_contexts_en", "How easily can you write each of these types of English text?", [
+            "Everyday messages (texts, emails to friends, social media posts)",
             "Formal emails or letters",
             "Essays or reports",
             "Academic or professional documents",
@@ -214,6 +223,9 @@ IVQ.parts.part1 = function (jsPsych) {
         "Social media",
         "Text messages",
         "TV or video subtitles",
+        "Comics or graphic novels",
+        "Codes or programming scripts",
+        "LLM outputs (e.g., ChatGPT, MidJourney, Claude, Gemini)",
         "Other",
       ]),
       habitsPage("listening", "listening to English in each context", [
@@ -224,6 +236,7 @@ IVQ.parts.part1 = function (jsPsych) {
         "Podcasts or radio",
         "Lectures or lessons",
         "Audiobooks",
+        "Voice notes or messages",
         "Everyday interactions (shops, services)",
         "Other",
       ]),
@@ -233,6 +246,7 @@ IVQ.parts.part1 = function (jsPsych) {
         "Phone or video calls",
         "Presentations or lectures",
         "Everyday interactions (shops, services)",
+        "Voice notes or messages",
         "Other",
       ]),
       habitsPage("writing", "writing in English in each context", [
@@ -244,6 +258,8 @@ IVQ.parts.part1 = function (jsPsych) {
         "Forms",
         "Creative writing (stories, poems, etc.)",
         "Journaling or diary entries",
+        "Codes or programming scripts",
+        "LLM prompts or instructions (e.g., ChatGPT, MidJourney, Claude, Gemini)",
         "Other",
       ]),
 
@@ -428,6 +444,21 @@ IVQ.parts.part1 = function (jsPsych) {
             type: "comment", name: "impairment_specify",
             title: "Please tell us a bit more about your disorder(s).",
             visibleIf: "{language_impairment} notempty and {language_impairment} notcontains 'none'",
+            isRequired: true,
+          },
+          // ADHD-only medication follow-ups
+          {
+            type: "radiogroup", name: "adhd_medication",
+            title: "Do you take medication for ADHD on a regular basis?",
+            choices: [{ value: "yes", text: "Yes" }, { value: "no", text: "No" }, { value: "pnts", text: "Prefer not to say" }],
+            visibleIf: "{language_impairment} contains 'ADHD'",
+            isRequired: true,
+          },
+          {
+            type: "radiogroup", name: "adhd_medication_now",
+            title: "Are you currently on that medication (e.g. have you taken it today)?",
+            choices: [{ value: "yes", text: "Yes" }, { value: "no", text: "No" }, { value: "unsure", text: "Not sure" }],
+            visibleIf: "{language_impairment} contains 'ADHD' and {adhd_medication} = 'yes'",
             isRequired: true,
           },
         ],
