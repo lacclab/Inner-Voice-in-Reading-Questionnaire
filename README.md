@@ -56,7 +56,7 @@ open `export.html`.)
 - `countries_lived` — countries lived >3 months (add-as-many; optional)
 - `education` (expanded list + "Other"), years of education, occupation (dropdown + "Other")
 - `english_native` (Yes/No)
-- `english_profile` — for each of speaking / understanding / reading / writing: a 0–10 proficiency scale **and** a "select all that apply" usage-context checkbox; then 4 acquisition ages (start / fluent / begin-reading / fluent-reading, with order validators) + "read to as a child?"
+- `english_profile` — for each of speaking / understanding / reading / writing: a 0–10 proficiency scale **and** a 1–5 ease-of-use matrix rating each usage context (1 = very difficult for me → 5 = very easily); then 4 acquisition ages (start / fluent / begin-reading / fluent-reading, with order validators) + "read to as a child?"
 - **Weekly-hours sliders (0–30, "30+")** — `english_reading_habits`, `english_listening_habits`, `english_speaking_habits`, `english_writing_habits` (one page each; default 0)
 - `other_languages` (Yes/No)
 - `other_languages_panel` — _if Yes_ — add each language (no duplicates, English excluded): name, proficiency ×4, ages, read-to-as-child
@@ -64,7 +64,7 @@ open `export.html`.)
 - `vision` — vision conditions (multi-select + None/Other)
 - `hearing_status` (Hearing / Deaf-HoH) + native_sign (sign language native?)
 - **Deaf/ASL battery** (`deaf_1`…`deaf_7_aslprof`) — _only if Deaf/HoH OR native sign language_ — ASL knowledge, age deaf, dB, classification, hearing-aid use (+ usage grid), cochlear implant (+ usage grid), ASL exposure, parents/siblings, home language, education-modality grid, years studied/used, ASL proficiency
-- `language_impairment` — disorders (multi-select + None/Other) → _if any_: age of diagnosis + specify
+- `language_impairment` — disorders (multi-select + None/Other) → _if any_: age of diagnosis + specify; _if ADHD selected_: regular ADHD medication? → _if yes_: currently on it (taken today)?
 - `dominant_hand`
 
 **Part 2 — Self-paced reading**
@@ -73,8 +73,8 @@ open `export.html`.)
 **Part 3 — Inner speech during reading**
 - `spr_inner_voice` page — **natural_reading** (felt like natural reading? + how similar/different), then did-you-hear-a-voice (+ explain), then **writing_inner_voice** (did you hear a voice while writing your answers?)
 - `survey_inner_voice` → `reading_experience` _(if survey_inner_voice = "understand without a voice")_
-- `hearing_inner_voice_reading` — do you ever hear an inner voice when reading?
-- _Phenomenology block, shown **only if** hearing_inner_voice_reading ≠ "always without a voice":_ frequency, **situations** (when you're more likely to hear it — difficulty, non-native language, attention, etc.), listen-vs-speak, materials, whose voice, **voice qualities matrix** (gender/accent/pitch/loudness × same/different/varies/can't-tell), emotional tone, can-you-change (→ which qualities _if Yes_), adds-to-experience (+ explain)
+- `hearing_inner_voice_reading` — do you ever hear an inner voice when reading? (+ free-text specify if "voice present but not reading the words")
+- _Phenomenology block, shown **only if** hearing_inner_voice_reading ≠ "always without a voice":_ frequency, listen-vs-speak, materials, **situations** (when you're more likely to hear it — difficulty, non-native language, attention, proofreading, etc.), whose voice, number of distinct voices, **voice qualities matrix** (gender/accent/pitch/loudness × same/different/varies/can't-tell), emotional tone, can-you-change (→ which qualities _if Yes_), adds-to-experience (+ explain)
 - `harder_inner_voice_reading` (+ explain), `most_people_inner_voice_reading`
 - **Skip:** if a participant reports **no inner reading voice** (spr_inner_voice = survey_inner_voice = hearing_inner_voice_reading = "no/never"), the last two Part-3 questions **and all of Part 4** are skipped → straight to Part 5.
 
