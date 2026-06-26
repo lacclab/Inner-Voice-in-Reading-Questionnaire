@@ -127,15 +127,15 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "during",
-              "text": "Yes — while I was writing"
+              "text": "Yes, while I was writing"
             },
             {
               "value": "before",
-              "text": "Yes — before writing, when I thought about and planned my answer"
+              "text": "Yes, before writing, when I thought about and planned my answer"
             },
             {
               "value": "both",
-              "text": "Yes — both before and while writing"
+              "text": "Yes, both before and while writing"
             },
             {
               "value": "no",
@@ -312,6 +312,10 @@ IVQ.parts.part3 = function (jsPsych) {
             {
               "value": "remember",
               "text": "When I want to understand or remember something important"
+            },
+            {
+              "value": "proofreading",
+              "text": "When I proofread or check what I (or someone else) wrote"
             }
           ],
           "showOtherItem": true,
@@ -329,7 +333,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "hearing_inner_voice_q",
-          "html": "<div class=\"pt-prompt\">When you hear this inner voice, does it feel more like listening or like speaking?</div>"
+          "html": "<div class=\"pt-prompt\">When you read, how does your inner voice feel?</div>"
         },
         {
           "name": "hearing_inner_voice",
@@ -338,11 +342,11 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "More like listening"
+              "text": "Like someone is reading the text to me (like listening)"
             },
             {
               "value": "2",
-              "text": "More like speaking"
+              "text": "Like reading the text out loud (like speaking)"
             },
             {
               "value": "3",
@@ -357,14 +361,12 @@ IVQ.parts.part3 = function (jsPsych) {
               "text": "Unsure"
             }
           ],
-          "showOtherItem": true,
-          "otherText": "other (please specify)",
           "isRequired": true
         }
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     },
-    {
+    /*{
       "name": "material_inner_voice_reading",
       "elements": [
         {
@@ -414,7 +416,7 @@ IVQ.parts.part3 = function (jsPsych) {
         }
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    },
+    }, */
     {
       "name": "whose_voice_reading",
       "elements": [
@@ -430,30 +432,34 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "My own voice"
+              "text": "My own voice as I would hear it internally if I were speaking aloud"
             },
             {
               "value": "2",
-              "text": "A story character"
+              "text": "My own voice as others hear it when I speak aloud (e.g. a recording of my voice)"
             },
             {
               "value": "3",
-              "text": "A celebrity or famous person (e.g. an actor)"
+              "text": "A story character"
             },
             {
               "value": "4",
-              "text": "A family member (including by marriage)"
+              "text": "A celebrity or famous person (e.g. an actor who played the book character in a movie or TV show)"
             },
             {
               "value": "5",
-              "text": "A friend"
+              "text": "A family member (including by marriage)"
             },
             {
               "value": "6",
-              "text": "Whoever sent the text, email or note"
+              "text": "A friend"
             },
             {
               "value": "7",
+              "text": "Whoever sent the text, email or note"
+            },
+            {
+              "value": "8",
               "text": "A teacher or acquaintance"
             },
             {
@@ -461,7 +467,7 @@ IVQ.parts.part3 = function (jsPsych) {
               "text": "A familiar voice I can’t identify"
             },
             {
-              "value": "8",
+              "value": "10",
               "text": "An unfamiliar voice (no one in particular)"
             }
           ],
@@ -470,13 +476,13 @@ IVQ.parts.part3 = function (jsPsych) {
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
     },
-    /* {
+    {
       "name": "different_inner_voice_reading",
       "elements": [
         {
           "type": "html",
           "name": "different_inner_voice_reading_q",
-          "html": "<div class=\"pt-prompt\">How many different inner voices have you heard over the course of your reading life?</div>"
+          "html": "<div class=\"pt-prompt\">Over the course of your reading life, how many different inner voices have you heard?</div>"
         },
         {
           "name": "different_inner_voice_reading",
@@ -485,26 +491,30 @@ IVQ.parts.part3 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "Only one"
+              "text": "Just one — I always hear the same inner voice when I read"
             },
             {
               "value": "2",
-              "text": "Two"
+              "text": "Two — I hear one of two distinct voices, depending on the situation"
             },
             {
               "value": "3",
-              "text": "More than two"
+              "text": "A few — several different voices, depending on what or how I read"
             },
             {
               "value": "4",
-              "text": "Unsure"
-            }
+              "text": "Many — the voice varies widely across my reading"
+            },
+            /* {
+              "value": "5",
+              "text": "Unsure / I've never paid attention to this"
+            } */
           ],
           "isRequired": true
         }
       ],
       "visibleIf": "{hearing_inner_voice_reading} <> '1'"
-    }, */
+    },
     {
       "name": "voice_qualities",
       "elements": [
@@ -529,7 +539,7 @@ IVQ.parts.part3 = function (jsPsych) {
             },
             {
               "value": "varies",
-              "text": "It varies"
+              "text": "It varies depending on what I read"
             },
             {
               "value": "cant",
