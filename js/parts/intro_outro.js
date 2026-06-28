@@ -22,6 +22,9 @@ IVQ.parts.intro = function (jsPsych) {
       are 18 or older, have read the information above, and agree to take
       part.</strong></p>`,
     choices: ["I consent and wish to begin", "I do not consent"],
+    button_html: function (choice, index) {
+      return '<button class="jspsych-btn ' + (index === 0 ? "btn-consent" : "btn-decline") + '">' + choice + "</button>";
+    },
     data: { screen: "consent" },
     on_finish: function (data) {
       data.consented = data.response === 0;

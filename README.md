@@ -94,7 +94,7 @@ jsPsych trial.
 
 **Part 4 — Diverse text types** (in order; each big checklist is now split into themed sub-questions)
 - `alphabet`, `happy_birthday`, `twinkle_twinkle`
-- Harry Potter: read-novels/audio/movies → reading passage with `hp_hear / hp_voice / hp_accent / hp_gender / hp_spell / hp_visual` → `harry_potter_youtube` (uploaded clip) + `harry_potter_scene` → re-read `hp2_*` + differences
+- Harry Potter: read-novels/audio/movies → reading passage with `hp_hear / hp_voice / hp_accent / hp_gender / hp_spell / hp_visual` → `harry_potter_youtube` (uploaded clip) + `harry_potter_scene` → re-read `hp2_*` + differences. _If `hp_hear` (or `hp2_hear`) = "I didn't hear any words", the voice-detail questions (voice/accent/gender/spell) are hidden and only the "picture the scene" question (`hp_visual`/`hp2_visual`) shows._
 - `sherlock_holmes` (`sh_*`), `winnie_the_pooh` (`wp_*` incl. human-vs-non-human + "Honey!"), `genesis` (`gn_*` incl. human-vs-non-human), `non_words`
 - `trump_tweet` (image) — `tr_hear/voice/accent` + how you read @nytimes / @realDonaldTrump / the date
 - `mom_text_1`, `mom_text_2` (images) — `m_hear/voice/accent/tone/volume` + how you read WTF / LOL

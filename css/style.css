@@ -103,6 +103,11 @@ html, body {
 }
 .jspsych-btn:hover { background: var(--accent-dk); }
 .jspsych-btn:active { transform: translateY(1px); }
+/* consent screen: green = consent, red = decline */
+.jspsych-btn.btn-consent { background: #1e9e5a; border-color: #1e9e5a; color: #fff; }
+.jspsych-btn.btn-consent:hover { background: #18854c; border-color: #18854c; }
+.jspsych-btn.btn-decline { background: #e5392b; border-color: #e5392b; color: #fff; }
+.jspsych-btn.btn-decline:hover { background: #c72f23; border-color: #c72f23; }
 .jspsych-btn:focus-visible { outline: 3px solid var(--accent-sft); outline-offset: 2px; }
 
 /* Secondary / "decline" style for opt-out buttons */
@@ -259,7 +264,11 @@ fieldset.pt-q {
 .sd-slider__range-track { background-color: var(--accent) !important; }
 .sd-slider__thumb-dot { background-color: var(--accent) !important; border-color: var(--accent) !important; }
 /* keep room so the end labels (e.g. "30+", "100") aren't clipped at the edges */
-.sd-slider-container { padding: 0 42px; box-sizing: border-box; }
+/* Inset the slider with MARGIN (not padding): padding shrinks only the rail
+   while the labels keep full width, so the rail (10–90) and labels (0–100) drift
+   apart. Margin shrinks rail + labels together (kept aligned) and leaves room
+   for the end labels ("0", "100", "30+") to extend past the rail without clipping. */
+.sd-slider-container { margin: 0 26px; box-sizing: border-box; }
 .sd-slider__label-text { white-space: nowrap; overflow: visible; }
 .sd-slider-labels-container { overflow: visible; }
 /* keep slider end-labels ("30+", "100") from being clipped by the card / cell edge */
@@ -314,13 +323,9 @@ fieldset.pt-q {
 /* Likert grids (IRQ / VISQ-R): same idea, but let the multi-word labels wrap so
    the answer columns shrink to the label width and the statement column widens. */
 .likert-matrix .sd-matrix__table thead th,
-.likert-matrix .sd-matrix__table tbody td:not(:first-child) { width: 1% !important; min-width: 64px !important; }
-/* keep the column-labels row visible while scrolling the long Likert grid:
-   the matrix scrolls inside its own box and the header sticks to the top */
-.likert-matrix .sd-question__content { max-height: 68vh; overflow: auto; }
-.likert-matrix .sd-matrix__table thead th,
-.likert-matrix .sd-matrix__table thead td { position: sticky; top: 0; z-index: 3; }
-.likert-matrix .sd-matrix__table thead td:first-child { background: var(--card); }
+.likert-matrix .sd-matrix__table tbody td:not(:first-child) { width: 1% !important; min-width: 60px !important; }
+/* (sticky header removed: the only way to keep it visible is an inner scroll
+   box, which clipped the last column and hid the Next/Previous buttons.) */
 
 /* SurveyJS question titles (used directly in Part 1) → match pt-prompt look */
 .sd-question__title {
@@ -330,6 +335,11 @@ fieldset.pt-q {
   color: var(--ink) !important;
   line-height: 1.5;
 }
+/* the jsPsych survey plugin sets an inline min-width: min(100vw, 800px) on its
+   container, which forces the survey wider than the card (so the dynamic-panel
+   border + Add/Remove buttons overflow). Let it shrink to the card width. */
+.jspsych-survey-container { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+
 /* SurveyJS gives the panels container a -40px full-bleed margin (+40 padding)
    that overshoots our flattened layout and pushes the Add/Remove buttons past
    the card edges — neutralise it so panels fit inside the card. */

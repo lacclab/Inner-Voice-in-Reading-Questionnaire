@@ -154,7 +154,7 @@ IVQ.parts.part1 = function (jsPsych) {
           note("english_profile_h", "Please tell us about your English."),
 
           prof("prof_speaking_en", "Proficiency in English — Speaking"),
-          ctx("speaking_contexts_en", "How easily can you speak English in each of these situations?", [
+          ctx("speaking_contexts_en", "How easily can you <strong>speak English</strong> in each of these situations?", [
             "To communicate while traveling abroad",
             "With friends and family",
             "To ask a question in class",
@@ -164,7 +164,7 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           prof("prof_understanding_en", "Proficiency in English — Understanding spoken language"),
-          ctx("understanding_contexts_en", "How easily can you understand spoken English in each of these situations?", [
+          ctx("understanding_contexts_en", "How easily can you <strong>understand spoken English</strong> in each of these situations?", [
             "In everyday conversations",
             "When watching films/TV without subtitles",
             "When following a lecture or presentation",
@@ -173,7 +173,7 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           prof("prof_reading_en", "Proficiency in English — Reading"),
-          ctx("reading_contexts_en", "How easily can you read each of these types of English text?", [
+          ctx("reading_contexts_en", "How easily can you <strong>read</strong> each of these types of English text?", [
             "Everyday texts (signs, menus, messages, social media posts)",
             "News articles and websites",
             "Novels and other fiction",
@@ -182,7 +182,7 @@ IVQ.parts.part1 = function (jsPsych) {
           ]),
 
           prof("prof_writing_en", "Proficiency in English — Writing"),
-          ctx("writing_contexts_en", "How easily can you write each of these types of English text?", [
+          ctx("writing_contexts_en", "How easily can you <strong>write</strong> each of these types of English text?", [
             "Everyday messages (texts, emails to friends, social media posts)",
             "Formal emails or letters",
             "Essays or reports",
@@ -208,7 +208,7 @@ IVQ.parts.part1 = function (jsPsych) {
       },
 
       /* ---- weekly habits: reading / listening / speaking / writing ------- */
-      habitsPage("reading", "reading each type of material in English", [
+      habitsPage("reading", "<strong>reading each type of material in English</strong>", [
         "Books and printed materials",
         "Emails",
         "Documents (PDFs, Word, etc.)",
@@ -221,7 +221,7 @@ IVQ.parts.part1 = function (jsPsych) {
         "LLM outputs (e.g., ChatGPT, MidJourney, Claude, Gemini)",
         "Other",
       ]),
-      habitsPage("listening", "listening to English in each context", [
+      habitsPage("listening", "<strong>listening to English</strong> in each context", [
         "Conversations in person",
         "Phone or video calls",
         "TV, films, or videos",
@@ -233,7 +233,7 @@ IVQ.parts.part1 = function (jsPsych) {
         "Everyday interactions (shops, services)",
         "Other",
       ]),
-      habitsPage("speaking", "speaking English in each context", [
+      habitsPage("speaking", "<strong>speaking English</strong> in each context", [
         "Conversations with friends and family",
         "At work or school",
         "Phone or video calls",
@@ -242,7 +242,7 @@ IVQ.parts.part1 = function (jsPsych) {
         "Voice notes or messages",
         "Other",
       ]),
-      habitsPage("writing", "writing in English in each context", [
+      habitsPage("writing", "<strong>writing in English</strong> in each context", [
         "Text messages or chat",
         "Emails",
         "Social media posts or comments",
@@ -293,9 +293,9 @@ IVQ.parts.part1 = function (jsPsych) {
           note("language_summary_h", "Now think about <strong>all</strong> the languages you know (English and the ones you listed)."),
           { type: "ranking", name: "lang_dominance", title: "Order the languages by how DOMINANT they are for you (drag the most dominant to the top).", choices: [], isRequired: true },
           { type: "ranking", name: "lang_acquisition", title: "Order the languages by ORDER OF ACQUISITION (the language you acquired first at the top).", choices: [], isRequired: true },
-          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently exposed to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you speak each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
-          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to read it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_exposure_pct", title: "On average, what percentage of the time are you currently <strong>exposed</strong> to each language? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_speak_pct", title: "If you could choose, what percentage of the time would you <strong>speak</strong> each language with someone equally fluent in all of them? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of time", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
+          { type: "matrixdropdown", name: "lang_read_pct", title: "If a text were available in all your languages, in what percentage of cases would you choose to <strong>read</strong> it in each? (should total 100%)", rows: [], columns: [{ name: "pct", title: "% of cases", cellType: "slider", min: 0, max: 100, step: 1, autoGenerate: false, customLabels: PCT_LABELS, isRequired: true }] },
         ],
       },
 
@@ -472,6 +472,10 @@ IVQ.parts.part1 = function (jsPsych) {
     survey.onUpdateQuestionCssClasses.add(function (_, opt) {
       if (/_contexts_en$/.test(opt.question.name)) {
         opt.cssClasses.mainRoot = (opt.cssClasses.mainRoot || "") + " ease-matrix";
+      } else if (opt.question.getType() === "matrix") {
+        // the Deaf/ASL grids (hearing_aid_usage, ci_usage, education_modality,
+        // asl_proficiency) are wide — narrow the answer columns so they fit
+        opt.cssClasses.mainRoot = (opt.cssClasses.mainRoot || "") + " likert-matrix";
       }
     });
     function langs() {
