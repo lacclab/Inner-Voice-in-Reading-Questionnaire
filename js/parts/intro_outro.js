@@ -14,7 +14,7 @@ IVQ.parts.intro = function (jsPsych) {
       <h1>Informed consent</h1>
       <p>« PLACEHOLDER: paste IRB/ethics-approved consent text here. »</p>
       <p>This study explores people’s NORMAL INNER EXPERIENCES when they are reading 
-      written text. During the experiment, you will read texts and asked to answer 
+      written text. During this study, you will read texts and asked to answer 
       questions to the best of your ability. This study is conducted for research purposes. 
       Your responses are recorded anonymously and stored securely. Participation is 
       voluntary and you may withdraw at any time by closing the window.</p>
@@ -60,7 +60,7 @@ IVQ.parts.intro = function (jsPsych) {
       fullscreen_mode: true,
       message: `<p>Please make sure you are sitting comfortably in a well-lit room,
                 in front of a computer screen, with a keyboard (a laptop, or a tablet
-                with a keyboard, is also fine). During the survey, you will be asked 
+                with a keyboard, is also fine). During this questionnaire, you will be asked 
                 to listen to a couple of audio clips. Please make sure your speakers 
                 are on or that you have headphones connected to your device.
                 Please try to complete the experiment continuously, in one sitting.</p>

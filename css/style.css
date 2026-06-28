@@ -259,9 +259,12 @@ fieldset.pt-q {
 .sd-slider__range-track { background-color: var(--accent) !important; }
 .sd-slider__thumb-dot { background-color: var(--accent) !important; border-color: var(--accent) !important; }
 /* keep room so the end labels (e.g. "30+", "100") aren't clipped at the edges */
-.sd-slider-container { padding: 0 22px; box-sizing: border-box; }
+.sd-slider-container { padding: 0 42px; box-sizing: border-box; }
 .sd-slider__label-text { white-space: nowrap; overflow: visible; }
 .sd-slider-labels-container { overflow: visible; }
+/* keep slider end-labels ("30+", "100") from being clipped by the card / cell edge */
+.sd-slider-container, .sd-slider-container__slider,
+.sd-slider, .sd-question--slider .sd-question__content { overflow: visible !important; }
 
 /* keep the 0–10 proficiency scale on one line: min label · buttons · max label */
 .sd-rating { display: flex !important; flex-wrap: nowrap !important; align-items: center !important; gap: 4px; }
@@ -280,6 +283,13 @@ fieldset.pt-q {
   border-color: var(--accent) !important;
   color: #fff !important;
 }
+/* kill the square focus outline on rating buttons (the round selected fill is
+   the indicator); the number lives in the span text, so suppress the duplicate
+   ::after that overlaps it on the selected button */
+.sd-rating__item:focus, .sd-rating__item:focus-within,
+.sd-rating__item input:focus, .sd-rating__item input:focus-visible,
+.sd-rating__item-text:focus { outline: none !important; box-shadow: none !important; }
+.sd-rating__item-text::after { content: none !important; }
 
 /* Matrix (Likert grid) — grey header, gridlines, compact rows (Part 3 & 5) */
 .sd-matrix__table { border-collapse: collapse !important; width: 100%; }
@@ -294,8 +304,23 @@ fieldset.pt-q {
 .sd-matrix__table .sd-table__cell--header,
 .sd-matrix__table .sd-table__cell--header .sv-string-viewer { color: var(--ink) !important; }
 /* first column = item text: left-aligned, wider so it wraps less */
-.sd-matrix__table .sd-table__row > .sd-table__cell:first-child { text-align: left; font-weight: 500; width: 36%; font-size: .92rem; }
-.sd-matrix__table .sd-table__cell--header:first-child { text-align: left; width: 36%; }
+.sd-matrix__table .sd-table__row > .sd-table__cell:first-child { text-align: left; font-weight: 500; font-size: .92rem; }
+.sd-matrix__table .sd-table__cell--header:first-child { text-align: left; }
+/* English ease-of-use matrices: wide sentence column, narrow 1–5 columns.
+   The "width:1%" trick shrinks the number columns to their content so the
+   first (sentence) column absorbs all remaining width. */
+.ease-matrix .sd-matrix__table thead th,
+.ease-matrix .sd-matrix__table tbody td:not(:first-child) { width: 1% !important; min-width: 46px !important; white-space: nowrap; }
+/* Likert grids (IRQ / VISQ-R): same idea, but let the multi-word labels wrap so
+   the answer columns shrink to the label width and the statement column widens. */
+.likert-matrix .sd-matrix__table thead th,
+.likert-matrix .sd-matrix__table tbody td:not(:first-child) { width: 1% !important; min-width: 64px !important; }
+/* keep the column-labels row visible while scrolling the long Likert grid:
+   the matrix scrolls inside its own box and the header sticks to the top */
+.likert-matrix .sd-question__content { max-height: 68vh; overflow: auto; }
+.likert-matrix .sd-matrix__table thead th,
+.likert-matrix .sd-matrix__table thead td { position: sticky; top: 0; z-index: 3; }
+.likert-matrix .sd-matrix__table thead td:first-child { background: var(--card); }
 
 /* SurveyJS question titles (used directly in Part 1) → match pt-prompt look */
 .sd-question__title {
@@ -304,6 +329,20 @@ fieldset.pt-q {
   font-size: 1rem !important;
   color: var(--ink) !important;
   line-height: 1.5;
+}
+/* SurveyJS gives the panels container a -40px full-bleed margin (+40 padding)
+   that overshoots our flattened layout and pushes the Add/Remove buttons past
+   the card edges — neutralise it so panels fit inside the card. */
+.sd-paneldynamic__panels-container {
+  margin-left: 0 !important; margin-right: 0 !important;
+  padding-left: 0 !important; padding-right: 0 !important;
+}
+/* flex/grid children default to min-width:auto (min-content), which lets the
+   dynamic-panel push the whole survey wider than the card. Force them to shrink. */
+.sd-root-modern, .sd-container-modern, .sd-body, .sd-page, .sd-row,
+.sd-element, .sd-question, .sd-paneldynamic, .sd-paneldynamic__panel,
+.sd-paneldynamic__panels-container, .sd-paneldynamic__panel-wrapper {
+  min-width: 0 !important; max-width: 100% !important; box-sizing: border-box;
 }
 .sd-paneldynamic__panel-wrapper {
   border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px; margin-bottom: 16px;
@@ -382,3 +421,55 @@ fieldset.pt-q {
   .jspsych-content { padding: 28px 20px; }
   .slider-row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================================
+   "Journey through the brain" engagement layer
+   ========================================================================== */
+.journey { text-align: center; max-width: 34em; margin-left: auto; margin-right: auto; }
+.journey h1 { font-size: 1.7rem; line-height: 1.2; margin: 6px 0 10px; }
+.journey-lead { color: var(--ink-soft); max-width: 32em; margin: 8px auto; font-size: 1.02rem; }
+.journey-hook { color: var(--ink-soft); max-width: 30em; margin: 6px auto 2px; font-size: 1.05rem; }
+.journey-info { color: var(--ink); max-width: 32em; margin: 12px auto 2px; font-size: .96rem; }
+/* parts overview list */
+.overview-list { list-style: none; padding: 0; margin: 18px auto 0; max-width: 34em; text-align: left; }
+.overview-list li { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-top: 1px solid var(--border); color: var(--ink-soft); font-size: .96rem; }
+.overview-list li:first-child { border-top: 0; }
+.overview-num { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; color: var(--ink); font-weight: 700; font-size: .82rem; display: inline-flex; align-items: center; justify-content: center; }
+.overview-text { flex: 1; }
+.overview-name { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.journey-step { text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; font-weight: 700; color: var(--accent-dk); }
+.journey-title { font-size: 1.5rem; }
+
+/* the brain illustration */
+.brain-svg { display: block; margin: 0 auto 14px; height: auto; max-width: 86%; }
+.brain-lobe { transition: fill .8s cubic-bezier(.2,.8,.2,1); }
+
+/* progress pips */
+.journey-pips { display: flex; gap: 8px; justify-content: center; margin: 10px 0 4px; }
+.journey-pips .pip { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+.journey-pips .pip.done { background: var(--accent); }
+.journey-pips .pip.now { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-sft); }
+
+/* region name pill */
+.region-name { padding: 1px 10px; border-radius: 999px; color: var(--ink); font-weight: 700; white-space: nowrap; }
+.region-frontal { background: #b4d8ec; } .region-occipital { background: #f7a6b6; }
+.region-temporal { background: #b6cf9d; } .region-parietal { background: #fcfb98; }
+.region-cerebellum { background: #f3b66a; }
+
+/* profile card */
+.profile-disclaimer { font-size: .85rem; margin: 2px auto 14px; max-width: 30em; }
+.profile-rows { text-align: left; max-width: 30em; margin: 0 auto; }
+.profile-row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--border); }
+.profile-row:first-child { border-top: 0; }
+.profile-icon { font-size: 1.4rem; line-height: 1.4; flex: 0 0 auto; }
+.profile-label { font-weight: 700; color: var(--accent-dk); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
+.profile-text { font-size: 1rem; color: var(--ink); }
+
+/* verbal/visual spectrum */
+.spectrum { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.spectrum-end { font-size: .78rem; color: var(--ink-soft); white-space: nowrap; }
+.spectrum-bar { position: relative; flex: 1; height: 8px; border-radius: 999px;
+  background: linear-gradient(90deg, #1E9E5A, #2E6FC9); }
+.spectrum-dot { position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid var(--accent-dk);
+  box-shadow: 0 1px 4px rgba(0,0,0,.25); }

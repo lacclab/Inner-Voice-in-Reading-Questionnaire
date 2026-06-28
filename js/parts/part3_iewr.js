@@ -12,16 +12,6 @@ IVQ.parts.part3 = function (jsPsych) {
   "completeText": "Continue",
   "pages": [
     {
-      "name": "iewr_instructions",
-      "elements": [
-        {
-          "type": "html",
-          "name": "iewr_instructions_h",
-          "html": "<div class=\"pt-info\">Third Part<br> This part is a short survey about your inner experiences while reading.<br> Please read the questions and answer them carefully.</div>"
-        }
-      ]
-    },
-    {
       "name": "spr_inner_voice",
       "elements": [
         {
@@ -76,6 +66,7 @@ IVQ.parts.part3 = function (jsPsych) {
           "name": "spr_inner_voice",
           "titleLocation": "hidden",
           "type": "radiogroup",
+          "isRequired": true,
           "choices": [
             {
               "value": "1",
@@ -118,7 +109,7 @@ IVQ.parts.part3 = function (jsPsych) {
         {
           "type": "html",
           "name": "writing_inner_voice_q",
-          "html": "<div class=\"pt-prompt\">While writing your answers, did you hear an inner voice saying the words you were writing?</div>"
+          "html": "<div class=\"pt-prompt\">While writing your answers, did you hear an inner voice saying the words you were typing?</div>"
         },
         {
           "name": "writing_inner_voice",

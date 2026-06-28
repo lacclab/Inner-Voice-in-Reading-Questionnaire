@@ -26,18 +26,13 @@ IVQ.parts.part1 = function (jsPsych) {
   const info = (name, html) => ({ type: "html", name, html: `<div class="pt-info">${html}</div>` });
   const note = (name, html) => ({ type: "html", name, html: `<div class="pt-prompt">${html}</div>` });
   // 1–5 ease-of-use scale, rated for each usage context (shown under a proficiency item)
-  const EASE_COLS = [
-    { value: "1", text: "1 – very difficult for me" },
-    { value: "2", text: "2" },
-    { value: "3", text: "3" },
-    { value: "4", text: "4" },
-    { value: "5", text: "5 – very easily" },
-  ];
+  const EASE_COLS = ["1", "2", "3", "4", "5"].map((v) => ({ value: v, text: v }));
   const ctx = (name, title, items) => ({
-    type: "matrix", name, title,
+    type: "matrix", name,
+    title: title + "  (1 = very difficult for me · 5 = very easily)",
     columns: EASE_COLS,
     rows: items.map((t, i) => ({ value: String(i + 1), text: t })),
-    isAllRowRequired: true,
+    isAllRowRequired: true,   // column widths handled by .ease-matrix CSS (table-layout fixed)
   });
   // hours-per-week slider (used by the reading/listening/speaking/writing habit grids)
   const HOUR_LABELS = [
@@ -80,14 +75,12 @@ IVQ.parts.part1 = function (jsPsych) {
     completeText: "Continue",
     pages: [
       /* ---- intro ---------------------------------------------------------- */
-      { name: "experiment_instructions", elements: [info("experiment_instructions_h",
-        "Welcome!<br> This experiment consists of five parts:<br> 1. A short survey about your personal information.<br> 2. Reading some sentences.<br> 3. A questionnaire about your reading experience.<br> 4. Another section of reading and answering questions.<br> 5. A questionnaire about your general inner voice experience.<br> Please read the instructions for each part carefully and answer all the questions to the best of your ability.")] },
-
       /* ---- basic demographics -------------------------------------------- */
+      // (welcome + 5-part overview now live in the journey "parts overview" screen;
+      //  this part's intro text is on its section-intro screen)
       {
         name: "demographics",
         elements: [
-          info("survey_instructions_h", "First Part<br> This part is a short survey about your personal information.<br> Please read the questions and answer them carefully."),
           { type: "text", name: "age", title: "How old are you?", inputType: "number", min: 18, max: 120, isRequired: true },
           {
             type: "radiogroup", name: "gender", title: "What is your gender?",
@@ -473,6 +466,14 @@ IVQ.parts.part1 = function (jsPsych) {
   /* Populate the ranking choices + percentage matrix rows from the languages
      the participant actually entered (English + each panel language). */
   const survey_function = function (survey) {
+    // tag the English ease-of-use matrices so CSS can widen the sentence column.
+    // onUpdateQuestionCssClasses is reapplied on every render (unlike
+    // onAfterRenderQuestion), so the class survives cell clicks / re-renders.
+    survey.onUpdateQuestionCssClasses.add(function (_, opt) {
+      if (/_contexts_en$/.test(opt.question.name)) {
+        opt.cssClasses.mainRoot = (opt.cssClasses.mainRoot || "") + " ease-matrix";
+      }
+    });
     function langs() {
       const out = ["English"];
       const p = survey.getQuestionByName("other_languages_panel");

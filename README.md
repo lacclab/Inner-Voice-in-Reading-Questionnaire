@@ -30,6 +30,11 @@ js/parts/part4_diverse.js
 js/parts/part5_scales.js
 js/parts/spr_task.js             self-paced reading task (IVQ.buildSPR)
 js/parts/intro_outro.js          consent · media preload · fullscreen · completion
+js/parts/journey.js              "journey through the brain" layer: welcome,
+                                 parts overview, per-part intros, milestone
+                                 (confetti) screens, end profile, progress bar
+js/brain_svg.js                  segmented brain artwork (lobes light up as you go);
+                                 adapted from a public-domain Wikimedia SVG
 js/pt.js                         question-type builders (radio/check/range/…) + theme
 js/lists.js                      big option lists (countries, languages) + media manifest
 js/main.js                       Prolific capture · timeline assembly · DataPipe save
@@ -43,13 +48,22 @@ survey_source/survey.txt         reference only (original PsyToolkit source)
 ## Questionnaire map
 
 Order of screens with the question(s) on each, and what is shown/skipped by prior
-answers. Within a part, SurveyJS gives Previous/Next; there's a **break screen
-after Parts 1–4** ("you've finished Part N… press space to continue"). _Italic_
-notes are the branching conditions. (For the full, always-current question list,
-open `export.html`.)
+answers. Within a part, SurveyJS gives Previous/Next. _Italic_ notes are the
+branching conditions. (For the full, always-current question list, open
+`export.html`.)
+
+The study is framed as a **"journey through the reading brain"** (`js/parts/journey.js`):
+each part is wrapped by a **section-intro** screen (the brain so far + progress pips +
+"Part N of 5" + an engaging hook **and** an informative description) and, on finishing,
+a **milestone** screen (confetti + that lobe colours in). Part→lobe map: 1 Frontal ·
+2 Occipital · 3 Temporal · 4 Parietal · 5 Cerebellum. The top **progress bar is driven
+manually** from SurveyJS page changes (each part owns a slice), since each part is one
+jsPsych trial.
 
 **Intro**
 - `consent` (agree / decline → ends study) → media preload → `fullscreen_enter`
+- **journey welcome** ("A journey through your reading brain") → **parts overview** ("Here's the plan" — the five parts listed)
+- then, before each part: a **section intro**; after each part (1–4): a **milestone** (confetti + lobe)
 
 **Part 1 — Demographics & language background**
 - `demographics` — age, gender, home country (searchable dropdown)
@@ -68,7 +82,7 @@ open `export.html`.)
 - `dominant_hand`
 
 **Part 2 — Self-paced reading**
-- Instructions → practice sentences → experimental sentences (random order), word-by-word on spacebar; long sentences wrap to multiple lines. Sentences in `stimuli/texts.js`.
+- `spr_howto` (task mechanics) → practice sentences → experimental sentences (random order), revealed word-by-word on the spacebar (moving-window mask). Each sentence is a single string that fits the canvas (the plugin renders multi-line *array* sentences blank, so keep them short). Sentences in `stimuli/texts.js`.
 
 **Part 3 — Inner speech during reading**
 - `spr_inner_voice` page — **natural_reading** (felt like natural reading? + how similar/different), then did-you-hear-a-voice (+ explain), then **writing_inner_voice** (did you hear a voice while writing your answers?)
@@ -94,6 +108,7 @@ open `export.html`.)
 - `visqr` — VISQ-R, 7-point matrix (full set in file; some items commented out)
 
 **End**
+- (data saved to DataPipe first, in live mode) → **`profile_card`** — a light, for-fun "your inner-voice profile" computed from the participant's own answers (do you hear a voice while reading · whose voice · verbal-vs-visual leaning from the IRQ · how you compare to most people), explicitly *not a diagnosis*
 - `completion` — thank-you + (live mode) Prolific redirect
 
 ## Editing the survey
@@ -208,6 +223,7 @@ git add -A && git commit -m "short message" && git push
 
 ## Version pinning
 
-jsPsych core (`8.2.3`) and community plugins (self-paced-reading `2.0.0`,
-pipe `0.6.0`) are pinned in `index.html`; core `@jspsych/plugin-*` use the `@2`
-line. Pin those to exact versions before launch for full reproducibility.
+jsPsych core (`8.2.3`), community plugins (self-paced-reading `2.0.0`,
+pipe `0.6.0`) and `canvas-confetti` (`1.9.3`, milestone celebrations) are pinned
+in `index.html`; core `@jspsych/plugin-*` use the `@2` line. Pin those to exact
+versions before launch for full reproducibility.

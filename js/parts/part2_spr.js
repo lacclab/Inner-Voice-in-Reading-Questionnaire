@@ -5,8 +5,8 @@ window.IVQ = window.IVQ || {};
 IVQ.parts.part2 = function (jsPsych) {
   const t = [];
 
-  t.push(IVQ.pt.info({ name: "spr_instructions", html: "<div class=\"pt-info\">Second part<br> In this part you will read some sentences in a self-paced reading task.<br></div>" }));
-
+  // (the high-level "what is this part" intro now lives on the section-intro
+  //  screen; spr_howto inside buildSPR still gives the task mechanics)
   // Self-paced reading task (sentences in stimuli/texts.js)
   IVQ.buildSPR(jsPsych).forEach(function (trial) { t.push(trial); });
 

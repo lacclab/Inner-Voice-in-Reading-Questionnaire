@@ -38,7 +38,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "4",
-              "text": "Not hear an inner voice, understood the text without hearing anything in your head"
+              "text": "Not hear a voice \u2014 just understood the text"
             }
           ],
           "showOtherItem": true,
@@ -70,7 +70,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "3",
-              "text": "Not hear an inner voice, understood the words without hearing anything in your head"
+              "text": "Not hear a voice \u2014 just understood the words"
             }
           ],
           "showOtherItem": true,
@@ -102,7 +102,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "3",
-              "text": "Not hear an inner voice, understood the words without hearing anything in your head"
+              "text": "Not hear a voice \u2014 just understood the words"
             }
           ],
           "showOtherItem": true,
@@ -198,7 +198,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quoted",
-              "text": "I only heard the characters' spoken lines (I understood the narration without hearing it)"
+              "text": "Only the spoken lines (not the narration)"
             },
             {
               "value": "none",
@@ -212,10 +212,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp_voice_q",
+          "visibleIf": "{hp_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">In whose or what voice did you hear it? (select all that apply)</div>"
         },
         {
           "name": "hp_voice",
+          "visibleIf": "{hp_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -241,7 +243,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "actors",
-              "text": "The characters' voices resembled the actors from the films"
+              "text": "Voices like the film actors"
             }
           ],
           "showOtherItem": true,
@@ -251,10 +253,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp_accent_q",
+          "visibleIf": "{hp_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">The accent(s) you heard… (select all that apply)</div>"
         },
         {
           "name": "hp_accent",
+          "visibleIf": "{hp_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -277,10 +281,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp_gender_q",
+          "visibleIf": "{hp_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">The gender of the voice(s)… (select all that apply)</div>"
         },
         {
           "name": "hp_gender",
+          "visibleIf": "{hp_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -303,10 +309,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp_spell_q",
+          "visibleIf": "{hp_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">How did you hear the spell “Wingardium Leviosa!”? (select all that apply)</div>"
         },
         {
           "name": "hp_spell",
+          "visibleIf": "{hp_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -361,7 +369,7 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "harry_potter_scene_q",
-          "html": "<div class=\"pt-prompt\"><br><br>Now answer the questions below about how you experienced reading this passage.</div>"
+          "html": "<div class=\"pt-prompt\"><br><br>Now answer the question below about how you experienced reading this passage.</div>"
         },
         {
           "name": "harry_potter_scene",
@@ -370,11 +378,11 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "The voices of the actors in the video were the same as the voices I heard in my head while reading"
+              "text": "Same as the voices I heard while reading"
             },
             {
               "value": "2",
-              "text": "The voices of the actors in the video were different from the voices I heard in my head while reading"
+              "text": "Different from the voices I heard while reading"
             }
           ],
           "showOtherItem": true,
@@ -407,7 +415,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quoted",
-              "text": "I only heard the characters' spoken lines (I understood the narration without hearing it)"
+              "text": "Only the spoken lines (not the narration)"
             },
             {
               "value": "none",
@@ -421,10 +429,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp2_voice_q",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">In whose or what voice did you hear it? (select all that apply)</div>"
         },
         {
           "name": "hp2_voice",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -450,7 +460,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "actors",
-              "text": "The characters' voices resembled the actors from the films"
+              "text": "Voices like the film actors"
             }
           ],
           "showOtherItem": true,
@@ -460,10 +470,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp2_accent_q",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">The accent(s) you heard… (select all that apply)</div>"
         },
         {
           "name": "hp2_accent",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -486,10 +498,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp2_gender_q",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">The gender of the voice(s)… (select all that apply)</div>"
         },
         {
           "name": "hp2_gender",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -512,10 +526,12 @@ IVQ.parts.part4 = function (jsPsych) {
         {
           "type": "html",
           "name": "hp2_emphasis_q",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "html": "<div class=\"pt-prompt\">How did you hear the spell “Wingardium Leviosa!”? (select all that apply)</div>"
         },
         {
           "name": "hp2_emphasis",
+          "visibleIf": "{hp2_hear} <> 'none'",
           "titleLocation": "hidden",
           "type": "checkbox",
           "choices": [
@@ -594,7 +610,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quoted",
-              "text": "I only heard the characters' spoken lines (I understood the narration without hearing it)"
+              "text": "Only the spoken lines (not the narration)"
             },
             {
               "value": "none",
@@ -637,7 +653,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "actors",
-              "text": "The characters' voices resembled the actors from the films/TV series"
+              "text": "Voices like the film/TV actors"
             }
           ],
           "showOtherItem": true,
@@ -744,7 +760,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quoted",
-              "text": "I only heard the characters' spoken lines (I understood the narration without hearing it)"
+              "text": "Only the spoken lines (not the narration)"
             },
             {
               "value": "none",
@@ -934,7 +950,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quoted",
-              "text": "I only heard God's voice in “Let there be light” (I understood the narration without hearing it)"
+              "text": "Only God's line (not the narration)"
             },
             {
               "value": "none",
@@ -1126,7 +1142,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "content",
-              "text": "I only heard the tweet's content (I understood the handle and date without hearing them)"
+              "text": "Only the tweet text (not the handle or date)"
             },
             {
               "value": "none",
@@ -1292,7 +1308,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "one_side",
-              "text": "I only heard one side of the conversation (I understood the other side without hearing it)"
+              "text": "Only one side of the conversation"
             },
             {
               "value": "none",
@@ -1466,7 +1482,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "one_side",
-              "text": "I only heard one side of the conversation (I understood the other side without hearing it)"
+              "text": "Only one side of the conversation"
             },
             {
               "value": "none",
@@ -1640,7 +1656,7 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "quote",
-              "text": "I only heard the quote (I understood the rest without hearing it)"
+              "text": "Only the quote (not the rest)"
             },
             {
               "value": "none",
@@ -1795,15 +1811,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different gender than the first time I read the paragraph. Only the voice's gender was different."
+              "text": "Only the gender was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different gender than the first time I read the paragraph. Other features of the voice, like accent, pitch, loudness, speed and emotional tone, were different as well."
+              "text": "A different gender \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1827,15 +1843,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different accent than the first time I read the paragraph. Only the voice's accent was different."
+              "text": "Only the accent was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different accent than the first time I read the paragraph. Other features of the voice, like gender, pitch, loudness, speed and emotional tone, were different as well."
+              "text": "A different accent \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1859,15 +1875,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different pitch than the first time I read the paragraph. Only the voice's pitch was different."
+              "text": "Only the pitch was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different pitch than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, speed and emotional tone, were different as well."
+              "text": "A different pitch \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1891,15 +1907,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different pace of reading than the first time I read the paragraph. Only the voice's speed was different."
+              "text": "Only the reading speed was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different pace of reading than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, pitch and emotional tone, were different as well."
+              "text": "A different reading speed \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1923,15 +1939,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it was louder or quieter than the first time I read the paragraph. Only the voice's loudness was different."
+              "text": "Only the loudness was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it was louder or quieter than the first time I read the paragraph. Other features of the voice, like gender, accent, pitch, speed and emotional tone, were different as well."
+              "text": "A different loudness \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1955,15 +1971,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different emotional tone than the first time I read the paragraph. Only the voice's intonation was different."
+              "text": "Only the emotional tone was different."
             },
             {
               "value": "3",
-              "text": "While reading, I heard a voice in my head saying the words and it had a different emotional tone than the first time I read the paragraph. Other features of the voice, like gender, accent, loudness, speed and pitch, were different as well."
+              "text": "A different emotional tone \u2014 and other qualities changed too."
             }
           ],
           "showOtherItem": true,
@@ -1987,11 +2003,11 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "While reading, I heard a voice in my head saying the words the same way as the first time I read the paragraph."
+              "text": "It sounded the same as the first time."
             },
             {
               "value": "2",
-              "text": "While reading, I heard a voice in my head saying the words as if a specific close friend or family member were reading this paragraph to me."
+              "text": "It sounded like a specific friend or family member reading to me."
             }
           ],
           "showOtherItem": true,
@@ -2015,15 +2031,15 @@ IVQ.parts.part4 = function (jsPsych) {
           "choices": [
             {
               "value": "1",
-              "text": "I heard the same voice in my head saying the words as the first time I read the paragraph."
+              "text": "The same voice as the first time"
             },
             {
               "value": "2",
-              "text": "I heard my own voice saying the words in my head."
+              "text": "My own voice"
             },
             {
               "value": "3",
-              "text": "It felt the same way as reading the paragraph silently."
+              "text": "The same as reading it silently"
             }
           ],
           "showOtherItem": true,
@@ -2051,19 +2067,19 @@ IVQ.parts.part4 = function (jsPsych) {
             },
             {
               "value": "2",
-              "text": "I heard the same voice in my head saying the words as the first time I read the paragraph."
+              "text": "The same voice as the first time"
             },
             {
               "value": "3",
-              "text": "I heard my own voice saying the words in my head."
+              "text": "My own voice"
             },
             {
               "value": "4",
-              "text": "It felt the same way as reading the paragraph silently."
+              "text": "The same as reading it silently"
             },
             {
               "value": "5",
-              "text": "It felt the same way as reading the paragraph silently while moving my lips."
+              "text": "The same as reading it silently with lips moving"
             }
           ],
           "showOtherItem": true,

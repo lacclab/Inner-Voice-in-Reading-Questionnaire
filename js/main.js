@@ -7,6 +7,7 @@
   const jsPsych = initJsPsych({
     show_progress_bar: true,
     message_progress_bar: "Progress",
+    auto_update_progress_bar: false, // we drive it manually (see IVQ.progress)
     on_finish: function () {
       // Final navigation/redirect is handled by the completion screen in
       // IVQ.parts.outro so we can show a "thank you" before leaving.
@@ -48,23 +49,29 @@
   /* ── Build the timeline ─────────────────────────────────────────────────── */
   // intro = consent + media preload + fullscreen; each part file supplies its
   // own instructions/welcome (authored in js/parts/*.js).
+  // Each part is framed as a leg of a "journey through the reading brain":
+  // a section intro (brain so far) → the part → a milestone (confetti + new lobe).
+  const sect = (n) => IVQ.parts.sectionIntro(jsPsych, n);
+  const mile = (n) => IVQ.parts.milestone(jsPsych, n);
+  IVQ.progress.attach(jsPsych); // manual progress bar driven by survey page changes
+
   let timeline = [];
   timeline = timeline
     .concat(IVQ.parts.intro(jsPsych))
-    .concat(IVQ.parts.part1(jsPsych))
-    .concat([IVQ.parts.breakScreen(jsPsych, 1)])
-    .concat(IVQ.parts.part2(jsPsych))
-    .concat([IVQ.parts.breakScreen(jsPsych, 2)])
-    .concat(IVQ.parts.part3(jsPsych))
-    .concat([IVQ.parts.breakScreen(jsPsych, 3)])
-    // Part 4 (+ its break) is skipped entirely for no-inner-voice participants
+    .concat([IVQ.parts.journeyIntro(jsPsych)])
+    .concat([IVQ.parts.partsOverview(jsPsych)])
+    .concat([sect(1)]).concat(IVQ.parts.part1(jsPsych)).concat([mile(1)])
+    .concat([sect(2)]).concat(IVQ.parts.part2(jsPsych)).concat([mile(2)])
+    .concat([sect(3)]).concat(IVQ.parts.part3(jsPsych)).concat([mile(3)])
+    // Part 4 (intro + part + milestone) is skipped entirely for no-inner-voice participants
     .concat([{
-      timeline: [].concat(IVQ.parts.part4(jsPsych)).concat([IVQ.parts.breakScreen(jsPsych, 4)]),
+      timeline: [sect(4)].concat(IVQ.parts.part4(jsPsych)).concat([mile(4)]),
       conditional_function: function () { return !hasNoInnerReadingVoice(); },
     }])
-    .concat(IVQ.parts.part5(jsPsych));
+    .concat([sect(5)]).concat(IVQ.parts.part5(jsPsych)).concat([mile(5)]);
 
   /* ── Save data to DataPipe → OSF (skipped in dev mode) ──────────────────── */
+  // Saved before the profile/outro so a close on the final screens can't lose data.
   if (!IVQ.config.devMode) {
     timeline.push({
       type: jsPsychPipe,
@@ -77,8 +84,10 @@
     });
   }
 
-  // Completion / Prolific redirect.
-  timeline = timeline.concat(IVQ.parts.outro(jsPsych));
+  // Personal "inner voice" profile, then completion / Prolific redirect.
+  timeline = timeline
+    .concat([IVQ.parts.profileCard(jsPsych)])
+    .concat(IVQ.parts.outro(jsPsych));
 
   jsPsych.run(timeline);
 })();

@@ -15,26 +15,27 @@ IVQ.buildSPR = function (jsPsych) {
     mask_type: 1, // moving window: only the current word is visible
     choices: [" "],
     canvas_size: [1000, 300],
+    // left-align the text within the canvas (origin at top-left, not centred)
+    translate_origin: false,
+    x_align: "left",
+    xy_position: [40, 130],
+    line_height: 52,
   };
 
-  // Word-wrap a sentence into ≤ maxChars-wide lines. The plugin draws each
-  // array element on its own line, so this prevents long sentences being cut off.
+  // Wrap a long sentence so it doesn't run off the canvas. The plugin treats a
+  // single string and splits it on "\n" into lines — so we insert newlines (an
+  // *array* sentence makes the plugin call array.split and render a blank canvas).
   const MAX_CHARS = 52;
   function wrap(sentence) {
-    if (sentence.length <= MAX_CHARS) return sentence; // single line → plain string
-    const words = sentence.split(" ");
+    if (sentence.length <= MAX_CHARS) return sentence;
     const lines = [];
     let cur = "";
-    words.forEach((w) => {
-      if ((cur + " " + w).trim().length > MAX_CHARS) {
-        if (cur) lines.push(cur.trim());
-        cur = w;
-      } else {
-        cur = (cur + " " + w).trim();
-      }
+    sentence.split(" ").forEach((w) => {
+      if ((cur + " " + w).trim().length > MAX_CHARS) { if (cur) lines.push(cur.trim()); cur = w; }
+      else cur = (cur + " " + w).trim();
     });
     if (cur) lines.push(cur.trim());
-    return lines; // array of lines → multi-line display
+    return lines.join("\n"); // newline-delimited string → plugin draws multiple lines
   }
 
   timeline.push(IVQ.pt.info({

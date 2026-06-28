@@ -12,16 +12,6 @@ IVQ.parts.part5 = function (jsPsych) {
   "completeText": "Continue",
   "pages": [
     {
-      "name": "irq_visqr_instructions",
-      "elements": [
-        {
-          "type": "html",
-          "name": "irq_visqr_instructions_h",
-          "html": "<div class=\"pt-info\">Fifth Part<br> This part includes two short surveys about your reading experience and your general inner voice experience.<br> Please read the questions and answer them carefully.</div>"
-        }
-      ]
-    },
-    {
       "name": "irq",
       "elements": [
         {
@@ -387,5 +377,14 @@ IVQ.parts.part5 = function (jsPsych) {
     }
   ]
 };
-  return [ IVQ.makeSurvey(survey_json, { part: "part5" }) ];
+  // tag the Likert grids so CSS widens the statement column / narrows the answer
+  // columns (reapplied every render, so it survives cell clicks)
+  const survey_function = function (survey) {
+    survey.onUpdateQuestionCssClasses.add(function (_, opt) {
+      if (opt.question.getType() === "matrix") {
+        opt.cssClasses.mainRoot = (opt.cssClasses.mainRoot || "") + " likert-matrix";
+      }
+    });
+  };
+  return [ IVQ.makeSurvey(survey_json, { part: "part5" }, survey_function) ];
 };
